@@ -1,9 +1,25 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+
+export const viewport: Viewport = {
+  themeColor: "#0b0f14",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
 
 export const metadata: Metadata = {
   title: "Chemistry Explorer | Interactive Molecular Discovery Lab",
   description: "Interactive chemistry explorer for students: explore all 118 elements in the Periodic Table, combine atoms, discover real-world molecules, and complete science quests.",
+  metadataBase: new URL("https://chemistry.umarkairat.kz"),
+  openGraph: {
+    title: "Chemistry Explorer | Interactive Molecular Discovery Lab",
+    description: "Explore all 118 elements, combine atoms (H + H + O → H₂O), discover 50+ substances, and track your science discoveries.",
+    url: "https://chemistry.umarkairat.kz",
+    siteName: "Chemistry Explorer",
+    type: "website",
+    locale: "ru_RU",
+  },
   icons: {
     icon: "/favicon.ico",
   },
