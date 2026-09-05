@@ -1,0 +1,353 @@
+import { Language } from "@/types/chemistry";
+
+export const TRANSLATIONS: Record<Language, Record<string, string>> = {
+  en: {
+    appTitle: "Chemistry Explorer",
+    appSubtitle: "Interactive Molecular Discovery Laboratory",
+    navTable: "Periodic Table",
+    navLab: "Reaction Lab",
+    navJournal: "Discovery Journal",
+    navQuests: "Quests & Badges",
+    
+    // Header & Actions
+    searchPlaceholder: "Search by name, symbol, or atomic number...",
+    filterCategory: "All Categories",
+    filterState: "All States",
+    presentationMode: "Classroom Mode",
+    exitPresentation: "Exit Presentation",
+    soundOn: "Sound Effects: ON",
+    soundOff: "Sound Effects: Muted",
+    resetProgress: "Reset Progress",
+    resetConfirm: "Are you sure you want to reset your discoveries and quests?",
+    
+    // Periodic Table
+    elementsCount: "118 Elements",
+    legendTitle: "Categories",
+    atomicNumber: "Atomic Number",
+    atomicMass: "Atomic Mass",
+    period: "Period",
+    group: "Group",
+    electronConfig: "Electron Configuration",
+    phase: "State at Room Temp",
+    valency: "Valency",
+    everydayUse: "Real-world & Everyday Uses",
+    funFact: "Did You Know?",
+    summary: "Overview",
+    addToLab: "Add Atom to Lab",
+    inLab: "Added to Chamber",
+    viewElementDetails: "Element Inspector",
+    close: "Close",
+    
+    // Categories
+    "alkali-metal": "Alkali Metals",
+    "alkaline-earth": "Alkaline Earth Metals",
+    "transition-metal": "Transition Metals",
+    "post-transition": "Post-transition Metals",
+    "metalloid": "Metalloids",
+    "nonmetal": "Reactive Nonmetals",
+    "halogen": "Halogens",
+    "noble-gas": "Noble Gases",
+    "lanthanide": "Lanthanides",
+    "actinide": "Actinides",
+    
+    // States
+    "gas": "Gas",
+    "liquid": "Liquid",
+    "solid": "Solid",
+    "synthetic": "Synthetic (Lab)",
+    
+    // Reaction Lab
+    reactionLabTitle: "Atomic Combiner & Reaction Chamber",
+    reactionLabSubtitle: "Place atoms into the magnetic chamber and press Analyze to discover real substances!",
+    chamberEmpty: "The reaction chamber is empty. Click elements below or use Quick Pick to add atoms.",
+    currentFormula: "Formula in Chamber",
+    totalAtoms: "Total Atoms",
+    analyzeButton: "⚡ Analyze & React",
+    clearButton: "Clear Chamber",
+    quickPresets: "Quick Experiments",
+    presetWater: "Water (2H + O)",
+    presetSalt: "Table Salt (Na + Cl)",
+    presetMethane: "Methane (C + 4H)",
+    presetCO2: "CO₂ (C + 2O)",
+    presetRust: "Rust (2Fe + 3O)",
+    reactionTemperature: "Chamber Energy",
+    tempStandard: "Standard (25°C)",
+    tempHigh: "High Heat & Sparks",
+    
+    // Discovery
+    discoveryTitle: "✨ NEW DISCOVERY UNLOCKED!",
+    discoverySubtitle: "You successfully synthesized a chemical substance!",
+    scientificName: "Scientific Name",
+    hazardLevel: "Safety & Hazard",
+    hazard_vital: "Essential for Life",
+    hazard_safe: "Safe / Household",
+    hazard_caution: "Handle with Care",
+    hazard_danger: "Hazardous / Toxic",
+    saveToJournal: "Saved to Discovery Journal",
+    keepExperimenting: "Continue Experimenting",
+    shareDiscovery: "Share Discovery",
+    
+    // Experimental Fallback (Encouraging message)
+    experimentalTitle: "Curious Atomic Mixture!",
+    experimentalSubtitle: "These atoms form an exotic or unstable configuration under normal conditions.",
+    experimentalHint: "In nature, elements strive for full outer electron shells. Try combining with Hydrogen or Oxygen, or adjust your ratios!",
+    
+    // Journal
+    journalTitle: "Your Personal Discovery Journal",
+    journalSubtitle: "Keep track of all molecules, compounds, and minerals you have synthesized.",
+    discoveredCount: "Substances Discovered",
+    discoveryProgress: "Progress",
+    filterAll: "All",
+    filterEssential: "Essential",
+    filterHousehold: "Household",
+    filterGas: "Gases",
+    filterMineral: "Minerals",
+    filterAcidBase: "Acids & Bases",
+    filterFuel: "Fuels",
+    emptyJournal: "No substances discovered in this category yet. Head to the Reaction Lab to create some!",
+    exportReport: "Download Lab Certificate",
+    
+    // Quests & Achievements
+    questsTitle: "Science Quests",
+    questsSubtitle: "Complete hands-on chemistry challenges to level up your laboratory rank.",
+    achievementsTitle: "Badges & Trophies",
+    completed: "Completed!",
+    inProgress: "In Progress",
+    pointsReward: "XP",
+    labRank: "Scientist Level"
+  },
+  ru: {
+    appTitle: "Chemistry Explorer",
+    appSubtitle: "Интерактивная Лаборатория Химических Открытий",
+    navTable: "Периодическая таблица",
+    navLab: "Реактор открытий",
+    navJournal: "Журнал открытий",
+    navQuests: "Квесты и награды",
+    
+    // Header & Actions
+    searchPlaceholder: "Поиск по названию, символу или номеру...",
+    filterCategory: "Все категории",
+    filterState: "Все состояния",
+    presentationMode: "Режим презентации",
+    exitPresentation: "Выйти из презентации",
+    soundOn: "Звуки: Вкл",
+    soundOff: "Звуки: Выкл",
+    resetProgress: "Сбросить прогресс",
+    resetConfirm: "Вы уверены, что хотите сбросить свои открытия и награды?",
+    
+    // Periodic Table
+    elementsCount: "118 элементов",
+    legendTitle: "Категории",
+    atomicNumber: "Атомный номер",
+    atomicMass: "Атомная масса",
+    period: "Период",
+    group: "Группа",
+    electronConfig: "Электронная конфигурация",
+    phase: "Состояние при 25°C",
+    valency: "Валентность",
+    everydayUse: "Где применяется в жизни",
+    funFact: "Знаете ли вы?",
+    summary: "Краткое описание",
+    addToLab: "Добавить в колбу",
+    inLab: "В колбе",
+    viewElementDetails: "Паспорт элемента",
+    close: "Закрыть",
+    
+    // Categories
+    "alkali-metal": "Щелочные металлы",
+    "alkaline-earth": "Щёлочноземельные",
+    "transition-metal": "Переходные металлы",
+    "post-transition": "Постпереходные металлы",
+    "metalloid": "Полуметаллы",
+    "nonmetal": "Неметаллы",
+    "halogen": "Галогены",
+    "noble-gas": "Благородные газы",
+    "lanthanide": "Лантаноиды",
+    "actinide": "Актиноиды",
+    
+    // States
+    "gas": "Газ",
+    "liquid": "Жидкость",
+    "solid": "Твердое",
+    "synthetic": "Синтетический",
+    
+    // Reaction Lab
+    reactionLabTitle: "Атомный реактор и камера синтеза",
+    reactionLabSubtitle: "Помещайте атомы в магнитную камеру и нажимайте «Анализировать», чтобы открывать реальные вещества!",
+    chamberEmpty: "Камера пуста. Нажмите на элемент из таблицы ниже или выберите готовый рецепт.",
+    currentFormula: "Формула в колбе",
+    totalAtoms: "Всего атомов",
+    analyzeButton: "⚡ Анализировать и создать",
+    clearButton: "Очистить колбу",
+    quickPresets: "Быстрые опыты",
+    presetWater: "Вода (2H + O)",
+    presetSalt: "Соль (Na + Cl)",
+    presetMethane: "Метан (C + 4H)",
+    presetCO2: "Углекислый газ (C + 2O)",
+    presetRust: "Ржавчина (2Fe + 3O)",
+    reactionTemperature: "Энергия реакции",
+    tempStandard: "Обычная (25°C)",
+    tempHigh: "Нагрев и искры",
+    
+    // Discovery
+    discoveryTitle: "✨ НОВОЕ ОТКРЫТИЕ В ЛАБОРАТОРИИ!",
+    discoverySubtitle: "Вы успешно синтезировали химическое вещество!",
+    scientificName: "Научное название",
+    hazardLevel: "Класс безопасности",
+    hazard_vital: "Жизненно необходимо",
+    hazard_safe: "Безопасно / Бытовое",
+    hazard_caution: "Осторожно при работе",
+    hazard_danger: "Опасно / Токсично",
+    saveToJournal: "Записано в Журнал открытий",
+    keepExperimenting: "Продолжить опыты",
+    shareDiscovery: "Поделиться открытием",
+    
+    // Experimental Fallback
+    experimentalTitle: "Любопытная смесь атомов!",
+    experimentalSubtitle: "Эти атомы образуют нестабильное или экзотическое соединение в нормальных условиях.",
+    experimentalHint: "В природе атомы стремятся заполнить внешние электронные оболочки. Попробуйте добавить кислород или водород!",
+    
+    // Journal
+    journalTitle: "Ваш персональный Журнал Открытий",
+    journalSubtitle: "Коллекция всех веществ, молекул и минералов, которые вы открыли в лаборатории.",
+    discoveredCount: "Открыто веществ",
+    discoveryProgress: "Прогресс открытий",
+    filterAll: "Все",
+    filterEssential: "Жизненно важные",
+    filterHousehold: "Бытовые",
+    filterGas: "Газы",
+    filterMineral: "Минералы",
+    filterAcidBase: "Кислоты и щелочи",
+    filterFuel: "Топливо",
+    emptyJournal: "В этой категории пока ничего не открыто. Перейдите в Реактор, чтобы сделать новое открытие!",
+    exportReport: "Скачать Сертификат химика",
+    
+    // Quests & Achievements
+    questsTitle: "Научные квесты",
+    questsSubtitle: "Выполняйте практические задания школьной программы и повышайте свой научный статус.",
+    achievementsTitle: "Медали и достижения",
+    completed: "Выполнено!",
+    inProgress: "В процессе",
+    pointsReward: "очков",
+    labRank: "Звание исследователя"
+  },
+  kk: {
+    appTitle: "Chemistry Explorer",
+    appSubtitle: "Интерактивті Химиялық Жаңалықтар Зертханасы",
+    navTable: "Периодтық кесте",
+    navLab: "Синтез зертханасы",
+    navJournal: "Жаңалықтар журналы",
+    navQuests: "Тапсырмалар мен марапаттар",
+    
+    // Header & Actions
+    searchPlaceholder: "Атауы, белгісі немесе нөмірі бойынша іздеу...",
+    filterCategory: "Барлық санаттар",
+    filterState: "Барлық күйлер",
+    presentationMode: "Сынып режимі (Презентация)",
+    exitPresentation: "Шығу",
+    soundOn: "Дыбыстар: Қосулы",
+    soundOff: "Дыбыстар: Өшірулі",
+    resetProgress: "Прогресті нөлдеу",
+    resetConfirm: "Ашылған барлық заттар мен марапаттарды өшіруге сенімдісіз бе?",
+    
+    // Periodic Table
+    elementsCount: "118 элемент",
+    legendTitle: "Санаттар",
+    atomicNumber: "Атомдық нөмір",
+    atomicMass: "Атомдық масса",
+    period: "Период",
+    group: "Топ",
+    electronConfig: "Электрондық конфигурация",
+    phase: "Агрегаттық күйі (25°C)",
+    valency: "Валенттілік",
+    everydayUse: "Өмірде қолданылуы",
+    funFact: "Білесіз бе?",
+    summary: "Жалпы мәлімет",
+    addToLab: "Колбаға салу",
+    inLab: "Колбада бар",
+    viewElementDetails: "Элемент төлқұжаты",
+    close: "Жабу",
+    
+    // Categories
+    "alkali-metal": "Сілтілік металдар",
+    "alkaline-earth": "Сілтілік жер металдары",
+    "transition-metal": "Ауыспалы металдар",
+    "post-transition": "Ауысудан кейінгі металдар",
+    "metalloid": "Жартылай металдар",
+    "nonmetal": "Бейметалдар",
+    "halogen": "Галогендер",
+    "noble-gas": "Асыл газдар",
+    "lanthanide": "Лантаноидтер",
+    "actinide": "Актиноидтер",
+    
+    // States
+    "gas": "Газ",
+    "liquid": "Сұйық",
+    "solid": "Қатты",
+    "synthetic": "Жасанды (Синтетикалық)",
+    
+    // Reaction Lab
+    reactionLabTitle: "Атомдық реактор және синтез камерасы",
+    reactionLabSubtitle: "Магниттік камераға атомдарды салып, нақты заттарды ашу үшін «Талдау» түймесін басыңыз!",
+    chamberEmpty: "Камера бос. Төмендегі кестеден элементтерді таңдаңыз немесе дайын рецепттерді пайдаланыңыз.",
+    currentFormula: "Колбадағы формула",
+    totalAtoms: "Барлық атом саны",
+    analyzeButton: "⚡ Талдау және біріктіру",
+    clearButton: "Колбаны тазарту",
+    quickPresets: "Жылдам тәжірибелер",
+    presetWater: "Су (2H + O)",
+    presetSalt: "Ас тұзы (Na + Cl)",
+    presetMethane: "Метан (C + 4H)",
+    presetCO2: "Көмірқышқыл газы (C + 2O)",
+    presetRust: "Тот (2Fe + 3O)",
+    reactionTemperature: "Реакция энергиясы",
+    tempStandard: "Қалыпты (25°C)",
+    tempHigh: "Жоғары қызу мен ұшқын",
+    
+    // Discovery
+    discoveryTitle: "✨ ЗЕРТХАНАДА ЖАҢА ЗАТ АШЫЛДЫ!",
+    discoverySubtitle: "Сіз химиялық затты сәтті синтездеп шықтыңыз!",
+    scientificName: "Ғылыми атауы",
+    hazardLevel: "Қауіпсіздік сыныбы",
+    hazard_vital: "Өмір үшін аса қажет",
+    hazard_safe: "Қауіпсіз / Тұрмыстық",
+    hazard_caution: "Абайлап ұстау қажет",
+    hazard_danger: "Қауіпті / Улы",
+    saveToJournal: "Жаңалықтар журналына сақталды",
+    keepExperimenting: "Тәжірибені жалғастыру",
+    shareDiscovery: "Жаңалықпен бөлісу",
+    
+    // Experimental Fallback
+    experimentalTitle: "Қызықты атомдар қоспасы!",
+    experimentalSubtitle: "Бұл атомдар қалыпты жағдайда тұрақсыз немесе сирек экзотикалық қосылыс түзеді.",
+    experimentalHint: "Табиғатта атомдар сыртқы электрон қабатын толтыруға тырысады. Оттегі немесе сутегі қосып көріңіз!",
+    
+    // Journal
+    journalTitle: "Жеке Жаңалықтар Журналыңыз",
+    journalSubtitle: "Зертханада ашқан барлық заттарыңыз, молекулаларыңыз бен минералдарыңыздың тізімі.",
+    discoveredCount: "Ашылған заттар",
+    discoveryProgress: "Жаңалықтар үлесі",
+    filterAll: "Барлығы",
+    filterEssential: "Өмірлік маңызды",
+    filterHousehold: "Тұрмыстық",
+    filterGas: "Газдар",
+    filterMineral: "Минералдар",
+    filterAcidBase: "Қышқылдар мен сілтілер",
+    filterFuel: "Отындар",
+    emptyJournal: "Бұл санатта әзірге ашылған заттар жоқ. Реакторға өтіп жаңа заттарды синтездеңіз!",
+    exportReport: "Химик сертификатын жүктеу",
+    
+    // Quests & Achievements
+    questsTitle: "Ғылыми тапсырмалар",
+    questsSubtitle: "Мектеп бағдарламасындағы тапсырмаларды орындап, зертханалық дәрежеңізді көтеріңіз.",
+    achievementsTitle: "Медальдар мен марапаттар",
+    completed: "Орындалды!",
+    inProgress: "Орындалуда",
+    pointsReward: "ұпай",
+    labRank: "Ғалым дәрежесі"
+  }
+};
+
+export function getTranslation(lang: Language, key: string): string {
+  return TRANSLATIONS[lang]?.[key] || TRANSLATIONS.en[key] || key;
+}
