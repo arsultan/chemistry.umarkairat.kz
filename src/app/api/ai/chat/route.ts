@@ -42,7 +42,7 @@ export async function POST(req: NextRequest) {
     const body = await req.json();
     const { messages, context, apiKey: clientApiKey, model } = body;
 
-    const apiKey = clientApiKey || process.env.GEMINI_API_KEY;
+    const apiKey = clientApiKey || process.env.GEMINI_API_KEY || process.env.GEMINI_KEY || process.env.gemini_key || process.env.gemini_api_key;
     const lastUserMessage = messages && messages.length > 0 ? messages[messages.length - 1].content : "";
     const chemContext: ChemistryContext = context || {
       currentTab: "lab",
