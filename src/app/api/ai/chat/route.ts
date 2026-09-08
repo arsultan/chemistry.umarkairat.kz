@@ -29,12 +29,11 @@ If suggesting a precipitation reaction:
 `;
 
 const CANDIDATE_MODELS = [
-  "gemini-3.1-flash-lite",
-  "gemini-3.5-flash",
-  "gemini-3.6-flash",
   "gemini-flash-latest",
-  "gemini-2.5-flash",
-  "gemini-1.5-flash"
+  "gemini-3.5-flash",
+  "gemini-3.1-flash-lite",
+  "gemini-3.6-flash",
+  "gemini-3.7-flash"
 ];
 
 export async function POST(req: NextRequest) {

@@ -46,7 +46,7 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [apiKey, setApiKey] = useState("");
-  const [selectedModel, setSelectedModel] = useState("gemini-3.1-flash-lite");
+  const [selectedModel, setSelectedModel] = useState("gemini-flash-latest");
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [executedActionId, setExecutedActionId] = useState<string | null>(null);
 
@@ -519,10 +519,11 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
                   onChange={(e) => setSelectedModel(e.target.value)}
                   className="w-full px-2 py-1.5 rounded-lg bg-white dark:bg-[#0b0c17] border border-slate-300 dark:border-[#7c6ff6]/40 text-xs font-mono text-slate-900 dark:text-slate-100 outline-none cursor-pointer"
                 >
-                  <option value="gemini-3.1-flash-lite">Gemini 3.1 Flash Lite (Рекомендуется)</option>
+                  <option value="gemini-flash-latest">Gemini Flash Latest (Рекомендуется)</option>
                   <option value="gemini-3.5-flash">Gemini 3.5 Flash</option>
+                  <option value="gemini-3.1-flash-lite">Gemini 3.1 Flash Lite</option>
                   <option value="gemini-3.6-flash">Gemini 3.6 Flash</option>
-                  <option value="gemini-flash-latest">Gemini Flash Latest</option>
+                  <option value="gemini-3.7-flash">Gemini 3.7 Flash</option>
                 </select>
               </div>
 
