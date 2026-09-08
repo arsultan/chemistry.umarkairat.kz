@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState } from "react";
 import { ElementData, ElementCategory, StateOfMatter, Language } from "@/types/chemistry";
 import { ELEMENTS_DATA, ELEMENTS_BY_NUMBER } from "@/data/elements";
 import { ElementTile } from "./ElementTile";
 import { ElementModal } from "./ElementModal";
 import { getTranslation } from "@/data/i18n";
-import { Search, Filter, X, Sparkles } from "lucide-react";
+import { Search, X, Sparkles } from "lucide-react";
 
 interface PeriodicTableProps {
   language: Language;
@@ -63,19 +63,7 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
     return true;
   };
 
-  // Standard 18-column Table Layout mapping:
-  // Period 1: H (col 1), He (col 18)
-  // Period 2: Li (1), Be (2), B (13) to Ne (18)
-  // Period 3: Na (1), Mg (2), Al (13) to Ar (18)
-  // Period 4: K (1) to Kr (18)
-  // Period 5: Rb (1) to Xe (18)
-  // Period 6: Cs (1), Ba (2), [57-71 placeholder], Hf (4) to Rn (18)
-  // Period 7: Fr (1), Ra (2), [89-103 placeholder], Rf (4) to Og (18)
-  // Lanthanides: 57 to 71
-  // Actinides: 89 to 103
-
   const renderGridCell = (period: number, group: number) => {
-    // Check specific positions
     if (period === 1) {
       if (group === 1) return ELEMENTS_BY_NUMBER.get(1);
       if (group === 18) return ELEMENTS_BY_NUMBER.get(2);
@@ -120,24 +108,24 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
   const actinides = ELEMENTS_DATA.filter(e => e.number >= 89 && e.number <= 103);
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto px-2 sm:px-4 py-4">
+    <div className="space-y-5 max-w-7xl mx-auto px-2 sm:px-4 py-3">
       {/* Search & Filter Controls Bar */}
-      <div className="p-4 rounded-2xl bg-[#10141a] border border-white/10 space-y-3 shadow-xl">
+      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/[0.08] space-y-3 shadow-sm">
         <div className="flex flex-col md:flex-row items-center justify-between gap-3">
           {/* Search Input */}
-          <div className="relative w-full md:w-96">
+          <div className="relative w-full md:w-80">
             <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
             <input
               type="text"
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               placeholder={t("searchPlaceholder")}
-              className="w-full pl-9 pr-8 py-2.5 rounded-xl bg-[#181c22] border border-white/10 text-white placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-[#00d2ff] focus:ring-1 focus:ring-[#00d2ff] transition-all font-mono"
+              className="w-full pl-9 pr-8 py-2 rounded-xl bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-xs sm:text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-mono"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery("")}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-700 dark:hover:text-white cursor-pointer"
               >
                 <X className="w-4 h-4" />
               </button>
@@ -145,15 +133,15 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
           </div>
 
           {/* Quick Stats Banner */}
-          <div className="flex items-center gap-3 text-xs font-mono text-slate-400">
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-[#181c22] border border-white/5">
-              <Sparkles className="w-3.5 h-3.5 text-[#00d2ff]" />
-              <strong className="text-white">118</strong> {t("elementsCount")}
+          <div className="flex items-center gap-3 text-xs font-mono text-slate-600 dark:text-slate-400">
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-white/[0.06]">
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
+              <strong className="text-slate-900 dark:text-white">118</strong> {t("elementsCount")}
             </span>
             {activeCategory !== "all" && (
               <button
                 onClick={() => setActiveCategory("all")}
-                className="text-xs text-[#00d2ff] hover:underline flex items-center gap-1"
+                className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer font-medium"
               >
                 Reset filter <X className="w-3 h-3" />
               </button>
@@ -165,10 +153,10 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
           <button
             onClick={() => setActiveCategory("all")}
-            className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all ${
+            className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all cursor-pointer ${
               activeCategory === "all"
-                ? "bg-white text-black font-bold shadow-md"
-                : "bg-[#181c22] text-slate-400 hover:text-white border border-white/5"
+                ? "bg-slate-900 dark:bg-slate-800 text-white font-semibold shadow-sm border border-slate-900 dark:border-white/[0.12]"
+                : "bg-slate-100 dark:bg-slate-950/40 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200/80 dark:border-white/[0.06]"
             }`}
           >
             {t("filterCategory")}
@@ -179,14 +167,14 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
               <button
                 key={cat}
                 onClick={() => setActiveCategory(isSelected ? "all" : cat)}
-                className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all flex items-center gap-1.5 border ${
+                className={`px-2.5 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all flex items-center gap-1.5 border cursor-pointer ${
                   isSelected
-                    ? "bg-[#00d2ff]/20 text-[#00d2ff] border-[#00d2ff] shadow-[0_0_10px_rgba(0,210,255,0.3)]"
-                    : "bg-[#181c22] text-slate-300 border-white/5 hover:border-white/20"
+                    ? "bg-slate-900 dark:bg-slate-800 text-white border-slate-900 dark:border-white/[0.15] shadow-sm"
+                    : "bg-slate-100 dark:bg-slate-950/40 text-slate-600 dark:text-slate-400 border-slate-200/80 dark:border-white/[0.06] hover:text-slate-900 dark:hover:text-slate-200"
                 }`}
               >
                 <span 
-                  className="w-2 h-2 rounded-full" 
+                  className="w-1.5 h-1.5 rounded-full" 
                   style={{ backgroundColor: ELEMENTS_DATA.find(e => e.category === cat)?.color }} 
                 />
                 <span>{t(cat)}</span>
@@ -196,16 +184,16 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
         </div>
 
         {/* Phase of Matter Filter */}
-        <div className="flex items-center gap-2 text-xs text-slate-400 pt-1 border-t border-white/5">
-          <span className="font-mono text-[11px] uppercase tracking-wider">{t("phase")}:</span>
+        <div className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-slate-400 pt-1 border-t border-slate-200/80 dark:border-white/[0.06]">
+          <span className="font-mono text-[11px] uppercase tracking-wider mr-1">{t("phase")}:</span>
           {(["all", "gas", "liquid", "solid", "synthetic"] as (StateOfMatter | "all")[]).map(ph => (
             <button
               key={ph}
               onClick={() => setActivePhase(ph)}
-              className={`px-2.5 py-1 rounded-md transition-colors capitalize ${
+              className={`px-2.5 py-0.5 rounded-md transition-colors capitalize cursor-pointer ${
                 activePhase === ph
-                  ? "bg-[#00d2ff] text-black font-bold"
-                  : "bg-[#181c22] text-slate-400 hover:text-white"
+                  ? "bg-slate-900 dark:bg-slate-800 text-white font-medium shadow-sm"
+                  : "bg-slate-100 dark:bg-slate-950/40 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200"
               }`}
             >
               {ph === "all" ? t("filterState") : t(ph)}
@@ -214,28 +202,28 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
         </div>
       </div>
 
-      {/* 18-Column Periodic Table Grid (Horizontal scrollable on mobile) */}
-      <div className="overflow-x-auto pb-6">
-        <div className="min-w-[960px] space-y-1.5">
+      {/* 18-Column Periodic Table Grid */}
+      <div className="overflow-x-auto pb-4">
+        <div className="min-w-[960px] space-y-1">
           {/* Main 7 Periods */}
           {[1, 2, 3, 4, 5, 6, 7].map(period => (
-            <div key={period} className="grid grid-cols-18 gap-1.5">
+            <div key={period} className="grid grid-cols-18 gap-1">
               {Array.from({ length: 18 }).map((_, colIdx) => {
                 const group = colIdx + 1;
                 const cell = renderGridCell(period, group);
 
                 if (cell === null) {
-                  return <div key={colIdx} className="aspect-square" />;
+                  return <div key={`empty-${period}-${colIdx}`} className="aspect-square" />;
                 }
 
                 if (cell === "lanthanide-placeholder") {
                   return (
                     <div
-                      key={colIdx}
-                      className="aspect-square rounded-lg border border-dashed border-[#ec4899]/40 bg-[#ec4899]/10 flex flex-col items-center justify-center p-1 text-center select-none"
+                      key={`ph-lanthanide-${period}-${colIdx}`}
+                      className="aspect-square rounded-xl border border-dashed border-pink-500/40 bg-pink-500/[0.06] flex flex-col items-center justify-center p-1 text-center select-none"
                     >
-                      <span className="text-[10px] font-mono text-[#ec4899] font-bold">57-71</span>
-                      <span className="text-[8px] text-slate-400 truncate leading-tight">La-Lu</span>
+                      <span className="text-[9px] font-mono text-pink-600 dark:text-pink-400 font-semibold">57-71</span>
+                      <span className="text-[8px] text-slate-500 truncate leading-tight">La-Lu</span>
                     </div>
                   );
                 }
@@ -243,11 +231,11 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
                 if (cell === "actinide-placeholder") {
                   return (
                     <div
-                      key={colIdx}
-                      className="aspect-square rounded-lg border border-dashed border-[#f43f5e]/40 bg-[#f43f5e]/10 flex flex-col items-center justify-center p-1 text-center select-none"
+                      key={`ph-actinide-${period}-${colIdx}`}
+                      className="aspect-square rounded-xl border border-dashed border-rose-500/40 bg-rose-500/[0.06] flex flex-col items-center justify-center p-1 text-center select-none"
                     >
-                      <span className="text-[10px] font-mono text-[#f43f5e] font-bold">89-103</span>
-                      <span className="text-[8px] text-slate-400 truncate leading-tight">Ac-Lr</span>
+                      <span className="text-[9px] font-mono text-rose-600 dark:text-rose-400 font-semibold">89-103</span>
+                      <span className="text-[8px] text-slate-500 truncate leading-tight">Ac-Lr</span>
                     </div>
                   );
                 }
@@ -258,7 +246,7 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
 
                 return (
                   <ElementTile
-                    key={el.number}
+                    key={`element-${el.number}`}
                     element={el}
                     language={language}
                     onSelect={handleSelectElement}
@@ -273,17 +261,17 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
           ))}
 
           {/* Spacer */}
-          <div className="h-4" />
+          <div className="h-3" />
 
           {/* Lanthanides Row (57-71) */}
           <div className="flex items-center gap-2">
-            <div className="w-16 text-right text-[10px] font-mono text-[#ec4899] font-bold shrink-0">
-              LANTHANIDES
+            <div className="w-24 text-right text-[10px] font-mono text-pink-600 dark:text-pink-400/90 font-semibold uppercase shrink-0">
+              {t("lanthanide")}
             </div>
-            <div className="grid grid-cols-15 gap-1.5 flex-1">
+            <div className="grid grid-cols-15 gap-1 flex-1">
               {lanthanides.map(el => (
                 <ElementTile
-                  key={el.number}
+                  key={`lanthanide-${el.number}`}
                   element={el}
                   language={language}
                   onSelect={handleSelectElement}
@@ -298,13 +286,13 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
 
           {/* Actinides Row (89-103) */}
           <div className="flex items-center gap-2">
-            <div className="w-16 text-right text-[10px] font-mono text-[#f43f5e] font-bold shrink-0">
-              ACTINIDES
+            <div className="w-24 text-right text-[10px] font-mono text-rose-600 dark:text-rose-400/90 font-semibold uppercase shrink-0">
+              {t("actinide")}
             </div>
-            <div className="grid grid-cols-15 gap-1.5 flex-1">
+            <div className="grid grid-cols-15 gap-1 flex-1">
               {actinides.map(el => (
                 <ElementTile
-                  key={el.number}
+                  key={`actinide-${el.number}`}
                   element={el}
                   language={language}
                   onSelect={handleSelectElement}

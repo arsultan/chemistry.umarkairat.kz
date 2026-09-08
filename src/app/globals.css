@@ -1,107 +1,146 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap');
 @import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-montserrat), "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: var(--font-montserrat), "Montserrat", sans-serif;
+}
 
 @layer base {
   :root {
-    --bg-main: #0b0f14;
-    --bg-surface: #10141a;
-    --bg-surface-elevated: #181c22;
-    --bg-card: #1c2026;
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-glow: rgba(0, 210, 255, 0.3);
-    --cyan-primary: #00d2ff;
-    --cyan-glow: rgba(0, 210, 255, 0.25);
-    --purple-secondary: #edb1ff;
+    --bg-base: #f8fafc;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #f1f5f9;
+    --bg-card: #ffffff;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --border-subtle: rgba(0, 0, 0, 0.08);
+    --border-hover: rgba(0, 0, 0, 0.16);
+    --accent-indigo: #6366f1;
+    --accent-cyan: #06b6d4;
+    --accent-emerald: #10b981;
+    --accent-amber: #f59e0b;
+  }
+
+  html.dark, .dark {
+    --bg-base: #090d16;
+    --bg-surface: #0f172a;
+    --bg-surface-elevated: #1e293b;
+    --bg-card: #141d2e;
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --border-subtle: rgba(255, 255, 255, 0.07);
+    --border-hover: rgba(255, 255, 255, 0.14);
+  }
+
+  *, html, body, button, input, textarea, select {
+    font-family: var(--font-montserrat), 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif !important;
   }
 
   body {
-    background-color: var(--bg-main);
-    color: #dfe2eb;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background-color: var(--bg-base);
+    color: var(--text-main);
     overflow-x: hidden;
     min-height: 100vh;
+    letter-spacing: -0.012em;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    transition: background-color 0.2s cubic-bezier(0.16, 1, 0.3, 1), color 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   code, pre, .font-mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: var(--font-montserrat), 'Montserrat', sans-serif !important;
+    font-feature-settings: "tnum" 1;
+    letter-spacing: -0.01em;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-montserrat), 'Montserrat', sans-serif !important;
+    letter-spacing: -0.025em;
   }
 }
 
-/* Glassmorphism card matching umarkairat.kz */
-.glass-panel {
-  background: rgba(28, 32, 38, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+/* Precision Minimalist Glass Surfaces */
+.glass-satin {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
-.glass-panel-hover {
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+.dark .glass-satin {
+  background: rgba(15, 23, 42, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow: 0 4px 24px -1px rgba(0, 0, 0, 0.4);
 }
 
-.glass-panel-hover:hover {
-  background: rgba(38, 42, 49, 0.8);
-  border-color: rgba(0, 210, 255, 0.35);
-  transform: translateY(-2px);
-  box-shadow: 0 12px 36px 0 rgba(0, 210, 255, 0.15);
+html:not(.dark) .glass-satin {
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 }
 
-/* Neon Glow Accents */
-.neon-glow-cyan {
-  box-shadow: 0 0 25px rgba(0, 210, 255, 0.3);
-}
-
-.neon-glow-purple {
-  box-shadow: 0 0 25px rgba(237, 177, 255, 0.3);
-}
-
-.neon-glow-amber {
-  box-shadow: 0 0 25px rgba(245, 158, 11, 0.3);
-}
-
-.text-gradient-cyan {
-  background: linear-gradient(135deg, #a5e7ff 0%, #00d2ff 50%, #47d6ff 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.text-gradient-purple {
-  background: linear-gradient(135deg, #f9d8ff 0%, #edb1ff 50%, #c084fc 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Custom orbital particle pulse */
+/* Subtle, refined orbital and glow animations */
 @keyframes orbital-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
 
-@keyframes atom-pulse {
-  0%, 100% { transform: scale(1); opacity: 0.9; }
-  50% { transform: scale(1.08); opacity: 1; }
+@keyframes subtle-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-4px); }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 0.95; }
+  50% { opacity: 0.75; }
 }
 
 .animate-orbital {
-  animation: orbital-spin 12s linear infinite;
+  animation: orbital-spin 20s linear infinite;
 }
 
-.animate-atom-pulse {
-  animation: atom-pulse 3s ease-in-out infinite;
+.animate-float {
+  animation: subtle-float 4s ease-in-out infinite;
 }
 
-/* Custom thin scrollbar */
+.animate-pulse-soft {
+  animation: pulse-soft 3s ease-in-out infinite;
+}
+
+/* Ultra-thin refined scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 5px;
+  height: 5px;
 }
-::-webkit-scrollbar-track {
-  background: #10141a;
+.dark ::-webkit-scrollbar-track {
+  background: #090d16;
 }
-::-webkit-scrollbar-thumb {
-  background: #31353c;
-  border-radius: 4px;
+html:not(.dark) ::-webkit-scrollbar-track {
+  background: #f1f5f9;
 }
-::-webkit-scrollbar-thumb:hover {
-  background: #00d2ff;
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border-radius: 9999px;
 }
+html:not(.dark) ::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #334155;
+}
+html:not(.dark) ::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+.no-scrollbar {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+

@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { Language } from "@/types/chemistry";
 import { getTranslation } from "@/data/i18n";
 import { soundEffects } from "@/lib/soundEffects";
@@ -9,25 +9,33 @@ import {
   TableProperties, 
   BookOpen, 
   Trophy, 
-  Volume2, 
-  VolumeX, 
-  Maximize, 
-  RotateCcw,
+  Layers, 
+  Grid3X3, 
+  SlidersHorizontal,
+  Sun,
+  Moon,
   Sparkles
 } from "lucide-react";
+import { QuickControlModal } from "./QuickControlModal";
 
 interface HeaderProps {
-  currentTab: 'table' | 'lab' | 'journal' | 'quests';
-  setCurrentTab: (tab: 'table' | 'lab' | 'journal' | 'quests') => void;
+  currentTab: 'table' | 'lab' | 'solubility' | 'classification' | 'journal' | 'quests';
+  setCurrentTab: (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'journal' | 'quests') => void;
   language: Language;
   setLanguage: (lang: Language) => void;
   soundEnabled: boolean;
   setSoundEnabled: (val: boolean) => void;
+  theme: 'light' | 'dark';
+  setTheme: (t: 'light' | 'dark') => void;
   presentationMode: boolean;
   setPresentationMode: (val: boolean) => void;
   onResetProgress: () => void;
   discoveredCount: number;
   totalMolecules: number;
+  onOpenWelcome?: () => void;
+  onOpenIntro?: () => void;
+  onOpenAi?: () => void;
+  onOpenQR?: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -37,12 +45,19 @@ export const Header: React.FC<HeaderProps> = ({
   setLanguage,
   soundEnabled,
   setSoundEnabled,
+  theme,
+  setTheme,
   presentationMode,
   setPresentationMode,
   onResetProgress,
   discoveredCount,
-  totalMolecules
+  totalMolecules,
+  onOpenWelcome,
+  onOpenIntro,
+  onOpenAi,
+  onOpenQR
 }) => {
+  const [showQuickHub, setShowQuickHub] = useState(false);
   const t = (k: string) => getTranslation(language, k);
 
   const toggleSound = () => {
@@ -52,169 +67,260 @@ export const Header: React.FC<HeaderProps> = ({
     if (next) soundEffects.playAtomAdd();
   };
 
-  const handleTabChange = (tab: 'table' | 'lab' | 'journal' | 'quests') => {
+  const toggleTheme = () => {
+    soundEffects.playAtomAdd();
+    const next = theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+  };
+
+  const handleTabChange = (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'journal' | 'quests') => {
     soundEffects.playAtomAdd();
     setCurrentTab(tab);
   };
 
+  const tabs = [
+    {
+      id: 'lab' as const,
+      label: t("navLab"),
+      icon: FlaskConical,
+      color: "text-[#7c6ff6]",
+      activeBg: "border-[#7c6ff6]/30 text-[#7c6ff6]"
+    },
+    {
+      id: 'table' as const,
+      label: t("navTable"),
+      icon: TableProperties,
+      color: "text-cyan-500",
+      activeBg: "border-cyan-500/30 text-cyan-600 dark:text-cyan-400"
+    },
+    {
+      id: 'solubility' as const,
+      label: t("navSolubility"),
+      icon: Grid3X3,
+      color: "text-emerald-500",
+      activeBg: "border-emerald-500/30 text-emerald-600 dark:text-emerald-400"
+    },
+    {
+      id: 'classification' as const,
+      label: t("navClassification"),
+      icon: Layers,
+      color: "text-purple-500",
+      activeBg: "border-purple-500/30 text-purple-600 dark:text-purple-400"
+    },
+    {
+      id: 'journal' as const,
+      label: t("navJournal"),
+      icon: BookOpen,
+      color: "text-emerald-500",
+      activeBg: "border-emerald-500/30 text-emerald-600 dark:text-emerald-400",
+      badge: `${discoveredCount}/${totalMolecules}`
+    },
+    {
+      id: 'quests' as const,
+      label: t("navQuests"),
+      icon: Trophy,
+      color: "text-amber-500",
+      activeBg: "border-amber-500/30 text-amber-600 dark:text-amber-400"
+    }
+  ];
+
   return (
-    <header className="sticky top-0 z-40 bg-[#0b0f14]/90 backdrop-blur-md border-b border-white/10 px-4 lg:px-8 py-3 transition-all">
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-3">
-        {/* Brand & Logo */}
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="relative flex items-center justify-center w-10 h-10 rounded-xl bg-gradient-to-br from-[#00d2ff]/20 to-[#edb1ff]/20 border border-[#00d2ff]/40 shadow-[0_0_15px_rgba(0,210,255,0.25)]">
-              <FlaskConical className="w-5 h-5 text-[#00d2ff] animate-pulse" />
-              <div className="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-[#edb1ff] shadow-[0_0_8px_#edb1ff]" />
-            </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <span className="text-lg font-bold tracking-tight text-white font-mono flex items-center gap-1.5">
-                  CHEMISTRY<span className="text-[#00d2ff]">EXPLORER</span>
-                </span>
-                <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-[#1c2026] text-[#a5e7ff] border border-[#00d2ff]/30">
-                  Lab v2.0
-                </span>
-              </div>
-              <p className="text-xs text-slate-400 hidden sm:block">
-                {t("appSubtitle")}
-              </p>
-            </div>
-          </div>
-
-          {/* Mobile Sound & Lang controls */}
-          <div className="flex items-center gap-1.5 md:hidden">
-            <button
-              onClick={toggleSound}
-              className="p-2 rounded-lg bg-[#181c22] border border-white/10 text-slate-300 hover:text-white"
-              aria-label="Toggle Sound"
-            >
-              {soundEnabled ? <Volume2 className="w-4 h-4 text-[#00d2ff]" /> : <VolumeX className="w-4 h-4 text-slate-500" />}
-            </button>
-            <div className="flex bg-[#181c22] rounded-lg p-0.5 border border-white/10 text-xs font-mono">
-              {(['en', 'ru', 'kk'] as Language[]).map(l => (
+    <>
+      <header className="sticky top-0 z-30 backdrop-blur-xl bg-white/90 dark:bg-[#0b0c16]/90 border-b border-slate-200/80 dark:border-white/[0.08] transition-colors">
+        <div className="max-w-7xl mx-auto px-3 sm:px-6 py-2 sm:py-2.5 flex flex-col gap-2">
+          
+          {/* Upper Tier: Brand + Language + CHEMISTRY LAB AI + Single Unified Control Widget */}
+          <div className="flex items-center justify-between">
+            {/* Left: Brand Identity with NGS Crest & Author Badge */}
+            <div className="flex items-center gap-2.5 sm:gap-3">
+              {/* NGS Crest Badge */}
+              {onOpenWelcome ? (
                 <button
-                  key={l}
-                  onClick={() => setLanguage(l)}
-                  className={`px-2 py-1 rounded uppercase transition-colors ${language === l ? 'bg-[#00d2ff] text-black font-bold' : 'text-slate-400 hover:text-white'}`}
+                  onClick={onOpenWelcome}
+                  className="relative flex items-center justify-center w-10 h-12 sm:w-11 sm:h-13 p-1 rounded-xl bg-slate-100/90 dark:bg-slate-900/80 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-white/[0.09] hover:border-[#7c6ff6]/40 shadow-sm transition-all group shrink-0 cursor-pointer"
+                  title="New Generation School (NGS)"
                 >
-                  {l}
+                  <img
+                    src="/ngs-logo.png"
+                    alt="NGS School"
+                    className="w-full h-full object-contain drop-shadow-sm group-hover:scale-105 transition-transform"
+                  />
                 </button>
-              ))}
+              ) : (
+                <div className="relative flex items-center justify-center w-10 h-12 sm:w-11 sm:h-13 p-1 rounded-xl bg-slate-100/90 dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/[0.09] shrink-0">
+                  <img src="/ngs-logo.png" alt="NGS School" className="w-full h-full object-contain" />
+                </div>
+              )}
+
+              <div className="h-7 w-[1px] bg-slate-200 dark:bg-white/[0.08] hidden sm:block" />
+
+              <div 
+                onClick={() => handleTabChange('lab')} 
+                className="relative flex items-center justify-center w-9 h-9 rounded-xl bg-[#7c6ff6]/10 dark:bg-indigo-500/10 border border-[#7c6ff6]/20 text-[#7c6ff6] dark:text-indigo-400 shrink-0 cursor-pointer hover:scale-105 transition-transform"
+              >
+                <FlaskConical className="w-4.5 h-4.5" />
+              </div>
+
+              <div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span 
+                    onClick={() => handleTabChange('lab')}
+                    className="text-base sm:text-lg font-bold tracking-tight text-slate-900 dark:text-white font-mono flex items-center gap-1 cursor-pointer"
+                  >
+                    CHEMISTRY<span className="text-[#7c6ff6] dark:text-indigo-400 font-semibold">LAB</span>
+                  </span>
+                  <span className="text-[10px] uppercase font-mono px-1.5 py-0.5 rounded bg-slate-100 dark:bg-slate-800/80 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/[0.08]">
+                    v2.0
+                  </span>
+                  {onOpenWelcome && (
+                    <button
+                      onClick={onOpenWelcome}
+                      className="hidden sm:flex items-center gap-1 px-2 py-0.5 rounded-full bg-slate-100 dark:bg-slate-900/90 border border-slate-200 dark:border-white/[0.09] hover:border-[#7c6ff6]/40 text-[11px] font-mono text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-all cursor-pointer"
+                      title="New Generation School (NGS)"
+                    >
+                      <Sparkles className="w-3 h-3 text-[#7c6ff6] dark:text-indigo-400" />
+                      <span>{t("authorBadge")}</span>
+                    </button>
+                  )}
+                </div>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block mt-0.5">
+                  {t("appSubtitle")}
+                </p>
+              </div>
+            </div>
+
+            {/* Right: Controls Toolbar */}
+            <div className="flex items-center gap-2">
+              
+              {/* Language Switcher */}
+              <div className="flex bg-slate-100 dark:bg-slate-900/90 p-0.5 rounded-xl border border-slate-200/80 dark:border-white/[0.07] font-mono text-xs shadow-sm">
+                {(['en', 'ru', 'kk'] as Language[]).map(l => (
+                  <button
+                    key={l}
+                    onClick={() => setLanguage(l)}
+                    className={`px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-lg uppercase text-[11px] transition-all cursor-pointer ${
+                      language === l
+                        ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white font-bold shadow-sm border border-slate-200 dark:border-white/[0.12]'
+                        : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
+                    }`}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+
+              {/* Direct Theme Switcher (Sun/Moon) */}
+              <button
+                onClick={toggleTheme}
+                className="flex items-center justify-center w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-slate-100 dark:bg-slate-900/90 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-white/[0.08] text-slate-700 dark:text-slate-300 transition-all cursor-pointer shadow-sm hover:scale-105 active:scale-95"
+                title={theme === 'dark' ? 'Включить светлую тему' : 'Включить тёмную тему'}
+                aria-label="Toggle theme"
+              >
+                {theme === 'dark' ? (
+                  <Sun className="w-4 h-4 text-amber-400 hover:rotate-45 transition-transform" />
+                ) : (
+                  <Moon className="w-4 h-4 text-indigo-500 hover:-rotate-12 transition-transform" />
+                )}
+              </button>
+
+              {/* CHEMISTRY LAB AI Button */}
+              {onOpenAi && (
+                <button
+                  onClick={onOpenAi}
+                  title="CHEMISTRY LAB AI"
+                  className="group relative flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white dark:bg-[#14162e] hover:bg-[#f5f3ff] dark:hover:bg-[#1d2042] border border-slate-200 dark:border-[#7c6ff6]/30 hover:border-[#7c6ff6] text-slate-900 dark:text-white transition-all cursor-pointer shadow-sm hover:shadow-[0_0_18px_rgba(124,111,246,0.3)] text-xs font-bold font-mono hover:scale-105 active:scale-95"
+                >
+                  <div className="relative w-5 h-5 rounded-full overflow-hidden border border-[#a59bfb]/90 shrink-0 shadow-sm">
+                    <img
+                      src="/images/ai_avatar.jpg"
+                      alt="AI"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="flex items-center gap-1 font-sans">
+                    <span className="font-extrabold tracking-tight text-slate-900 dark:text-white text-xs">
+                      CHEMISTRY
+                    </span>
+                    <span className="font-extrabold tracking-tight text-[#7c6ff6] dark:text-[#a59bfb] text-xs">
+                      LAB
+                    </span>
+                    <span className="px-1 py-0.2 text-[9px] font-black rounded bg-[#7c6ff6]/15 text-[#7c6ff6] dark:text-[#c4b5fd] border border-[#7c6ff6]/30">
+                      AI
+                    </span>
+                  </div>
+                </button>
+              )}
+
+              {/* Single Consolidated Control Hub Widget (⚙️ / 🎛) */}
+              <button
+                onClick={() => {
+                  soundEffects.playAtomAdd();
+                  setShowQuickHub(true);
+                }}
+                className="flex items-center gap-1.5 px-2.5 py-1.5 sm:px-3 sm:py-1.5 rounded-xl bg-slate-100 dark:bg-slate-900/90 hover:bg-slate-200 dark:hover:bg-slate-800 border border-slate-200/80 dark:border-white/[0.08] text-slate-700 dark:text-slate-300 transition-all cursor-pointer shadow-sm text-xs font-mono font-medium hover:scale-105 active:scale-95"
+                title="Опции и инструменты"
+                aria-label="Quick Hub"
+              >
+                <SlidersHorizontal className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#7c6ff6]" />
+                <span className="hidden sm:inline font-bold text-xs">
+                  {language === 'kk' ? 'Басқару' : language === 'en' ? 'Hub' : 'Опции'}
+                </span>
+              </button>
             </div>
           </div>
-        </div>
 
-        {/* Navigation Tabs */}
-        <nav className="flex items-center gap-1.5 bg-[#10141a]/90 p-1 rounded-xl border border-white/10 overflow-x-auto">
-          <button
-            onClick={() => handleTabChange('table')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap ${
-              currentTab === 'table'
-                ? 'bg-gradient-to-r from-[#00d2ff]/20 to-[#00d2ff]/10 text-[#00d2ff] border border-[#00d2ff]/40 shadow-[0_0_12px_rgba(0,210,255,0.2)]'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <TableProperties className="w-4 h-4" />
-            <span>{t("navTable")}</span>
-          </button>
+          {/* Lower Tier: Centered Luxury Segmented Navigation Dock */}
+          <div className="w-full flex justify-center pt-0.5">
+            <nav className="w-full sm:w-auto flex items-center justify-between sm:justify-center gap-1 p-1 bg-slate-100/95 dark:bg-slate-900/90 rounded-xl sm:rounded-2xl border border-slate-200/80 dark:border-white/[0.08] shadow-inner dark:shadow-none overflow-x-auto no-scrollbar">
+              {tabs.map((tab) => {
+                const Icon = tab.icon;
+                const isActive = currentTab === tab.id;
 
-          <button
-            onClick={() => handleTabChange('lab')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap ${
-              currentTab === 'lab'
-                ? 'bg-gradient-to-r from-[#edb1ff]/20 to-[#edb1ff]/10 text-[#edb1ff] border border-[#edb1ff]/40 shadow-[0_0_12px_rgba(237,177,255,0.2)]'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <FlaskConical className="w-4 h-4" />
-            <span>{t("navLab")}</span>
-          </button>
-
-          <button
-            onClick={() => handleTabChange('journal')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap relative ${
-              currentTab === 'journal'
-                ? 'bg-gradient-to-r from-[#10b981]/20 to-[#10b981]/10 text-[#34d399] border border-[#10b981]/40 shadow-[0_0_12px_rgba(16,185,129,0.2)]'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <BookOpen className="w-4 h-4" />
-            <span>{t("navJournal")}</span>
-            <span className="ml-1 px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold bg-[#10b981]/20 text-[#34d399] border border-[#10b981]/40">
-              {discoveredCount}/{totalMolecules}
-            </span>
-          </button>
-
-          <button
-            onClick={() => handleTabChange('quests')}
-            className={`flex items-center gap-2 px-3.5 py-2 rounded-lg text-xs md:text-sm font-medium transition-all whitespace-nowrap ${
-              currentTab === 'quests'
-                ? 'bg-gradient-to-r from-[#f59e0b]/20 to-[#f59e0b]/10 text-[#fbbf24] border border-[#f59e0b]/40 shadow-[0_0_12px_rgba(245,158,11,0.2)]'
-                : 'text-slate-400 hover:text-white hover:bg-white/5'
-            }`}
-          >
-            <Trophy className="w-4 h-4" />
-            <span>{t("navQuests")}</span>
-          </button>
-        </nav>
-
-        {/* Right Tools: Language, Sound, Presentation, Reset */}
-        <div className="hidden md:flex items-center gap-2.5">
-          {/* Language Switcher */}
-          <div className="flex bg-[#10141a] p-1 rounded-xl border border-white/10 font-mono text-xs">
-            {(['en', 'ru', 'kk'] as Language[]).map(l => (
-              <button
-                key={l}
-                onClick={() => setLanguage(l)}
-                className={`px-2.5 py-1 rounded-lg uppercase transition-all ${
-                  language === l
-                    ? 'bg-[#00d2ff] text-[#0b0f14] font-bold shadow-[0_0_10px_rgba(0,210,255,0.4)]'
-                    : 'text-slate-400 hover:text-white'
-                }`}
-              >
-                {l}
-              </button>
-            ))}
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabChange(tab.id)}
+                    className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-4 py-1.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium transition-all whitespace-nowrap cursor-pointer select-none ${
+                      isActive
+                        ? 'bg-white dark:bg-slate-800 text-slate-900 dark:text-white shadow-sm border border-slate-200/90 dark:border-white/[0.14] font-semibold'
+                        : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 hover:bg-black/[0.03] dark:hover:bg-white/[0.04]'
+                    }`}
+                  >
+                    <Icon className={`w-3.5 h-3.5 sm:w-4 sm:h-4 ${isActive ? tab.color : 'text-slate-500 dark:text-slate-400'}`} />
+                    <span>{tab.label}</span>
+                    {tab.badge && (
+                      <span className={`px-1.5 py-0.2 rounded-full text-[10px] font-mono font-bold border ${
+                        isActive 
+                          ? 'bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-emerald-500/30' 
+                          : 'bg-slate-200/70 dark:bg-slate-800 text-slate-500 dark:text-slate-400 border-slate-300/60 dark:border-white/[0.06]'
+                      }`}>
+                        {tab.badge}
+                      </span>
+                    )}
+                  </button>
+                );
+              })}
+            </nav>
           </div>
-
-          {/* Sound Toggle */}
-          <button
-            onClick={toggleSound}
-            title={soundEnabled ? t("soundOn") : t("soundOff")}
-            className={`p-2 rounded-xl border transition-all ${
-              soundEnabled
-                ? 'bg-[#00d2ff]/10 border-[#00d2ff]/40 text-[#00d2ff] shadow-[0_0_10px_rgba(0,210,255,0.15)]'
-                : 'bg-[#181c22] border-white/10 text-slate-500'
-            }`}
-          >
-            {soundEnabled ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
-          </button>
-
-          {/* Presentation Mode Toggle */}
-          <button
-            onClick={() => setPresentationMode(!presentationMode)}
-            title={t("presentationMode")}
-            className={`flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-medium border transition-all ${
-              presentationMode
-                ? 'bg-[#edb1ff]/20 border-[#edb1ff] text-[#edb1ff] shadow-[0_0_15px_rgba(237,177,255,0.3)]'
-                : 'bg-[#181c22] border-white/10 text-slate-300 hover:text-white hover:border-white/20'
-            }`}
-          >
-            <Maximize className="w-3.5 h-3.5" />
-            <span className="hidden lg:inline">{t("presentationMode")}</span>
-          </button>
-
-          {/* Reset progress */}
-          <button
-            onClick={onResetProgress}
-            title={t("resetProgress")}
-            className="p-2 rounded-xl bg-[#181c22] border border-white/10 text-slate-400 hover:text-rose-400 hover:border-rose-500/40 transition-all"
-          >
-            <RotateCcw className="w-4 h-4" />
-          </button>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Single Consolidated Quick Control Modal */}
+      <QuickControlModal
+        isOpen={showQuickHub}
+        onClose={() => setShowQuickHub(false)}
+        language={language}
+        theme={theme}
+        onToggleTheme={toggleTheme}
+        soundEnabled={soundEnabled}
+        onToggleSound={toggleSound}
+        onOpenIntro={onOpenIntro}
+        onOpenWelcome={onOpenWelcome}
+        onOpenQR={onOpenQR}
+        presentationMode={presentationMode}
+        onTogglePresentation={() => setPresentationMode(!presentationMode)}
+        onResetProgress={onResetProgress}
+      />
+    </>
   );
 };

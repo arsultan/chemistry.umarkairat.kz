@@ -2,20 +2,16 @@
 
 import React, { useState } from "react";
 import { MoleculeData, MoleculeCategory, Language } from "@/types/chemistry";
-import { MOLECULES_DATA, MOLECULES_BY_ID } from "@/data/molecules";
+import { MOLECULES_DATA } from "@/data/molecules";
 import { DiscoveryModal } from "../ReactionLab/DiscoveryModal";
 import { getTranslation } from "@/data/i18n";
 import { soundEffects } from "@/lib/soundEffects";
 import { 
   BookOpen, 
   Award, 
-  Download, 
-  Sparkles, 
   Lock, 
   Search, 
   CheckCircle2, 
-  FileCheck,
-  Layers,
   Printer
 } from "lucide-react";
 
@@ -83,36 +79,36 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
   };
 
   return (
-    <div className="space-y-6 max-w-7xl mx-auto px-4 py-4">
+    <div className="space-y-6 max-w-7xl mx-auto px-4 py-3">
       {/* Journal Header & Progress Stats */}
-      <div className="p-6 rounded-3xl bg-[#10141a] border border-white/10 shadow-2xl relative overflow-hidden">
+      <div className="p-6 rounded-3xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/[0.08] shadow-sm relative overflow-hidden">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold tracking-wider uppercase text-[#10b981] bg-[#10b981]/15 border border-[#10b981]/40 shadow-sm mb-2">
+            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-medium tracking-wider uppercase text-emerald-600 dark:text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 mb-2">
               <BookOpen className="w-3.5 h-3.5" />
               <span>{t("journalTitle")}</span>
             </div>
-            <h1 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
+            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white tracking-tight">
               {rank[language]}
             </h1>
-            <p className="text-xs sm:text-sm text-slate-400 mt-1">
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 mt-0.5">
               {t("journalSubtitle")}
             </p>
           </div>
 
           {/* Progress Bar & Certificate Button */}
-          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
-            <div className="p-4 rounded-2xl bg-[#181c22] border border-white/10 space-y-2 min-w-[240px]">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+            <div className="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-950/60 border border-slate-200 dark:border-white/[0.07] space-y-2 min-w-[220px]">
               <div className="flex items-center justify-between text-xs font-mono">
-                <span className="text-slate-400">{t("discoveredCount")}:</span>
-                <span className="font-bold text-white">
-                  <span className="text-[#10b981] text-base">{discoveredCount}</span> / {totalCount}
+                <span className="text-slate-500 dark:text-slate-400">{t("discoveredCount")}:</span>
+                <span className="font-semibold text-slate-900 dark:text-white">
+                  <span className="text-emerald-600 dark:text-emerald-400 text-sm font-bold">{discoveredCount}</span> / {totalCount}
                 </span>
               </div>
               {/* Progress Bar */}
-              <div className="w-full h-2.5 rounded-full bg-white/10 overflow-hidden">
+              <div className="w-full h-2 rounded-full bg-slate-200 dark:bg-slate-800 overflow-hidden">
                 <div 
-                  className="h-full rounded-full bg-gradient-to-r from-[#10b981] to-[#00d2ff] transition-all duration-700 shadow-[0_0_10px_#10b981]"
+                  className="h-full rounded-full bg-emerald-500 transition-all duration-500"
                   style={{ width: `${Math.max(percent, 4)}%` }}
                 />
               </div>
@@ -124,9 +120,9 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
 
             <button
               onClick={() => setShowCertificate(true)}
-              className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-xs font-bold font-mono text-[#00d2ff] bg-[#00d2ff]/10 hover:bg-[#00d2ff]/20 border border-[#00d2ff]/40 shadow-[0_0_15px_rgba(0,210,255,0.2)] transition-all whitespace-nowrap active:scale-95"
+              className="flex items-center justify-center gap-2 px-4 py-3 rounded-2xl text-xs font-semibold font-mono text-slate-800 dark:text-white bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 border border-slate-200 dark:border-white/[0.1] transition-all whitespace-nowrap active:scale-95 cursor-pointer shadow-sm"
             >
-              <Award className="w-4 h-4" />
+              <Award className="w-4 h-4 text-amber-500 dark:text-amber-400" />
               <span>{t("exportReport")}</span>
             </button>
           </div>
@@ -134,7 +130,7 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
       </div>
 
       {/* Filter Chips & Search Bar */}
-      <div className="p-4 rounded-2xl bg-[#10141a] border border-white/10 space-y-3 shadow-xl">
+      <div className="p-4 rounded-2xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/[0.08] space-y-3 shadow-sm">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           {/* Category Chips */}
           <div className="flex items-center gap-1.5 overflow-x-auto w-full sm:w-auto pb-1 text-xs">
@@ -144,10 +140,10 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
                 <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all border ${
+                  className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all border cursor-pointer ${
                     isSelected
-                      ? "bg-[#10b981]/20 text-[#34d399] border-[#10b981] shadow-[0_0_10px_rgba(16,185,129,0.3)]"
-                      : "bg-[#181c22] text-slate-400 hover:text-white border-white/5 hover:border-white/20"
+                      ? "bg-slate-900 dark:bg-slate-800 text-white border-slate-900 dark:border-white/[0.15] shadow-sm"
+                      : "bg-slate-100 dark:bg-slate-950/40 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border-slate-200/80 dark:border-white/[0.06]"
                   }`}
                 >
                   {cat === "all" ? t("filterAll") : t(`filter${cat.charAt(0).toUpperCase() + cat.slice(1)}`)}
@@ -164,14 +160,14 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
               value={searchQuery}
               onChange={e => setSearchQuery(e.target.value)}
               placeholder="Search substance..."
-              className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-[#181c22] border border-white/10 text-white placeholder-slate-500 text-xs focus:outline-none focus:border-[#10b981] font-mono"
+              className="w-full pl-9 pr-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-white/[0.08] text-slate-900 dark:text-white placeholder-slate-400 dark:placeholder-slate-500 text-xs focus:outline-none focus:border-indigo-500 font-mono"
             />
           </div>
         </div>
       </div>
 
       {/* Molecules Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3.5">
         {filteredMolecules.map(mol => {
           const isDiscovered = discoveredSet.has(mol.id);
 
@@ -183,45 +179,40 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
                   soundEffects.playAtomAdd();
                   setInspectedMolecule(mol);
                 }}
-                className="group cursor-pointer rounded-2xl bg-[#10141a] border p-4 space-y-3 transition-all hover:scale-[1.02] hover:shadow-xl relative overflow-hidden"
-                style={{
-                  borderColor: `${mol.glowColor}50`,
-                  boxShadow: `0 0 15px ${mol.glowColor}20`
-                }}
+                className="group cursor-pointer rounded-2xl bg-white dark:bg-slate-900/90 border border-slate-200/90 dark:border-white/[0.08] hover:border-slate-400 dark:hover:border-white/[0.18] p-4 space-y-2.5 transition-all hover:translate-y-[-1px] hover:shadow-md relative overflow-hidden"
               >
                 {/* Top Badge */}
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-mono font-bold px-2 py-0.5 rounded-md bg-[#181c22] text-[#00d2ff] border border-white/5">
+                  <span className="text-[11px] font-mono font-medium px-2 py-0.5 rounded-md bg-slate-100 dark:bg-slate-950/60 text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-white/[0.06]">
                     {t(mol.category)}
                   </span>
-                  <span className="w-2 h-2 rounded-full" style={{ backgroundColor: mol.glowColor, boxShadow: `0 0 8px ${mol.glowColor}` }} />
+                  <span className="w-2 h-2 rounded-full opacity-80" style={{ backgroundColor: mol.glowColor }} />
                 </div>
 
                 {/* Formula & Name */}
                 <div>
                   <div 
-                    className="text-3xl font-black font-mono tracking-tight text-white"
-                    style={{ textShadow: `0 0 12px ${mol.glowColor}80` }}
+                    className="text-2xl sm:text-3xl font-black font-mono tracking-tight text-slate-900 dark:text-white"
                   >
                     {mol.formula}
                   </div>
-                  <h3 className="text-base font-bold text-white mt-1 group-hover:text-[#00d2ff] transition-colors">
+                  <h3 className="text-sm sm:text-base font-bold text-slate-900 dark:text-white mt-0.5 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                     {mol.name[language]}
                   </h3>
-                  <p className="text-xs text-slate-400 font-mono truncate">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-mono truncate">
                     {mol.scientificName[language]}
                   </p>
                 </div>
 
                 {/* Short snippet */}
-                <p className="text-xs text-slate-300 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-slate-600 dark:text-slate-300 line-clamp-2 leading-relaxed">
                   {mol.description[language]}
                 </p>
 
                 {/* Card footer */}
-                <div className="pt-2 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-slate-400">
+                <div className="pt-2 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
                   <span className="capitalize">{mol.state}</span>
-                  <span className="text-[#00d2ff] group-hover:underline flex items-center gap-1">
+                  <span className="text-indigo-600 dark:text-indigo-400 group-hover:underline flex items-center gap-1 font-medium">
                     Details →
                   </span>
                 </div>
@@ -233,34 +224,34 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
           return (
             <div
               key={mol.id}
-              className="rounded-2xl bg-[#10141a]/40 border border-white/5 border-dashed p-4 space-y-3 opacity-60 hover:opacity-90 transition-opacity"
+              className="rounded-2xl bg-slate-50 dark:bg-slate-950/40 border border-dashed border-slate-200 dark:border-white/[0.07] p-4 space-y-2.5 opacity-70 hover:opacity-90 transition-opacity"
             >
               <div className="flex items-center justify-between">
-                <span className="text-[10px] font-mono text-slate-500 uppercase">
+                <span className="text-[10px] font-mono text-slate-400 dark:text-slate-500 uppercase">
                   {t(mol.category)}
                 </span>
-                <Lock className="w-3.5 h-3.5 text-slate-500" />
+                <Lock className="w-3.5 h-3.5 text-slate-400 dark:text-slate-500" />
               </div>
 
               <div>
-                <div className="text-2xl font-black font-mono tracking-wider text-slate-600">
+                <div className="text-2xl font-black font-mono tracking-wider text-slate-400 dark:text-slate-600">
                   ???
                 </div>
-                <h3 className="text-sm font-semibold text-slate-400 mt-1">
+                <h3 className="text-xs sm:text-sm font-semibold text-slate-500 dark:text-slate-400 mt-0.5">
                   Undiscovered Substance
                 </h3>
               </div>
 
-              <div className="text-xs text-slate-500 font-mono space-y-1">
-                <span className="block text-[11px]">Recipe Hint:</span>
-                <span className="text-slate-400">
+              <div className="text-xs text-slate-500 font-mono space-y-0.5">
+                <span className="block text-[10px] text-slate-400 dark:text-slate-600 uppercase">Recipe Hint:</span>
+                <span className="text-slate-600 dark:text-slate-400">
                   {Object.keys(mol.atoms).map(sym => `${mol.atoms[sym]}×${sym}`).join(" + ")}
                 </span>
               </div>
 
               <button
                 onClick={onGoToLab}
-                className="w-full py-1.5 rounded-lg bg-[#181c22] hover:bg-[#181c22]/80 text-xs font-mono text-slate-400 hover:text-white border border-white/5 transition-colors"
+                className="w-full py-1.5 rounded-lg bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 text-xs font-mono text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white border border-slate-200 dark:border-white/[0.06] transition-colors cursor-pointer shadow-sm"
               >
                 Synthesize in Lab →
               </button>
@@ -281,56 +272,94 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
 
       {/* Official Lab Certificate Modal */}
       {showCertificate && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-fadeIn print:p-0 print:bg-white">
-          <div className="relative w-full max-w-2xl bg-[#10141a] border border-[#00d2ff]/40 rounded-3xl p-8 shadow-2xl text-center space-y-6 print:text-black print:bg-white print:border-none">
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-fadeIn print:p-0 print:bg-white">
+          <div className="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/[0.12] rounded-3xl p-6 sm:p-8 shadow-2xl text-center space-y-5 print:text-black print:bg-white print:border-none">
             <button
               onClick={() => setShowCertificate(false)}
-              className="absolute top-4 right-4 p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10 transition-colors print:hidden"
+              className="absolute top-4 right-4 p-2 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.05] dark:hover:bg-white/[0.1] text-slate-500 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white border border-slate-200 dark:border-white/[0.08] transition-colors print:hidden cursor-pointer"
             >
               ✕
             </button>
 
             {/* Certificate Header */}
-            <div className="space-y-2 border-b border-white/10 pb-6 print:border-black">
-              <div className="w-16 h-16 mx-auto rounded-full bg-[#00d2ff]/20 border border-[#00d2ff] flex items-center justify-center text-[#00d2ff] shadow-[0_0_20px_#00d2ff] print:shadow-none">
-                <Award className="w-8 h-8" />
+            <div className="space-y-2 border-b border-slate-200 dark:border-white/[0.08] pb-5 print:border-black">
+              <div className="flex items-center justify-center mb-2">
+                <img 
+                  src="/ngs-logo.png" 
+                  alt="NGS School" 
+                  className="w-13 h-15 object-contain print:drop-shadow-none" 
+                />
               </div>
-              <h2 className="text-2xl sm:text-3xl font-black font-mono tracking-tight text-white print:text-black">
+              <h2 className="text-xl sm:text-2xl font-black font-mono tracking-tight text-slate-900 dark:text-white print:text-black">
                 CERTIFICATE OF CHEMICAL DISCOVERY
               </h2>
-              <p className="text-xs text-slate-400 font-mono tracking-widest uppercase print:text-slate-700">
-                School Science Project • chemistry.umarkairat.kz
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-mono tracking-widest uppercase print:text-slate-700">
+                New Generation School (NGS) • chemistry.umarkairat.kz
               </p>
             </div>
 
             {/* Certificate Body */}
-            <div className="space-y-4 py-2">
-              <p className="text-sm text-slate-300 leading-relaxed print:text-slate-800">
+            <div className="space-y-3 py-1">
+              <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 leading-relaxed print:text-slate-800">
                 This document certifies the successful synthesis and investigation of
               </p>
-              <div className="text-4xl font-black font-mono text-[#00d2ff] tracking-tight print:text-blue-600">
+              <div className="text-3xl sm:text-4xl font-black font-mono text-indigo-600 dark:text-indigo-400 tracking-tight print:text-blue-600">
                 {discoveredCount} CHEMICAL SUBSTANCES
               </div>
-              <p className="text-base font-bold text-white print:text-black">
-                Attained Rank: <span className="text-[#edb1ff] print:text-purple-700">{rank[language]}</span>
+              <p className="text-sm sm:text-base font-bold text-slate-900 dark:text-white print:text-black">
+                Attained Rank: <span className="text-emerald-600 dark:text-emerald-400 print:text-purple-700">{rank[language]}</span>
               </p>
-              <div className="flex items-center justify-center gap-2 text-xs text-slate-400 font-mono pt-2">
+              <div className="flex items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400 font-mono pt-1">
                 <span>Completed: {percent}% of Molecular Registry</span> • <span>All 118 Elements Explored</span>
               </div>
             </div>
 
+            {/* Author Signature & Seal Block */}
+            <div className="pt-4 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-between text-left text-xs font-mono print:border-black print:text-black">
+              <div className="flex items-center gap-3">
+                <img 
+                  src="/ngs-logo.png" 
+                  alt="NGS" 
+                  className="w-8 h-9 object-contain" 
+                />
+                <div>
+                  <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase block print:text-slate-600 font-medium">
+                    {t("authorTitle")}
+                  </span>
+                  <span className="text-slate-900 dark:text-white font-bold text-sm print:text-black block">
+                    Кайрат Умар
+                  </span>
+                  <span className="text-[10px] text-indigo-600 dark:text-indigo-400 print:text-blue-700 block">
+                    chemistry.umarkairat.kz
+                  </span>
+                </div>
+              </div>
+
+              <div className="text-right">
+                <span className="text-[10px] text-slate-400 dark:text-slate-500 uppercase block print:text-slate-600 font-medium">
+                  Institution
+                </span>
+                <span className="inline-flex items-center gap-1 text-emerald-600 dark:text-emerald-400 font-bold text-xs print:text-green-700">
+                  <CheckCircle2 className="w-3.5 h-3.5" /> NGS Verified Lab
+                </span>
+                <span className="text-[10px] text-slate-500 dark:text-slate-400 block print:text-slate-600">
+                  Almaty, Kazakhstan
+                </span>
+              </div>
+            </div>
+
             {/* Actions */}
-            <div className="pt-4 border-t border-white/10 flex items-center justify-center gap-3 print:hidden">
+            <div className="pt-3 border-t border-slate-200 dark:border-white/[0.08] flex items-center justify-center gap-3 print:hidden">
               <button
                 onClick={handlePrintCertificate}
-                className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-bold text-black bg-[#00d2ff] hover:brightness-110 shadow-lg font-mono transition-all"
+                className="flex items-center gap-2 px-5 py-2 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-500 shadow-sm font-mono transition-all cursor-pointer"
               >
                 <Printer className="w-4 h-4" />
                 <span>Print Certificate</span>
               </button>
               <button
                 onClick={() => setShowCertificate(false)}
-                className="px-5 py-2.5 rounded-xl text-xs font-medium text-slate-400 hover:text-white bg-white/5 border border-white/10 font-mono"
+                className="px-4 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 dark:text-slate-400 dark:hover:text-white bg-slate-100 hover:bg-slate-200 dark:bg-white/[0.05] border border-slate-200 dark:border-white/[0.08] font-mono cursor-pointer"
               >
                 Close
               </button>

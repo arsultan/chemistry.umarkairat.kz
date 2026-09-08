@@ -5,9 +5,11 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     appTitle: "Chemistry Explorer",
     appSubtitle: "Interactive Molecular Discovery Laboratory",
     navTable: "Periodic Table",
+    navSolubility: "Solubility",
     navLab: "Reaction Lab",
-    navJournal: "Discovery Journal",
-    navQuests: "Quests & Badges",
+    navClassification: "Classification",
+    navJournal: "Journal",
+    navQuests: "Quests",
     
     // Header & Actions
     searchPlaceholder: "Search by name, symbol, or atomic number...",
@@ -17,6 +19,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     exitPresentation: "Exit Presentation",
     soundOn: "Sound Effects: ON",
     soundOff: "Sound Effects: Muted",
+    themeLight: "Light Theme",
+    themeDark: "Dark Theme",
+    toggleTheme: "Toggle Theme",
     resetProgress: "Reset Progress",
     resetConfirm: "Are you sure you want to reset your discoveries and quests?",
     
@@ -114,15 +119,35 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     completed: "Completed!",
     inProgress: "In Progress",
     pointsReward: "XP",
-    labRank: "Scientist Level"
+    labRank: "Scientist Level",
+
+    // Author & Welcome
+    authorBadge: "by Kairat Umar",
+    authorTitle: "Project Author & Lead",
+    authorName: "Kairat Umar",
+    welcomeTitle: "Welcome to Chemistry Explorer!",
+    welcomeSubtitle: "An interactive laboratory for exploring all 118 chemical elements and synthesizing 51 real substances.",
+    welcomeStartBtn: "Start Laboratory Exploration 🚀",
+    welcomeFeature1Title: "Reaction Chamber (51 Substances)",
+    welcomeFeature1Desc: "Place elements into the magnetic chamber, balance formulas, and synthesize real molecules, gases, acids, and minerals.",
+    welcomeFeature2Title: "Interactive Periodic Table (118 Elements)",
+    welcomeFeature2Desc: "Inspect animated 2D Bohr electron orbitals, atomic structures, and discover everyday applications for each element.",
+    welcomeFeature3Title: "Quests, XP & Certificate",
+    welcomeFeature3Desc: "Complete school laboratory curriculum quests, level up your science rank, and export an official chemistry certificate.",
+    dontShowAgain: "Don't show again on startup",
+    aboutProject: "About Lab & Guide",
+    certificateAuthorSignature: "Project Author: Kairat Umar",
+    laboratoryHead: "Laboratory Lead & Developer"
   },
   ru: {
     appTitle: "Chemistry Explorer",
     appSubtitle: "Интерактивная Лаборатория Химических Открытий",
-    navTable: "Периодическая таблица",
-    navLab: "Реактор открытий",
-    navJournal: "Журнал открытий",
-    navQuests: "Квесты и награды",
+    navTable: "Таблица",
+    navSolubility: "Растворимость",
+    navLab: "Лаборатория",
+    navClassification: "Классификация",
+    navJournal: "Журнал",
+    navQuests: "Квесты",
     
     // Header & Actions
     searchPlaceholder: "Поиск по названию, символу или номеру...",
@@ -132,6 +157,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     exitPresentation: "Выйти из презентации",
     soundOn: "Звуки: Вкл",
     soundOff: "Звуки: Выкл",
+    themeLight: "Светлая тема",
+    themeDark: "Тёмная тема",
+    toggleTheme: "Переключить тему",
     resetProgress: "Сбросить прогресс",
     resetConfirm: "Вы уверены, что хотите сбросить свои открытия и награды?",
     
@@ -229,15 +257,35 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     completed: "Выполнено!",
     inProgress: "В процессе",
     pointsReward: "очков",
-    labRank: "Звание исследователя"
+    labRank: "Звание исследователя",
+
+    // Author & Welcome
+    authorBadge: "автор: Кайрат Умар",
+    authorTitle: "Автор и разработчик проекта",
+    authorName: "Кайрат Умар",
+    welcomeTitle: "Добро пожаловать в Лабораторию Химии!",
+    welcomeSubtitle: "Интерактивная научная лаборатория для изучения всех 118 химических элементов и синтеза 51 реального вещества.",
+    welcomeStartBtn: "Начать исследования 🚀",
+    welcomeFeature1Title: "Реактор открытий (51 соединение)",
+    welcomeFeature1Desc: "Помещайте элементы в магнитную камеру, подбирайте пропорции и синтезируйте реальные молекулы, газы, кислоты и минералы.",
+    welcomeFeature2Title: "Периодическая таблица (118 элементов)",
+    welcomeFeature2Desc: "Исследуйте анимированную 2D-модель Бора с вращающимися электронами, атомные массы и сферы применения.",
+    welcomeFeature3Title: "Квесты, Опыт и Сертификат",
+    welcomeFeature3Desc: "Выполняйте школьные химические задания, повышайте ранг исследователя и распечатайте официальный именной сертификат.",
+    dontShowAgain: "Больше не показывать при входе",
+    aboutProject: "О лаборатории и инструкция",
+    certificateAuthorSignature: "Автор проекта: Кайрат Умар",
+    laboratoryHead: "Руководитель лаборатории и разработчик"
   },
   kk: {
     appTitle: "Chemistry Explorer",
     appSubtitle: "Интерактивті Химиялық Жаңалықтар Зертханасы",
-    navTable: "Периодтық кесте",
-    navLab: "Синтез зертханасы",
-    navJournal: "Жаңалықтар журналы",
-    navQuests: "Тапсырмалар мен марапаттар",
+    navTable: "Кесте",
+    navSolubility: "Ерігіштік",
+    navLab: "Зертхана",
+    navClassification: "Жіктелуі",
+    navJournal: "Журнал",
+    navQuests: "Тапсырмалар",
     
     // Header & Actions
     searchPlaceholder: "Атауы, белгісі немесе нөмірі бойынша іздеу...",
@@ -247,6 +295,9 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     exitPresentation: "Шығу",
     soundOn: "Дыбыстар: Қосулы",
     soundOff: "Дыбыстар: Өшірулі",
+    themeLight: "Ашық тақырып",
+    themeDark: "Күңгірт тақырып",
+    toggleTheme: "Тақырыпты ауыстыру",
     resetProgress: "Прогресті нөлдеу",
     resetConfirm: "Ашылған барлық заттар мен марапаттарды өшіруге сенімдісіз бе?",
     
@@ -344,7 +395,25 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     completed: "Орындалды!",
     inProgress: "Орындалуда",
     pointsReward: "ұпай",
-    labRank: "Ғалым дәрежесі"
+    labRank: "Ғалым дәрежесі",
+
+    // Author & Welcome
+    authorBadge: "авторы: Қайрат Омар",
+    authorTitle: "Жоба авторы және әзірлеушісі",
+    authorName: "Қайрат Омар",
+    welcomeTitle: "Химия Зертханасына қош келдіңіз!",
+    welcomeSubtitle: "Барлық 118 химиялық элементті зерттеп, 51 нақты затты синтездеуге арналған интерактивті ғылыми зертхана.",
+    welcomeStartBtn: "Зерттеуді бастау 🚀",
+    welcomeFeature1Title: "Синтез реакторы (51 қосылыс)",
+    welcomeFeature1Desc: "Элементтерді магниттік камераға салып, нақты молекулалар, газдар, қышқылдар мен минералдарды ашыңыз.",
+    welcomeFeature2Title: "Периодтық кесте (118 элемент)",
+    welcomeFeature2Desc: "Айналмалы электрондары бар 2D Бор моделін, атомдық массаларды және өмірдегі қолданылуын зерттеңіз.",
+    welcomeFeature3Title: "Тапсырмалар, Ұпай және Сертификат",
+    welcomeFeature3Desc: "Мектеп тапсырмаларын орындап, ғалым дәрежесін көтеріңіз және ресми сертификатты басып шығарыңыз.",
+    dontShowAgain: "Келесі жолы көрсетпеу",
+    aboutProject: "Зертхана туралы және нұсқаулық",
+    certificateAuthorSignature: "Жоба авторы: Қайрат Омар",
+    laboratoryHead: "Зертхана жетекшісі және әзірлеушісі"
   }
 };
 

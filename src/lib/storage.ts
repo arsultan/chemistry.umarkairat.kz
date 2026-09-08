@@ -8,7 +8,9 @@ const STORAGE_KEYS = {
   EXPERIMENTS: "chem_explorer_experiments",
   LANGUAGE: "chem_explorer_lang",
   SOUND: "chem_explorer_sound",
-  CHAMBER: "chem_explorer_chamber"
+  THEME: "chem_explorer_theme",
+  CHAMBER: "chem_explorer_chamber",
+  WELCOME_SEEN: "chem_explorer_welcome_seen"
 };
 
 export function loadSavedDiscoveries(): string[] {
@@ -126,6 +128,38 @@ export function saveSoundSetting(enabled: boolean): void {
   if (typeof window === "undefined") return;
   try {
     localStorage.setItem(STORAGE_KEYS.SOUND, String(enabled));
+  } catch {}
+}
+
+export function loadTheme(): 'dark' | 'light' {
+  if (typeof window === "undefined") return 'dark';
+  try {
+    const saved = localStorage.getItem(STORAGE_KEYS.THEME);
+    if (saved === 'light' || saved === 'dark') return saved;
+  } catch {}
+  return 'dark';
+}
+
+export function saveTheme(theme: 'dark' | 'light'): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEYS.THEME, theme);
+  } catch {}
+}
+
+export function loadWelcomeSeen(): boolean {
+  if (typeof window === "undefined") return false;
+  try {
+    return localStorage.getItem(STORAGE_KEYS.WELCOME_SEEN) === "true";
+  } catch {
+    return false;
+  }
+}
+
+export function saveWelcomeSeen(seen: boolean): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(STORAGE_KEYS.WELCOME_SEEN, String(seen));
   } catch {}
 }
 
