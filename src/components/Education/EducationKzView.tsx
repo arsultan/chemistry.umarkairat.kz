@@ -21,7 +21,11 @@ import {
   Trophy,
   Compass,
   CheckCircle2,
-  ChevronDown
+  ChevronDown,
+  Leaf,
+  Users,
+  Lightbulb,
+  Layers
 } from "lucide-react";
 
 interface EducationKzViewProps {
@@ -42,94 +46,164 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
       en: "🇰🇿 Education & Science • NGS (Almaty)"
     },
     title: {
-      ru: "Развитие Химической Науки в Казахстане и New Generation School",
-      kk: "Қазақстандағы және New Generation School мектебіндегі Химия Ғылымы",
-      en: "Chemistry Education & Research in Kazakhstan and NGS"
+      ru: "Химическая Наука и Исследования в Казахстане и New Generation School",
+      kk: "Қазақстандағы және New Generation School мектебіндегі Химия Ғылымы мен Зерттеулері",
+      en: "Chemistry Education & Scientific Inquiries in Kazakhstan & NGS"
     },
     subtitle: {
-      ru: "Путь от школьных лабораторных открытий до республиканских олимпиад РНПЦ «Дарын» и мировых стандартов Intel ISEF.",
-      kk: "Мектептік зертханалық ашылулардан бастап «Дарын» республикалық олимпиадалары мен Intel ISEF халықаралық стандарттарына дейін.",
-      en: "From school laboratory discoveries to National Daryn Olympiads and Intel ISEF international scientific standards."
+      ru: "Полный путь развития исследователя: от первых шагов в школьной лаборатории и работы с цифровым микроскопом до республиканских побед в РНПЦ «Дарын» и участия в Intel ISEF.",
+      kk: "Зерттеушінің толық даму жолы: мектеп зертханасындағы алғашқы қадамдардан цифрлық микроскоппен жұмыс істеуге дейін, «Дарын» РНПЦ республикалық жеңістері мен Intel ISEF қатысуына дейін.",
+      en: "A holistic journey of student researchers: from hands-on laboratory discoveries and high-resolution microscopy to National Daryn Olympiad championships and Intel ISEF."
     },
     scrollNotice: {
-      ru: "Листайте вниз, чтобы познакомиться с фотоисторией лаборатории",
-      kk: "Зертхананың фототарихымен танысу үшін төмен қарай жылжыңыз",
-      en: "Scroll down to explore the laboratory photo story"
+      ru: "Листайте вниз — подробная фотохроника и описание школьных проектов",
+      kk: "Төмен қарай жылжыңыз — мектеп жобаларының толық фотожылнамасы мен сипаттамасы",
+      en: "Scroll down — comprehensive photo story and lab research insights"
     },
     stat1Number: "100%",
     stat1Label: {
-      ru: "Безопасность исследований (Приказ №99)",
-      kk: "Зерттеулер қауіпсіздігі (№99 бұйрық)",
-      en: "Safety Standards (Order No. 99)"
+      ru: "Стандарт безопасности (Приказ №99)",
+      kk: "Қауіпсіздік стандарты (№99 бұйрық)",
+      en: "Safety Protocol (Order No. 99)"
     },
     stat2Number: "NGS LAB",
     stat2Label: {
-      ru: "Современная цифровая лаборатория",
-      kk: "Заманауи цифрлық зертхана",
-      en: "Next-Gen Digital Lab Complex"
+      ru: "Высокотехнологичный комплекс",
+      kk: "Жоғары технологиялық кешен",
+      en: "Advanced Laboratory Hub"
     },
     stat3Number: "Дарын & ISEF",
     stat3Label: {
       ru: "Олимпийский стандарт проектной деятельности",
-      kk: "Жобалық қызметтің олимпиадалық стандарты",
-      en: "Competitive Research Standard"
+      kk: "Ғылыми жобалардың олимпиадалық деңгейі",
+      en: "Research Olympiad Standard"
     },
     draftNoticeTitle: {
       ru: "📝 Черновик описания (Готов к вашей корректировке)",
       kk: "📝 Сипаттама жобасы (Өңдеуге дайын)",
-      en: "📝 Draft Content (Ready for your customized phrasing)"
+      en: "📝 Draft Outline (Ready for your customized edits)"
     },
     draftNoticeText: {
-      ru: "Тексты и подписи ниже подготовлены для демонстрации структуры. Вы можете скорректировать любой абзац, добавить имена научных руководителей или конкретные награды учащихся!",
-      kk: "Төмендегі мәтіндер мен сипаттамалар құрылымды көрсету үшін дайындалған. Кез келген сөйлемді өзгертуге немесе ғылыми жетекшілердің есімдерін қосуға болады!",
-      en: "The narrative below is a structured draft. You can easily adjust any paragraph, add teacher mentions, or include specific student awards!"
+      ru: "Каждый раздел ниже подробно описывает реальные процессы лаборатории NGS. Вы можете скорректировать любые формулировки, добавить имена учителей, темы конкретных дипломов или достижения учеников вашей школы!",
+      kk: "Төмендегі әрбір бөлім NGS зертханасының нақты үдерістерін сипаттайды. Кез келген сөйлемді өзгертуге, мұғалімдердің есімдерін немесе нақты дипломдар мен жетістіктерді қосуға болады!",
+      en: "Each chapter below details real NGS laboratory practices. You can request any text modification, add names of teachers, or feature specific competition trophies!"
     },
     ctaLabBtn: {
-      ru: "Открыть Реактор Синтеза 🧪",
-      kk: "Синтез Реакторын ашу 🧪",
-      en: "Launch Reaction Lab 🧪"
+      ru: "Запустить Реактор Синтеза 🧪",
+      kk: "Синтез Реакторын іске қосу 🧪",
+      en: "Open Reaction Synthesizer 🧪"
     }
   };
 
-  // 5 elegant narrative chapters (Alternating Left-Right visual flow)
+  // 8 High-Impact Curated Chapters (Alternating Z-Pattern Visual Flow)
   const chapters = [
     {
       step: "01",
-      icon: Building2,
+      icon: Users,
       tag: {
-        ru: "ЛАБОРАТОРНЫЙ КОМПЛЕКС NGS",
-        kk: "NGS ЗЕРТХАНАЛЫҚ КЕШЕНІ",
-        en: "NGS LABORATORY COMPLEX"
+        ru: "АКАДЕМИЧЕСКАЯ КОМАНДА & АУДИТОРИЯ",
+        kk: "АКАДЕМИЯЛЫҚ ҰЖЫМ ЖӘНЕ АУДИТОРИЯ",
+        en: "ACADEMIC FACULTY & LAB SUITE"
       },
       title: {
-        ru: "Передовая химическая аудитория и исследовательская среда",
-        kk: "Алдыңғы қатарлы химия аудиториясы мен зерттеу ортасы",
-        en: "State-of-the-Art Chemistry Suite & Research Facility"
+        ru: "Химико-биологическая кафедра и современный лабораторный комплекс NGS",
+        kk: "NGS мектебінің химия-биология кафедрасы және заманауи зертханалық кешені",
+        en: "Chemistry & Biology Department and State-of-the-Art NGS Lab Suite"
       },
       lead: {
-        ru: "Школа New Generation School (г. Алматы) формирует условия, в которых химия воспринимается не как сухая теория из формул, а как живая созидательная наука.",
-        kk: "Алматы қаласындағы New Generation School мектебі химияны жай ғана формулалар жиынтығы ретінде емес, нақты тірі тәжірибелік ғылым ретінде оқытады.",
-        en: "New Generation School in Almaty cultivates an academic environment where chemistry is experienced through hands-on experimental inquiry."
+        ru: "Школа New Generation School (г. Алматы) создала одну из лучших научно-образовательных платформ для углубленного изучения естественных наук в Казахстане.",
+        kk: "Алматыдағы New Generation School мектебі Қазақстандағы жаратылыстану ғылымдарын тереңдетіп оқытуға арналған озық ғылыми-білім беру кеңістігін қалыптастырды.",
+        en: "New Generation School in Almaty has established one of the premier academic hubs for deep natural science exploration in Kazakhstan."
       },
       desc: {
-        ru: "Аудитория оборудована специализированной химической мебелью, настенными широкоформатными таблицами Менделеева и растворимости солей, системами вентиляции и индивидуальными средствами защиты каждого ученика. Здесь проходят как плановые занятия по углублённой программе, так и индивидуальная подготовка к академическим олимпиадам.",
-        kk: "Аудитория арнайы химиялық жиһаздармен, Менделеевтің кең форматты қабырға кестесімен, ерігіштік кестесімен, желдеткіш жүйелерімен және әр оқушының жеке қорғаныс құралдарымен жабдықталған.",
-        en: "The room is equipped with chemical-resistant workstations, large-format periodic & solubility charts, advanced fume hoods, and individual safety kits for every student."
+        ru: "На фотографии — старшеклассники и преподавательский состав химико-биологического направления в специализированной аудитории. Кабинет оборудован мобильными рабочими станциями, центральным демонстрационным столом, настенными широкоформатными таблицами Менделеева и растворимости солей, а также персональными наборами химической посуды и реактивов.",
+        kk: "Суретте — жоғары сынып оқушылары мен химия-биология бағытының мұғалімдері арнайы жабдықталған аудиторияда. Кабинет жылжымалы жұмыс станцияларымен, орталық демонстрациялық үстелмен, Менделеев пен ерігіштік кестелерімен және жеке зертханалық ыдыстармен қамтамасыз етілген.",
+        en: "Featured are high school scholars alongside science faculty within the custom-built laboratory. The facility incorporates modular workstations, central demonstration benches, large-format periodic & solubility matrices, and personal glassware sets."
       },
-      image: "/images/kz_chemistry/school_lab_10.jpg",
+      image: "/images/kz_chemistry/school_lab_11.jpg",
       imageCaption: {
-        ru: "Ученики и преподаватель химико-биологического цикла в аудитории NGS",
-        kk: "NGS аудиториясындағы химия-биология бағытының оқушылары мен оқытушысы",
-        en: "Chemistry students and faculty inside the NGS laboratory classroom"
+        ru: "Старшеклассники и преподаватели естественных наук в лаборатории NGS",
+        kk: "NGS зертханасындағы жоғары сынып оқушылары мен жаратылыстану пәндерінің мұғалімдері",
+        en: "Senior chemistry students and science mentors inside the NGS laboratory complex"
       },
       quote: {
-        ru: "«Настоящий ученый рождается не за партой с конспектом, а за лабораторным столом с пробиркой в руках.»",
-        kk: "«Нағыз ғалым конспект жазу арқылы емес, зертханалық үстелде сынауық ұстау арқылы қалыптасады.»",
-        en: "“True scientific passion is forged not merely at a lecture desk, but at the laboratory bench.”"
+        ru: "«Сильная кафедра и передовое оснащение — фундамент для уверенных побед на национальных и международных олимпиадах.»",
+        kk: "«Мықты ұстаздар мен озық жабдықталу — ұлттық және халықаралық олимпиадалардағы сенімді жеңістердің іргетасы.»",
+        en: "“A distinguished faculty paired with cutting-edge infrastructure lays the groundwork for excellence at world-tier science competitions.”"
       }
     },
     {
       step: "02",
+      icon: GraduationCap,
+      tag: {
+        ru: "ПРЕЕМСТВЕННОСТЬ & ЮНЫЕ ИССЛЕДОВАТЕЛИ",
+        kk: "САБАҚТАСТЫҚ ЖӘНЕ ЖАС ЗЕРТТЕУШІЛЕР",
+        en: "NEXT GENERATION RESEARCHERS"
+      },
+      title: {
+        ru: "Культура научных экспериментов с ранних школьных лет",
+        kk: "Ғылыми эксперимент мәдениетін бастауыш сыныптардан бастап қалыптастыру",
+        en: "Cultivating Scientific Curiosity from Early Schooling"
+      },
+      lead: {
+        ru: "В NGS исследовательский интерес закладывается задолго до старших классов: дети надевают белые халаты с гербом школы и учатся мыслить как ученые.",
+        kk: "NGS мектебінде зерттеуге деген қызығушылық ерте қалыптасады: балалар мектеп елтаңбасы бар ақ халат киіп, ғалымдарша ойлауға үйренеді.",
+        en: "At NGS, the spirit of scientific discovery is sparked early: students don official school crest lab coats and practice hypothesis-driven inquiry."
+      },
+      desc: {
+        ru: "На фотографии — юные естествоиспытатели вместе с руководством школы и учителями. Пропедевтический курс химии и естествознания развивает базовые навыки научного метода: формулирование гипотезы, проведение качественных реакций, ведение лабораторного журнала и бережное отношение к экологии.",
+        kk: "Суретте — жас зерттеушілер мектеп басшылығымен және ұстаздарымен бірге. Жаратылыстанудың кіріспе бағдарламасы гипотеза құру, сапалық реакциялар жасау, зертханалық күнделік жүргізу дағдыларын дамытады.",
+        en: "Shown are junior investigators joined by administrative leadership and teachers. Introductory science courses foster fundamental habits: formulating testable hypotheses, recording observations, and respecting safety principles."
+      },
+      image: "/images/kz_chemistry/school_lab_2.jpg",
+      imageCaption: {
+        ru: "Юные исследователи в белых халатах NGS с наставниками и руководством школы",
+        kk: "NGS ақ халаттарын киген жас зерттеушілер ұстаздар мен мектеп басшылығымен",
+        en: "Junior researchers in official NGS lab coats alongside mentors and administration"
+      },
+      quote: {
+        ru: "«Когда ребенок впервые самостоятельно видит изменение окраски индикатора — рождается будущий Менделеев.»",
+        kk: "«Бала индикатор түсінің өзгеруін алғаш рет өз көзімен көрген сәтте — болашақ ғалымның жүрегі оянады.»",
+        en: "“The moment a child observes an indicator shift color before their eyes, a lifelong passion for scientific discovery begins.”"
+      }
+    },
+    {
+      step: "03",
+      icon: Lightbulb,
+      tag: {
+        ru: "ИННОВАЦИОННЫЕ УРОКИ • ЗЕЛЕНАЯ ХИМИЯ",
+        kk: "ИННОВАЦИЯЛЫҚ САБАҚТАР • ЖАСЫЛ ХИМИЯ",
+        en: "CLEAN ENERGY & INNOVATIVE LESSONS"
+      },
+      title: {
+        ru: "Открытый мастер-класс: «Водород — топливо будущего»",
+        kk: "Ашық шеберлік сыныбы: «Сутек — болашақтың отыны»",
+        en: "Masterclass: “Hydrogen — The Fuel of the Future”"
+      },
+      lead: {
+        ru: "На открытых уроках химии учащиеся NGS исследуют передовые проблемы мировой энергетики, электролиза воды и декарбонизации промышленности.",
+        kk: "Ашық химия сабақтарында NGS оқушылары әлемдік энергетика, су электролизі және өнеркәсіпті декарбонизациялау мәселелерін зерттейді.",
+        en: "During open inquiry lessons, NGS scholars investigate sustainable clean energy frontiers, electrochemical water splitting, and green chemistry."
+      },
+      desc: {
+        ru: "В аудитории проходит интерактивное обсуждение свойств водорода как самого легкого и энергоемкого элемента Вселенной. На стендах представлены схемы топливных элементов, экологические преимущества перед углеводородами и перспективы водородного транспорта в Казахстане. Ученики активно поднимают руки и задают вопросы руководству и экспертам.",
+        kk: "Аудиторияда сутектің Ғаламдағы ең жеңіл әрі энергия сыйымды элемент ретіндегі қасиеттері талқылануда. Қабырғада сутектік көлік пен жасыл энергетиканың даму болашағы көрсетілген стендтер орналасқан.",
+        en: "Students actively engage in discussions on hydrogen gas thermodynamics, fuel cell efficiency, and hydrogen automotive potential for Kazakhstan's industrial transition."
+      },
+      image: "/images/kz_chemistry/school_lab_1.jpg",
+      imageCaption: {
+        ru: "Открытый урок химии с демонстрацией водородных технологий и участием экспертов",
+        kk: "Сутек технологияларын көрсету және сарапшылардың қатысуымен өткен ашық химия сабағы",
+        en: "Interactive chemistry lesson focused on hydrogen fuel systems attended by school leadership"
+      },
+      quote: {
+        ru: "«Школьная химия обязана отвечать на вызовы XXI века — от чистой энергетики до климатической нейтральности.»",
+        kk: "«Мектеп химиясы XXI ғасырдың жаһандық сын-қатерлеріне — жасыл энергетикадан бастап климатты қорғауға дейін жауап беруі тиіс.»",
+        en: "“Modern school chemistry must directly address 21st-century challenges—from carbon-neutral fuels to environmental stewardship.”"
+      }
+    },
+    {
+      step: "04",
       icon: Microscope,
       tag: {
         ru: "ЦИФРОВАЯ МИКРОСКОПИЯ & БЕЗОПАСНОСТЬ",
@@ -137,136 +211,195 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
         en: "DIGITAL MICROSCOPY & SAFETY STANDARDS"
       },
       title: {
-        ru: "Изучение микроструктур и соблюдение стандартов Приказа № 99",
-        kk: "Микроқұрылымдарды зерттеу және № 99 бұйрық стандарттары",
-        en: "Microstructural Analysis & Strict Lab Safety Compliance"
+        ru: "Изучение микроструктур кристаллов и стандарты Приказа № 99",
+        kk: "Кристалдардың микроқұрылымын зерттеу және № 99 бұйрық талаптары",
+        en: "Microstructural Crystal Analysis & Strict Safety Regulation Compliance"
       },
       lead: {
-        ru: "Соблюдение регламентов Министерства просвещения РК по работе с химическими реактивами дополняется технологиями цифровой микроскопии высокого разрешения.",
-        kk: "ҚР Оқу-ағарту министрлігінің химиялық реактивтермен жұмыс істеу регламенттері жоғары ажыратымдылықтағы цифрлық микроскопиямен ұштасады.",
-        en: "Compliance with Kazakhstan Ministry of Education lab safety protocols is enhanced by high-resolution optical and digital microscopy systems."
+        ru: "Требования безопасности Министерства просвещения РК по работе с реактивами дополняются цифровой микроскопией и смарт-панелями.",
+        kk: "ҚР Оқу-ағарту министрлігінің реактивтермен қауіпсіз жұмыс істеу талаптары цифрлық микроскопиямен және смарт-панельдермен толықтырылған.",
+        en: "Safety regulations mandated by the Ministry of Education of Kazakhstan are harmonized with digital optical sensor arrays and smartboards."
       },
       desc: {
-        ru: "Студенты исследуют кристаллическую структуру осадков, морфологию неорганических кристаллов и биологических препаратов. Благодаря интерактивной смарт-панели данные с микроскопа можно транслировать на всю аудиторию для совместного анализа, обсуждения химических свойств и проверки результатов лабораторной работы.",
-        kk: "Оқушылар тұнбалардың кристалдық торын, бейорганикалық қосылыстар мен биологиялық препараттардың морфологиясын зерттейді. Микроскоптан кескін смарт-панельге шығарылып, бүкіл аудиториямен бірге талданады.",
-        en: "Learners investigate precipitate lattices, crystal morphology, and solution dynamics. Digital feed from microscope lenses can be projected onto the interactive screen for collaborative classroom analysis."
+        ru: "Ученики изучают морфологию неорганических осадков, кристаллическую решетку солей и фазовые переходы. Благодаря цифровому подключению микроскопа к интерактивной доске данные выводятся в реальном времени на весь класс, что позволяет коллективно фиксировать форму кристаллов и избегать опасного контакта с летучими веществами.",
+        kk: "Оқушылар бейорганикалық тұнбалардың морфологиясын, тұздардың кристалдық торын зерттейді. Микроскоптың смарт-панельге қосылуы арқылы кескін бүкіл сыныпқа тікелей көрсетіледі.",
+        en: "Students examine precipitate micro-lattices, salt crystal geometry, and phase transitions. Real-time digital feeds stream directly to interactive displays, ensuring collaborative scrutiny without hazardous direct chemical exposure."
       },
       image: "/images/kz_chemistry/school_lab_7.jpg",
       imageCaption: {
-        ru: "Практическое занятие: детальный оптический анализ образцов под микроскопом",
-        kk: "Тәжірибелік сабақ: микроскоп арқылы үлгілерді егжей-тегжейлі оптикалық талдау",
-        en: "Hands-on microscopy lesson: observing precipitate crystals and micro-structures"
+        ru: "Практическое занятие: наблюдение кристаллов под оптическим микроскопом",
+        kk: "Тәжірибелік сабақ: оптикалық микроскоп арқылы кристалдарды бақылау",
+        en: "Hands-on microscopy session: high-precision observation of salt crystals"
       },
       quote: {
-        ru: "«Сочетание цифровых технологий и физического эксперимента исключает риски и открывает тайны микромира.»",
-        kk: "«Цифрлық технологиялар мен физикалық тәжірибенің үйлесімі қауіп-қатерді жояды және микроәлем құпиясын ашады.»",
-        en: "“Merging digital instrumentation with physical experimentation unlocks the mysteries of the atomic world.”"
-      }
-    },
-    {
-      step: "03",
-      icon: Trophy,
-      tag: {
-        ru: "НАУЧНЫЙ ФЕСТИВАЛЬ • SCIENCE FAIR",
-        kk: "ҒЫЛЫМИ ФЕСТИВАЛЬ • SCIENCE FAIR",
-        en: "ANNUAL NGS SCIENCE FAIR"
-      },
-      title: {
-        ru: "Масштабная презентация авторских проектов и исследований",
-        kk: "Авторлық жобалар мен зерттеулердің ауқымды презентациясы",
-        en: "Annual Science Fair: Student Research Exhibitions"
-      },
-      lead: {
-        ru: "Ежегодная научная ярмарка NGS Science Fair собирает десятки амбициозных проектов по химии, экологии, материаловедению и биоинженерии.",
-        kk: "Жыл сайынғы NGS Science Fair ғылыми жәрмеңкесі химия, экология, материалтану және биоинженерия бойынша ондаған жобаларды біріктіреді.",
-        en: "The annual NGS Science Fair showcases student-driven investigations across green chemistry, sustainable materials, and molecular ecology."
-      },
-      desc: {
-        ru: "Выставочный зал наполнен действующими установками, наглядными плакатами, лабораторными образцами и компьютерными симуляторами. Ученики защищают свои гипотезы перед независимым жюри, преподавателями университетов и родителями, оттачивая навыки академической аргументации и презентации данных.",
-        kk: "Көрме залында нақты жұмыс істейтін қондырғылар, көрнекі плакаттар мен компьютерлік симуляторлар қойылған. Оқушылар тәуелсіз қазылар алқасының алдында өз гипотезаларын қорғайды.",
-        en: "The exhibition hall hosts working prototypes, academic posters, and computer simulations. Students defend their empirical findings before peer and expert review."
-      },
-      image: "/images/kz_chemistry/school_lab_14.jpg",
-      imageCaption: {
-        ru: "Общий вид выставочного пространства NGS Science Fair во время защиты проектов",
-        kk: "Жобаларды қорғау кезіндегі NGS Science Fair көрме кеңістігінің көрінісі",
-        en: "NGS Science Fair exhibition arena during the student research defense sessions"
-      },
-      quote: {
-        ru: "«Школьный Science Fair — это главный трамплин для побед на республиканских олимпиадах Дарын и Intel ISEF.»",
-        kk: "«Мектептік Science Fair — бұл «Дарын» мен Intel ISEF олимпиадаларындағы жеңістердің басты баспалдағы.»",
-        en: "“The school science fair is the primary launchpad for national and international research achievements.”"
-      }
-    },
-    {
-      step: "04",
-      icon: Atom,
-      tag: {
-        ru: "МОЛЕКУЛЯРНОЕ МОДЕЛИРОВАНИЕ",
-        kk: "МОЛЕКУЛАЛЫҚ МОДЕЛЬДЕУ",
-        en: "3D STRUCTURAL MODELING"
-      },
-      title: {
-        ru: "Пространственное понимание молекул и биохимических процессов",
-        kk: "Молекулалар мен биохимиялық үдерістердің кеңістіктік құрылымы",
-        en: "Spatial Comprehension of Molecular & Biochemical Architectures"
-      },
-      lead: {
-        ru: "Для глубокого понимания органической химии (10 класс) и строения полимеров учащиеся конструируют объёмные физические и виртуальные модели.",
-        kk: "10-сыныптың органикалық химиясын және полимерлер құрылысын терең меңгеру үшін оқушылар көлемді модельдер құрастырады.",
-        en: "To master 10th-grade organic reaction mechanisms and polymer lattices, students construct tangible and computer-assisted 3D molecular models."
-      },
-      desc: {
-        ru: "Физическое моделирование позволяет наглядно понять гибридизацию орбиталей (sp³, sp², sp), углы связей, геометрию мицелл и образование водородных мостиков. Этот навык напрямую перекликается с интерактивным Реактором в нашей платформе Chemistry Explorer, где можно соединять атомы в реальном времени.",
-        kk: "Көрнекі модельдеу орбитальдардың гибридизациясын (sp³, sp², sp), байланыс бұрыштарын және сутектік байланыстардың түзілуін оңай түсінуге жол ашады.",
-        en: "Hands-on assembly reinforces spatial intuition of orbital hybridization (sp³, sp², sp), bond strain angles, micelle formation, and hydrogen bonding networks."
-      },
-      image: "/images/kz_chemistry/school_lab_5.jpg",
-      imageCaption: {
-        ru: "Презентация объемных макетов молекулярных и биохимических структур",
-        kk: "Молекулалық және биохимиялық құрылымдардың көлемді макеттерін қорғау",
-        en: "Students showcasing assembled molecular structures and biochemical displays"
-      },
-      quote: {
-        ru: "«Когда ученик может взять молекулу в руки или собрать её в симуляторе — химия становится осязаемой.»",
-        kk: "«Оқушы молекуланы өз қолымен ұстап немесе симуляторда жинаған кезде — химия нақты түсінікті болады.»",
-        en: "“When a student can hold a molecule in their hands or construct it in simulation, chemistry becomes truly intuitive.”"
+        ru: "«Сочетание цифровых технологий и оптических приборов исключает риски и открывает тайны микромира.»",
+        kk: "«Цифрлық технологиялар мен оптикалық құралдардың үйлесімі қауіп-қатерді жояды және микроәлем құпиясын ашады.»",
+        en: "“Harmonizing digital optics with structured safety protocols eliminates hazards and illuminates the atomic universe.”"
       }
     },
     {
       step: "05",
-      icon: Compass,
+      icon: Cpu,
       tag: {
-        ru: "МЕЖДИСЦИПЛИНАРНЫЕ ИССЛЕДОВАНИЯ",
-        kk: "ПӘНАРАЛЫҚ ЗЕРТТЕУЛЕР",
-        en: "CROSS-DISCIPLINARY RESEARCH"
+        ru: "МУЛЬТИМЕДИЙНЫЙ УЧЕБНЫЙ ПРОЦЕСС",
+        kk: "МУЛЬТИМЕДИАЛЫҚ ОҚУ ҮДЕРІСІ",
+        en: "MULTIMEDIA INTERACTIVE PEDAGOGY"
       },
       title: {
-        ru: "Химия планетных атмосфер и фундаментальные проекты",
-        kk: "Ғаламшарлық атмосфералар химиясы және іргелі зерттеулер",
-        en: "Planetary Atmospheric Chemistry & Fundamental Inquiries"
+        ru: "Интеграция цифровых презентаций и реальных лабораторных сетов",
+        kk: "Цифрлық презентациялар мен нақты зертханалық жиынтықтарды кіріктіру",
+        en: "Fusing Interactive Digital Media with Physical Laboratory Toolkits"
       },
       lead: {
-        ru: "Проекты учеников выходят далеко за рамки школьного учебника — в область астрохимии, геохимии и физической химии экстремальных состояний.",
-        kk: "Оқушылардың ғылыми жобалары оқулық шеңберінен шығып, астрохимия, геохимия және экстремалды күйлер химиясын қамтиды.",
-        en: "Student research ventures beyond standard curricula into astrochemistry, planetary gas kinetics, and extreme-condition thermodynamics."
+        ru: "Учителя химии и биологии NGS используют передовые методики смешанного обучения (Blended Learning) с интерактивными панелями.",
+        kk: "NGS мұғалімдері интерактивті панельдер мен сандық технологияларды пайдалана отырып, аралас оқыту (Blended Learning) әдісін қолданады.",
+        en: "NGS science educators implement modern blended learning pedagogy, orchestrating smart screens alongside hands-on reagent kits."
       },
       desc: {
-        ru: "На постерах подробно анализируются химические составы газовых оболочек планет-гигантов, термодинамические фазовые переходы метана и водорода при сверхвысоких давлениях, а также условия стабильности органических молекул в космосе. Это академический уровень, высоко оцениваемый на международных конкурсах.",
-        kk: "Постерлерде алып ғаламшарлардың газдық құрамы, жоғары қысымдағы метан мен сутектің термодинамикалық фазалық ауысулары жан-жақты талданады.",
-        en: "Research posters detail the atmospheric compositions of gas giants, phase transitions under extraterrestrial pressures, and prebiotic molecular stability in interplanetary environments."
+        ru: "На фотографии показан момент лабораторной сессии: на интерактивном дисплее транслируются протоколы исследования, микропрепараты и техника безопасности, а на столах учащихся развернуты индивидуальные боксы с микроскопами и реактивами. Это исключает ошибки при дозировании и повышает глубину усвоения материала.",
+        kk: "Суретте зертханалық сессия сәті көрсетілген: дисплейде зерттеу хаттамалары мен қауіпсіздік ережелері көрсетіліп, оқушылар үстелінде микроскоптар мен реактивтердің жеке жиынтықтары жұмыс істеп тұр.",
+        en: "The photograph captures an active laboratory briefing: interactive protocols and microscopic structures are displayed while students execute precise reagent measurements in their personal toolkits."
       },
-      image: "/images/kz_chemistry/school_lab_4.jpg",
+      image: "/images/kz_chemistry/school_lab_16.jpg",
       imageCaption: {
-        ru: "Защита исследовательского постера: сравнительный анализ химических сред планет",
-        kk: "Зерттеу постерін қорғау: ғаламшарлардың химиялық орталарын салыстырмалы талдау",
-        en: "Student defending an analytical poster on planetary atmospheric chemical environments"
+        ru: "Преподаватель объясняет методику анализа на интерактивном дисплее",
+        kk: "Оқытушы интерактивті дисплейде талдау әдістемесін түсіндіруде",
+        en: "Science instructor detailing analytical methodology using the smart demonstration board"
       },
       quote: {
-        ru: "«Широкий научный кругозор и смелость исследовать неизведанное — главное качество молодых учёных Казахстана.»",
-        kk: "«Кең ғылыми өріс пен жаңаны зерттеуге деген батылдық — Қазақстанның жас ғалымдарының басты қасиеті.»",
-        en: "“Broad intellectual curiosity and the courage to explore the unknown define the next generation of Kazakhstani scientists.”"
+        ru: "«Технологии в аудитории должны служить одной цели — делать сложное понятным и увлекательным.»",
+        kk: "«Аудиториядағы технологиялар бір ғана мақсатқа — күрделіні түсінікті әрі қызықты етуге қызмет етуі керек.»",
+        en: "“Classroom technology serves one supreme objective: transforming intricate science into clear, thrilling discovery.”"
       }
+    },
+    {
+      step: "06",
+      icon: Trophy,
+      tag: {
+        ru: "МАСШТАБ • NGS SCIENCE FAIR",
+        kk: "АУҚЫМ • NGS SCIENCE FAIR",
+        en: "ANNUAL NGS SCIENCE FAIR EXPO"
+      },
+      title: {
+        ru: "Ежегодный фестиваль исследовательских проектов NGS Science Fair",
+        kk: "Жыл сайынғы NGS Science Fair ғылыми зерттеу жобаларының фестивалі",
+        en: "Annual Student Research Expo at the NGS Science Fair"
+      },
+      lead: {
+        ru: "Большой атриум школы трансформируется в выставочную арену сотен научных разработок, макетов и действующих приборов.",
+        kk: "Мектептің үлкен атриумы жүздеген ғылыми жұмыстар, макеттер мен қондырғылар қойылған ғылыми көрме кеңістігіне айналады.",
+        en: "The school grand atrium transforms into an expansive scientific exposition featuring working apparatuses, models, and posters."
+      },
+      desc: {
+        ru: "На фотографиях представлен масштаб фестиваля: ученики всех классов выставляют постеры, биосферные макеты, авторские химические установки. В жюри входят приглашенные ученые и преподаватели ведущих вузов Казахстана. Именно здесь оттачивается уверенность исследователя и умение аргументированно защищать результаты своих экспериментов.",
+        kk: "Суреттерде фестивальдің ауқымы көрсетілген: оқушылар постерлерді, биосфералық модельдерді, химиялық қондырғыларды қорғайды. Қазылар алқасында жетекші қазақстандық жоғары оқу орындарының ғалымдары жұмыс істейді.",
+        en: "Photographs reflect the vibrant scale of the event: students showcase experimental setups, environmental simulations, and biochemical models to university jurors, developing rigorous defense poise."
+      },
+      image: "/images/kz_chemistry/school_lab_14.jpg",
+      imageCaption: {
+        ru: "Общий вид выставочного пространства NGS Science Fair в главном атриуме",
+        kk: "Басты атриумдағы NGS Science Fair ғылыми көрмесінің жалпы көрінісі",
+        en: "Panoramic perspective of the NGS Science Fair exposition in the school central atrium"
+      },
+      quote: {
+        ru: "«Школьный Science Fair — это главный трамплин для побед на республиканских олимпиадах Дарын и конкурсе Intel ISEF.»",
+        kk: "«Мектептік Science Fair — бұл «Дарын» мен Intel ISEF олимпиадаларындағы жеңістердің басты баспалдағы.»",
+        en: "“The school science fair is the premier proving ground for national olympiad laureates and ISEF qualifiers.”"
+      }
+    },
+    {
+      step: "07",
+      icon: Award,
+      tag: {
+        ru: "ЭКСПЕРТНОЕ ЖЮРИ & БИОХИМИЯ",
+        kk: "САРАПШЫ ҚАЗЫЛАР АЛҚАСЫ ЖӘНЕ БИОХИМИЯ",
+        en: "JURY DEFENSE & PLANT BIOCHEMISTRY"
+      },
+      title: {
+        ru: "Академическая защита проекта: фитохимия и экосистемные исследования",
+        kk: "Жобаны академиялық қорғау: фитохимия және экожүйелік зерттеулер",
+        en: "Academic Jury Defense: Phytochemistry & Ecological Research"
+      },
+      lead: {
+        ru: "Ученики защищают экспериментальные выводы перед авторитетным жюри педагогов и научных экспертов.",
+        kk: "Оқушылар тәжірибелік қорытындыларын ұстаздар мен ғылыми сарапшылардан құралған қазылар алқасының алдында қорғайды.",
+        en: "Students defend empirical conclusions before a dedicated panel of science faculty and research appraisers."
+      },
+      desc: {
+        ru: "На фотографии — защита исследования по влиянию микроэлементов и фитогормонов на развитие комнатных и агрокультурных растений (Kalanchoe, Anthurium). Эксперты оценивают корректность контрольных групп, химический состав питательных сред и практическую применимость работы в городском озеленении и биотехнологиях.",
+        kk: "Суретте — өсімдіктердің дамуына микроэлементтердің әсері туралы зерттеуді қорғау сәті (Каланхоэ, Антуриум). Сарапшылар бақылау топтарының дұрыстығын, қоректік ортаның химиялық құрамын және нәтижелерді бағалайды.",
+        en: "Captured is the defense of a botanical chemistry project investigating micronutrient efficacy on exotic flora. The jury evaluates control groups, chemical media formulation, and urban biotech applicability."
+      },
+      image: "/images/kz_chemistry/school_lab_8.jpg",
+      imageCaption: {
+        ru: "Защита исследовательской работы по фитохимии перед экспертной комиссией",
+        kk: "Фитохимия бойынша ғылыми жұмысты сарапшылық комиссия алдында қорғау",
+        en: "Student defending a phytochemistry and plant physiology study before the faculty panel"
+      },
+      quote: {
+        ru: "«Умение отвечать на каверзные вопросы жюри превращает школьника в зрелого исследователя.»",
+        kk: "«Қазылардың күрделі сұрақтарына жауап беру шеберлігі оқушыны шыңдалған зерттеушіге айналдырады.»",
+        en: "“The ability to defend findings under rigorous questioning is what transforms a student into an authentic researcher.”"
+      }
+    },
+    {
+      step: "08",
+      icon: Atom,
+      tag: {
+        ru: "ПРОСТРАНСТВЕННОЕ МОДЕЛИРОВАНИЕ & АСТРОХИМИЯ",
+        kk: "КЕҢІСТІКТІК МОДЕЛЬДЕУ ЖӘНЕ АСТРОХИМИЯ",
+        en: "3D STRUCTURAL MODELING & ASTROCHEMISTRY"
+      },
+      title: {
+        ru: "3D-моделирование молекул 10 класса и химия планетных сред",
+        kk: "10-сынып молекулаларын 3D-модельдеу және ғаламшарлық химия",
+        en: "10th-Grade 3D Molecular Architecture & Planetary Chemistry"
+      },
+      lead: {
+        ru: "От пространственной геометрии органических молекул до анализа химического состава атмосфер планет Солнечной системы.",
+        kk: "Органикалық молекулалардың кеңістіктік құрылымынан Күн жүйесі ғаламшарларының газдық құрамын талдауға дейін.",
+        en: "Spanning the stereochemistry of organic polymers to the gas-kinetic atmospheres of outer solar system planets."
+      },
+      desc: {
+        ru: "Учащиеся NGS представляют как физические объемные модели макромолекул (белков, углеводов, мицелл), так и глубокие междисциплинарные постеры по астрохимии. В работах рассчитываются парциальные давления, химическая термодинамика газов при сверхнизких температурах и условия существования органических прекурсоров в космосе.",
+        kk: "NGS оқушылары макромолекулалардың (ақуыздар, көмірсулар) көлемді макеттерін де, астрохимия бойынша терең постерлік баяндамаларды да ұсынады. Жұмыстарда термодинамикалық есептер мен химиялық құрамдар жан-жақты талданады.",
+        en: "Scholars demonstrate physical 3D models of complex macromolecules alongside analytical astrochemistry posters examining extraterrestrial gas compositions and prebiotic stability conditions."
+      },
+      image: "/images/kz_chemistry/school_lab_5.jpg",
+      imageCaption: {
+        ru: "Демонстрация объемных пространственных макетов биохимических структур",
+        kk: "Биохимиялық құрылымдардың көлемді кеңістіктік макеттерін көрсету",
+        en: "Students showcasing physical 3D models of complex biochemical polymers"
+      },
+      quote: {
+        ru: "«Пространственное воображение в химии — ключ к созданию материалов будущего и нанотехнологий.»",
+        kk: "«Химиядағы кеңістіктік қиял — болашақтың жаңа материалдары мен нанотехнологияларды жасаудың кілті.»",
+        en: "“Spatial molecular intuition is the foundational key to unlocking advanced nanotechnology and smart materials.”"
+      }
+    }
+  ];
+
+  // Extra photo gallery strip for additional moments
+  const extraPhotos = [
+    {
+      src: "/images/kz_chemistry/school_lab_4.jpg",
+      title: { ru: "Астрохимия: Состав атмосфер планет", kk: "Астрохимия: Ғаламшарлар атмосферасы", en: "Astrochemistry: Planetary Atmospheres" },
+      desc: { ru: "Постерная защита исследования газовых оболочек планет", kk: "Ғаламшарлық газдық қабықтарды зерттеу постері", en: "Poster analysis of planetary gas compositions" }
+    },
+    {
+      src: "/images/kz_chemistry/school_lab_6.jpg",
+      title: { ru: "Зеленые биотехнологии & Микрофермы", kk: "Жасыл биотехнология және микроферма", en: "Green Biotech & Micro-Farming" },
+      desc: { ru: "Ученик с прототипом гидропонной экосистемы", kk: "Гидропоникалық экожүйе прототипін көрсету", en: "Young researcher with a self-contained ecological micro-farm" }
+    },
+    {
+      src: "/images/kz_chemistry/school_lab_3.jpg",
+      title: { ru: "Атмосфера праздника науки в NGS", kk: "NGS мектебіндегі ғылым мерекесінің көңіл-күйі", en: "Celebration of Science Atmosphere at NGS" },
+      desc: { ru: "Сотни гостей, родителей и учеников на выставке", kk: "Көрмедегі жүздеген қонақтар, ата-аналар мен оқушылар", en: "Community of parents, mentors, and students celebrating discovery" }
+    },
+    {
+      src: "/images/kz_chemistry/school_lab_10.jpg",
+      title: { ru: "Лабораторная аудитория химии", kk: "Химиялық зертханалық аудитория", en: "Chemistry Laboratory Classroom" },
+      desc: { ru: "Панорама современной химической аудитории NGS", kk: "NGS заманауи химия аудиториясының панорамасы", en: "Wide-angle view of the NGS chemistry instructional suite" }
     }
   ];
 
@@ -275,7 +408,7 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
       
       {/* 1. Grand Hero Showcase */}
       <section className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-[#141630] to-[#090b16] border border-slate-200/20 dark:border-white/[0.12] p-8 sm:p-12 text-white shadow-2xl">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[#7c6ff6]/20 rounded-full blur-[100px] pointer-events-none" />
+        <div className="absolute top-0 right-0 w-[550px] h-[550px] bg-[#7c6ff6]/20 rounded-full blur-[110px] pointer-events-none" />
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-600/15 rounded-full blur-[90px] pointer-events-none" />
 
         <div className="relative z-10 max-w-3xl space-y-5">
@@ -345,7 +478,7 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
         </div>
       </div>
 
-      {/* 3. The Visual Narrative Timeline (5 Alternating High-Impact Chapters) */}
+      {/* 3. The Visual Narrative Timeline (8 Alternating High-Impact Chapters) */}
       <div className="space-y-24 relative">
         
         {/* Subtle center timeline line on desktop */}
@@ -433,7 +566,59 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
         })}
       </div>
 
-      {/* 4. Bottom Summary Banner */}
+      {/* 4. Additional Exhibition Moments (Photo Gallery Strip) */}
+      <section className="space-y-6 pt-6">
+        <div className="border-t border-slate-200 dark:border-white/[0.1] pt-8 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+          <div>
+            <h3 className="text-xl sm:text-2xl font-black text-slate-900 dark:text-white tracking-tight">
+              {language === 'kk' ? 'Ғылыми фестивальдің қосымша сәттері' : language === 'en' ? 'Additional Moments of Discovery' : 'Атмосфера открытий: дополнительные кадры'}
+            </h3>
+            <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-mono mt-1">
+              {language === 'kk' ? 'Үлкейтіп көру үшін кез келген фотосуретті басыңыз' : language === 'en' ? 'Click any card to enlarge and examine details' : 'Нажмите на любую карточку для подробного просмотра'}
+            </p>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          {extraPhotos.map((item, pIdx) => (
+            <div
+              key={pIdx}
+              onClick={() => {
+                soundEffects.playAtomAdd();
+                setSelectedImage({
+                  src: item.src,
+                  title: item.title[language],
+                  desc: item.desc[language],
+                  tag: "NGS MOMENTS"
+                });
+              }}
+              className="group/mini relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-200 dark:border-white/[0.1] shadow-md hover:shadow-xl hover:border-[#7c6ff6] transition-all cursor-pointer flex flex-col"
+            >
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
+                <img
+                  src={item.src}
+                  alt={item.title[language]}
+                  className="w-full h-full object-cover group-hover/mini:scale-105 transition-transform duration-500"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover/mini:opacity-30 transition-opacity" />
+                <div className="absolute top-2.5 right-2.5 p-1.5 rounded-lg bg-black/60 text-white opacity-0 group-hover/mini:opacity-100 transition-opacity">
+                  <Maximize2 className="w-3.5 h-3.5" />
+                </div>
+              </div>
+              <div className="p-3 bg-white dark:bg-[#111327] flex-1 flex flex-col justify-between">
+                <h4 className="text-xs font-bold text-slate-900 dark:text-white line-clamp-1 group-hover/mini:text-[#7c6ff6] transition-colors">
+                  {item.title[language]}
+                </h4>
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-2 mt-1">
+                  {item.desc[language]}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* 5. Bottom Summary Banner */}
       <section className="p-8 sm:p-10 rounded-3xl bg-gradient-to-r from-slate-100 via-indigo-50/50 to-slate-100 dark:from-[#0f1124] dark:via-[#151733] dark:to-[#0f1124] border border-slate-200/80 dark:border-white/[0.1] text-center space-y-4 shadow-sm">
         <div className="inline-flex items-center justify-center w-12 h-12 rounded-2xl bg-[#7c6ff6]/15 text-[#7c6ff6] mx-auto">
           <GraduationCap className="w-6 h-6" />
@@ -467,7 +652,7 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
         )}
       </section>
 
-      {/* 5. Lightbox Modal Preview on Click */}
+      {/* 6. Lightbox Modal Preview on Click */}
       {selectedImage && (
         <div 
           onClick={() => setSelectedImage(null)}
