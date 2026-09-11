@@ -15,14 +15,13 @@ import {
   Sun,
   Moon,
   Sparkles,
-  GraduationCap,
-  Box
+  GraduationCap
 } from "lucide-react";
 import { QuickControlModal } from "./QuickControlModal";
 
 interface HeaderProps {
-  currentTab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'molecule3d' | 'journal' | 'quests';
-  setCurrentTab: (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'molecule3d' | 'journal' | 'quests') => void;
+  currentTab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests';
+  setCurrentTab: (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests') => void;
   language: Language;
   setLanguage: (lang: Language) => void;
   soundEnabled: boolean;
@@ -75,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
     setTheme(next);
   };
 
-  const handleTabChange = (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'molecule3d' | 'journal' | 'quests') => {
+  const handleTabChange = (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests') => {
     soundEffects.playAtomAdd();
     setCurrentTab(tab);
   };
@@ -108,13 +107,6 @@ export const Header: React.FC<HeaderProps> = ({
       icon: Layers,
       color: "text-purple-500",
       activeBg: "border-purple-500/30 text-purple-600 dark:text-purple-400"
-    },
-    {
-      id: 'molecule3d' as const,
-      label: t("navMolecule3d"),
-      icon: Box,
-      color: "text-violet-500",
-      activeBg: "border-violet-500/30 text-violet-600 dark:text-violet-400"
     },
     {
       id: 'education' as const,

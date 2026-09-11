@@ -12,10 +12,8 @@ import {
   Lock, 
   Search, 
   CheckCircle2, 
-  Printer,
-  Box
+  Printer
 } from "lucide-react";
-import { Molecule3DModal } from "../Molecule3D/Molecule3DModal";
 
 interface DiscoveryJournalProps {
   discoveredIds: string[];
@@ -44,7 +42,6 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
   const [searchQuery, setSearchQuery] = useState("");
   const [inspectedMolecule, setInspectedMolecule] = useState<MoleculeData | null>(null);
   const [showCertificate, setShowCertificate] = useState(false);
-  const [modal3dMoleculeId, setModal3dMoleculeId] = useState<string | null>(null);
 
   const discoveredSet = new Set(discoveredIds);
   const totalCount = MOLECULES_DATA.length;
@@ -215,23 +212,9 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
                 {/* Card footer */}
                 <div className="pt-2 border-t border-slate-100 dark:border-white/[0.06] flex items-center justify-between text-[11px] font-mono text-slate-500 dark:text-slate-400">
                   <span className="capitalize">{mol.state}</span>
-                  <div className="flex items-center gap-2">
-                    <button
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        soundEffects.playAtomAdd();
-                        setModal3dMoleculeId(mol.id);
-                      }}
-                      className="px-2 py-0.5 rounded-md bg-[#7c6ff6]/15 hover:bg-[#7c6ff6]/25 text-[#7c6ff6] dark:text-[#c4b5fd] font-bold flex items-center gap-1 transition cursor-pointer"
-                      title="3D Structure"
-                    >
-                      <Box className="w-3 h-3" />
-                      <span>3D</span>
-                    </button>
-                    <span className="text-indigo-600 dark:text-indigo-400 group-hover:underline flex items-center gap-1 font-medium">
-                      Details →
-                    </span>
-                  </div>
+                  <span className="text-indigo-600 dark:text-indigo-400 group-hover:underline flex items-center gap-1 font-medium">
+                    Details →
+                  </span>
                 </div>
               </div>
             );
@@ -284,16 +267,6 @@ export const DiscoveryJournal: React.FC<DiscoveryJournalProps> = ({
           onClose={() => setInspectedMolecule(null)}
           language={language}
           onGoToJournal={() => setInspectedMolecule(null)}
-        />
-      )}
-
-      {/* 3D Structure Modal */}
-      {modal3dMoleculeId && (
-        <Molecule3DModal
-          moleculeId={modal3dMoleculeId}
-          onClose={() => setModal3dMoleculeId(null)}
-          language={language}
-          onGoToLab={onGoToLab}
         />
       )}
 

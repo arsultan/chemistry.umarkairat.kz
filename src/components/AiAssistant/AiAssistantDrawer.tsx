@@ -24,7 +24,7 @@ interface AiAssistantDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   language: Language;
-  currentTab: "table" | "lab" | "solubility" | "classification" | "education" | "molecule3d" | "journal" | "quests";
+  currentTab: "table" | "lab" | "solubility" | "classification" | "education" | "journal" | "quests";
   chamberAtoms: Record<string, number>;
   discoveredCount: number;
   totalMolecules: number;
@@ -384,7 +384,6 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
     solubility: { ru: "Пробирка и Осадки", kk: "Пробирка және Тұнбалар", en: "Solubility Lab" },
     classification: { ru: "Классификация", kk: "Классификация", en: "Classification" },
     education: { ru: "Наука в РК & NGS", kk: "Ғылым РК & NGS", en: "Science in RK & NGS" },
-    molecule3d: { ru: "3D Молекулы", kk: "3D Молекулалар", en: "3D Studio" },
     journal: { ru: "Журнал Открытий", kk: "Ашылулар Журналы", en: "Discovery Journal" },
     quests: { ru: "Научные Квесты", kk: "Ғылыми Квесттер", en: "Quests" }
   };
