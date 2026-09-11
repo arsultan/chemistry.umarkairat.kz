@@ -46,7 +46,7 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
   const [isLoading, setIsLoading] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
   const [apiKey, setApiKey] = useState("");
-  const [selectedModel, setSelectedModel] = useState("gemini-3.5-flash");
+  const [selectedModel, setSelectedModel] = useState("gemini-3.6-flash");
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [executedActionId, setExecutedActionId] = useState<string | null>(null);
 
@@ -59,7 +59,11 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
       if (savedKey) setApiKey(savedKey);
 
       const savedModel = localStorage.getItem("chemistry_gemini_model");
-      if (savedModel) setSelectedModel(savedModel);
+      if (savedModel && !savedModel.includes("2.5") && !savedModel.includes("3.5")) {
+        setSelectedModel(savedModel);
+      } else {
+        setSelectedModel("gemini-3.6-flash");
+      }
 
       const savedHistory = localStorage.getItem("chemistry_ai_messages");
       if (savedHistory) {
@@ -147,7 +151,7 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
           messages: newMessages.map(m => ({ role: m.role, content: m.content })),
           context,
           apiKey: apiKey.trim() || undefined,
-          model: selectedModel
+          model: selectedModel || "gemini-3.6-flash"
         })
       });
 
@@ -520,11 +524,10 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
                   onChange={(e) => setSelectedModel(e.target.value)}
                   className="w-full px-2 py-1.5 rounded-lg bg-white dark:bg-[#0b0c17] border border-slate-300 dark:border-[#7c6ff6]/40 text-xs font-mono text-slate-900 dark:text-slate-100 outline-none cursor-pointer"
                 >
-                  <option value="gemini-3.5-flash">Gemini 3.5 Flash (Рекомендуется)</option>
+                  <option value="gemini-3.6-flash">Gemini 3.6 Flash (Рекомендуется)</option>
+                  <option value="gemini-3.8-flash">Gemini 3.8 Flash</option>
                   <option value="gemini-flash-latest">Gemini Flash Latest</option>
-                  <option value="gemini-3.6-flash">Gemini 3.6 Flash</option>
                   <option value="gemini-3.1-flash-lite">Gemini 3.1 Flash Lite</option>
-                  <option value="gemini-3.7-flash">Gemini 3.7 Flash</option>
                 </select>
               </div>
 

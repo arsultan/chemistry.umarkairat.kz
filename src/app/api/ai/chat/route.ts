@@ -29,11 +29,10 @@ If suggesting a precipitation reaction:
 `;
 
 const CANDIDATE_MODELS = [
-  "gemini-3.5-flash",
-  "gemini-flash-latest",
   "gemini-3.6-flash",
-  "gemini-3.1-flash-lite",
-  "gemini-3.7-flash"
+  "gemini-flash-latest",
+  "gemini-3.8-flash",
+  "gemini-3.1-flash-lite"
 ];
 
 export async function POST(req: NextRequest) {
@@ -91,7 +90,13 @@ export async function POST(req: NextRequest) {
       }
     };
 
-    const modelsToTry = model ? [model, ...CANDIDATE_MODELS.filter(m => m !== model)] : CANDIDATE_MODELS;
+    // Normalize requested model (upgrade deprecated models)
+    let requestedModel = (model && typeof model === "string" && model.trim()) ? model.trim() : "gemini-3.6-flash";
+    if (requestedModel.includes("2.5") || requestedModel.includes("3.5")) {
+      requestedModel = "gemini-3.6-flash";
+    }
+
+    const modelsToTry = [requestedModel, ...CANDIDATE_MODELS.filter(m => m !== requestedModel)];
     let successfulData = null;
     let successfulModel = "";
 
@@ -100,7 +105,7 @@ export async function POST(req: NextRequest) {
         const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/${targetModel}:generateContent?key=${apiKey}`;
         
         const controller = new AbortController();
-        const timeoutId = setTimeout(() => controller.abort(), 12000);
+        const timeoutId = setTimeout(() => controller.abort(), 20000);
 
         const response = await fetch(apiUrl, {
           method: "POST",
@@ -115,7 +120,8 @@ export async function POST(req: NextRequest) {
           successfulModel = targetModel;
           break;
         } else {
-          console.warn(`Model ${targetModel} returned status ${response.status}`);
+          const errBody = await response.text().catch(() => "");
+          console.warn(`Model ${targetModel} returned HTTP ${response.status}:`, errBody.slice(0, 200));
         }
       } catch (fetchErr) {
         console.warn(`Fetch error for ${targetModel}:`, fetchErr);
