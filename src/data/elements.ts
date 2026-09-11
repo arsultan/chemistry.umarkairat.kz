@@ -491,7 +491,8 @@ export const ELEMENTS_DATA: ElementData[] = [
     "group": 15,
     "phase": "solid",
     "valency": [
-      1
+      3,
+      5
     ],
     "electronConfig": "[Ne] 3s2 3p3",
     "summary": {
@@ -501,7 +502,7 @@ export const ELEMENTS_DATA: ElementData[] = [
     },
     "funFact": {
       "en": "Phosphorus is a chemical element with symbol P and atomic number 15. As an element, phosphorus exists in two major forms—white phosphorus and red phosphorus—but...",
-      "ru": "Элемент с атомным номером 15. Применяется в современных технологиях и науке.",
+      "ru": "Белый фосфор светится в темноте благодаря хемолюминесценции. Фосфор — ключевой химический элемент жизни: он образует сахарофосфатный остов ДНК и РНК, входит в состав молекул АТФ (энергетической валюты всех живых клеток) и минерал костей гидроксиапатит.",
       "kk": "Атомдық нөмірі 15 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
     },
     "everydayUse": {
@@ -525,7 +526,9 @@ export const ELEMENTS_DATA: ElementData[] = [
     "group": 16,
     "phase": "solid",
     "valency": [
-      1
+      2,
+      4,
+      6
     ],
     "electronConfig": "[Ne] 3s2 3p4",
     "summary": {
@@ -535,7 +538,7 @@ export const ELEMENTS_DATA: ElementData[] = [
     },
     "funFact": {
       "en": "Sulfur or sulphur (see spelling differences) is a chemical element with symbol S and atomic number 16. It is an abundant, multivalent non-metal. Under normal co...",
-      "ru": "Элемент с атомным номером 16. Применяется в современных технологиях и науке.",
+      "ru": "Сера — желтый минерал вулканов и алхимиков. В организме она формирует дисульфидные мостики в белках, обеспечивая форму и прочность человеческих волос, ногтей и ферментов.",
       "kk": "Атомдық нөмірі 16 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
     },
     "everydayUse": {
