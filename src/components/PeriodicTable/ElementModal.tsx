@@ -30,6 +30,18 @@ interface ElementModalProps {
 
 const SHELL_NAMES = ["K", "L", "M", "N", "O", "P", "Q", "R"];
 
+// Harmonized Shell Colors (Each quantum shell has its distinct aesthetic color!)
+export const SHELL_PALETTE = [
+  { name: "K", color: "#38bdf8", shadow: "#38bdf880", bg: "bg-sky-500", border: "border-sky-400", label: "Слой K (n=1)" },
+  { name: "L", color: "#10b981", shadow: "#10b98180", bg: "bg-emerald-500", border: "border-emerald-400", label: "Слой L (n=2)" },
+  { name: "M", color: "#a855f7", shadow: "#a855f780", bg: "bg-purple-500", border: "border-purple-400", label: "Слой M (n=3)" },
+  { name: "N", color: "#f59e0b", shadow: "#f59e0b80", bg: "bg-amber-500", border: "border-amber-400", label: "Слой N (n=4)" },
+  { name: "O", color: "#f43f5e", shadow: "#f43f5e80", bg: "bg-rose-500", border: "border-rose-400", label: "Слой O (n=5)" },
+  { name: "P", color: "#06b6d4", shadow: "#06b6d480", bg: "bg-cyan-500", border: "border-cyan-400", label: "Слой P (n=6)" },
+  { name: "Q", color: "#6366f1", shadow: "#6366f180", bg: "bg-indigo-500", border: "border-indigo-400", label: "Слой Q (n=7)" },
+  { name: "R", color: "#ec4899", shadow: "#ec489980", bg: "bg-pink-500", border: "border-pink-400", label: "Слой R (n=8)" },
+];
+
 export const getElementShells = (atomicNumber: number): number[] => {
   const EXACT_SHELLS: Record<number, number[]> = {
     1: [1], // H
@@ -287,6 +299,25 @@ export const ElementModal: React.FC<ElementModalProps> = ({
   const groupFamily = getGroupFamily(element.group, language);
   const quantumBoxes = getQuantumBoxes(element.number);
 
+  // Helper: get color for an electron on shell ringIdx
+  const getElectronColor = (ringIdx: number, isValence: boolean) => {
+    // If it's the outermost valence shell, it matches the purple valence indicator on the card!
+    if (isValence) {
+      return {
+        bg: "#a855f7", // Vibrant Purple
+        glow: "#a855f7",
+        border: "#ffffff"
+      };
+    }
+    // Specific quantum shell color palette:
+    const palette = SHELL_PALETTE[ringIdx % SHELL_PALETTE.length];
+    return {
+      bg: palette.color,
+      glow: palette.shadow,
+      border: "#ffffff"
+    };
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80 backdrop-blur-md animate-fadeIn">
       <div 
@@ -297,7 +328,7 @@ export const ElementModal: React.FC<ElementModalProps> = ({
           className="p-4 sm:p-5 flex items-start justify-between border-b border-slate-200/80 dark:border-white/[0.08] bg-slate-50/90 dark:bg-slate-950/70"
         >
           <div className="flex items-center gap-3.5 sm:gap-4">
-            {/* Symbol Box */}
+            {/* Symbol Box with element's authentic CPK color */}
             <div 
               className="w-16 h-16 sm:w-18 sm:h-18 rounded-2xl flex flex-col items-center justify-center font-mono border-2 bg-slate-900 text-white shadow-xl relative overflow-hidden shrink-0"
               style={{
@@ -449,6 +480,8 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                     const isValence = ringIdx === shells.length - 1;
                     const tiltAngle = (ringIdx * 35) % 180;
                     const isHovered = activeHoverShell === ringIdx;
+                    const shellInfo = SHELL_PALETTE[ringIdx % SHELL_PALETTE.length];
+                    const ringColor = isValence ? "#a855f7" : shellInfo.color;
 
                     return (
                       <div
@@ -459,22 +492,24 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                           height: `${size * 0.55}px`,
                           transform: `rotate(${tiltAngle}deg)`,
                           border: isValence 
-                            ? `2px dashed ${element.color}` 
+                            ? `2px dashed #a855f7` 
                             : isHovered
-                              ? `2px solid #38bdf8`
-                              : `1px solid rgba(255, 255, 255, 0.2)`,
+                              ? `2.5px solid ${shellInfo.color}`
+                              : `1.5px solid ${shellInfo.color}40`,
                           boxShadow: isValence 
-                            ? `0 0 16px ${element.color}40` 
+                            ? `0 0 18px rgba(168, 85, 247, 0.4)` 
                             : isHovered
-                              ? `0 0 12px #38bdf860`
+                              ? `0 0 15px ${shellInfo.color}60`
                               : `none`,
                           animationDuration: `${7 + ringIdx * 3}s`,
                           animationDirection: ringIdx % 2 === 0 ? "normal" : "reverse"
                         }}
                       >
-                        {/* Orbiting glowing electron spheres */}
+                        {/* Orbiting glowing electron spheres with shell-specific coloring! */}
                         {Array.from({ length: Math.min(count, 12) }).map((_, eIdx) => {
                           const angle = (360 / Math.min(count, 12)) * eIdx;
+                          const elColor = getElectronColor(ringIdx, isValence);
+
                           return (
                             <div
                               key={`el-3d-${ringIdx}-${eIdx}`}
@@ -488,11 +523,11 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                               <div 
                                 className="w-3.5 h-3.5 rounded-full shadow-lg transition-transform hover:scale-150 cursor-pointer"
                                 style={{
-                                  backgroundColor: isValence ? element.color : "#38bdf8",
-                                  boxShadow: `0 0 10px ${isValence ? element.color : "#38bdf8"}, inset 0 0 3px #ffffff`,
-                                  border: "1.5px solid #ffffff"
+                                  backgroundColor: elColor.bg,
+                                  boxShadow: `0 0 12px ${elColor.glow}, inset 0 0 3px #ffffff`,
+                                  border: `1.5px solid ${elColor.border}`
                                 }}
-                                title={`Электрон e⁻ на ${SHELL_NAMES[ringIdx]}-оболочке`}
+                                title={`${isValence ? "Валентный " : ""}Электрон e⁻ (${SHELL_NAMES[ringIdx]}-оболочка)`}
                               />
                             </div>
                           );
@@ -501,32 +536,42 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                     );
                   })}
 
-                  {/* Central Glowing Atomic Nucleus */}
+                  {/* Central Nucleus with Red Protons and Green Neutrons Clustered! */}
                   <div 
-                    className="relative z-10 w-16 h-16 rounded-full flex flex-col items-center justify-center text-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer group"
+                    className="relative z-10 w-18 h-18 rounded-full flex flex-col items-center justify-center text-center shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer group p-1"
                     style={{
-                      background: `radial-gradient(circle at 35% 35%, #ffffff 0%, ${element.color} 45%, #0f172a 90%)`,
-                      boxShadow: `0 0 30px ${element.color}80, inset 0 0 15px rgba(255,255,255,0.8)`
+                      background: `radial-gradient(circle at 35% 35%, #1e1b4b 0%, #0f172a 80%)`,
+                      boxShadow: `0 0 35px ${element.color}60, inset 0 0 15px rgba(255,255,255,0.2)`,
+                      border: `2px solid ${element.color}90`
                     }}
-                    title={`Ядро атома: ${protons} протонов (+), ${neutrons} нейтронов (0). Заряд ядра: +${protons}`}
+                    title={`Ядро атома: ${protons} протонов (+, красные), ${neutrons} нейтронов (0, зеленые). Заряд ядра: +${protons}`}
                   >
-                    <span className="text-base font-black text-slate-900 font-mono leading-none drop-shadow">
+                    {/* Tiny Protons and Neutrons clustered around the symbol! */}
+                    <div className="flex items-center gap-1 leading-none mb-0.5">
+                      <span className="w-2 h-2 rounded-full bg-rose-500 shadow-[0_0_6px_#f43f5e]" title="Протон p⁺" />
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_#10b981]" title="Нейтрон n⁰" />
+                    </div>
+
+                    <span className="text-base font-black text-white font-mono leading-none drop-shadow">
                       {element.symbol}
                     </span>
-                    <span className="text-[9px] text-slate-900 font-mono font-bold leading-none mt-0.5 bg-white/80 px-1 rounded-full">
-                      {protons}p⁺
+
+                    <span className="text-[8px] text-cyan-300 font-mono font-bold leading-none mt-0.5">
+                      +{protons}p
                     </span>
                   </div>
                 </div>
               )}
 
-              {/* View Mode 2: Classical Concentric Bohr Model */}
+              {/* View Mode 2: Classical Concentric Bohr Model with Color-Coded Shells */}
               {viewMode === "bohr" && (
                 <div className="relative flex-1 flex items-center justify-center min-h-[250px] my-2 select-none">
                   {shells.map((count, ringIdx) => {
                     const size = 65 + ringIdx * 28;
                     const isValence = ringIdx === shells.length - 1;
                     const isHovered = activeHoverShell === ringIdx;
+                    const shellInfo = SHELL_PALETTE[ringIdx % SHELL_PALETTE.length];
+                    const ringColor = isValence ? "#a855f7" : shellInfo.color;
 
                     return (
                       <div
@@ -536,12 +581,12 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                           width: `${size}px`,
                           height: `${size}px`,
                           border: isValence 
-                            ? `1.5px dashed ${element.color}90` 
+                            ? `2px dashed #a855f7` 
                             : isHovered
-                              ? `2px solid #38bdf8`
-                              : `1px solid rgba(255, 255, 255, 0.15)`,
+                              ? `2px solid ${shellInfo.color}`
+                              : `1.5px solid ${shellInfo.color}40`,
                           boxShadow: isValence 
-                            ? `0 0 15px ${element.color}30` 
+                            ? `0 0 15px rgba(168, 85, 247, 0.35)` 
                             : "none",
                           animationDuration: `${10 + ringIdx * 4}s`,
                           animationDirection: ringIdx % 2 === 0 ? "normal" : "reverse"
@@ -549,6 +594,8 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                       >
                         {Array.from({ length: Math.min(count, 16) }).map((_, eIdx) => {
                           const angle = (360 / Math.min(count, 16)) * eIdx;
+                          const elColor = getElectronColor(ringIdx, isValence);
+
                           return (
                             <div
                               key={`el-bohr-${ringIdx}-${eIdx}`}
@@ -560,11 +607,11 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                               }}
                             >
                               <div 
-                                className="w-3 h-3 rounded-full shadow-md"
+                                className="w-3.5 h-3.5 rounded-full shadow-md"
                                 style={{
-                                  backgroundColor: isValence ? element.color : "#38bdf8",
-                                  boxShadow: `0 0 8px ${isValence ? element.color : "#38bdf8"}`,
-                                  border: "1px solid #ffffff"
+                                  backgroundColor: elColor.bg,
+                                  boxShadow: `0 0 10px ${elColor.glow}`,
+                                  border: `1.5px solid ${elColor.border}`
                                 }}
                               />
                             </div>
@@ -576,17 +623,21 @@ export const ElementModal: React.FC<ElementModalProps> = ({
 
                   {/* Nucleus */}
                   <div 
-                    className="relative z-10 w-14 h-14 rounded-full flex flex-col items-center justify-center border-2 border-white/40 text-center shadow-lg cursor-pointer"
+                    className="relative z-10 w-16 h-16 rounded-full flex flex-col items-center justify-center border-2 border-white/50 text-center shadow-xl cursor-pointer p-1"
                     style={{
-                      background: `radial-gradient(circle at 35% 35%, ${element.color} 0%, #0f172a 85%)`,
-                      boxShadow: `0 0 20px ${element.color}60`
+                      background: `radial-gradient(circle at 35% 35%, #1e1b4b 0%, #0f172a 85%)`,
+                      boxShadow: `0 0 25px ${element.color}60`
                     }}
                   >
+                    <div className="flex items-center gap-1 leading-none mb-0.5">
+                      <span className="w-2 h-2 rounded-full bg-rose-500 shadow-[0_0_6px_#f43f5e]" />
+                      <span className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_6px_#10b981]" />
+                    </div>
                     <span className="text-sm font-black text-white font-mono leading-none">
                       {element.symbol}
                     </span>
-                    <span className="text-[8px] text-white/90 font-mono font-bold leading-none mt-0.5">
-                      {protons}p⁺
+                    <span className="text-[8px] text-cyan-300 font-mono font-bold leading-none mt-0.5">
+                      +{protons}p
                     </span>
                   </div>
                 </div>
@@ -610,8 +661,6 @@ export const ElementModal: React.FC<ElementModalProps> = ({
 
                           <div className="flex items-center gap-0.5">
                             {Array.from({ length: boxCount }).map((_, bIdx) => {
-                              // Calculate spins in this box according to Hund's rule:
-                              // First fill spin up, then spin down
                               const hasSpinUp = orb.count > bIdx;
                               const hasSpinDown = orb.count > boxCount + bIdx;
 
@@ -638,31 +687,40 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                 </div>
               )}
 
-              {/* Bottom Shells Bar */}
+              {/* Bottom Shells Bar: Color-coded to match each orbit's circles! */}
               <div className="pt-2 border-t border-white/10 flex items-center justify-between gap-1.5 flex-wrap z-10 text-[11px] font-mono">
-                <span className="text-slate-400 uppercase text-[10px] font-bold">
-                  {language === "ru" ? "Оболочки:" : "Shells:"}
+                <span className="text-slate-400 uppercase text-[10px] font-bold flex items-center gap-1">
+                  <span>Оболочки:</span>
                 </span>
 
                 <div className="flex items-center gap-1.5 flex-wrap">
                   {shells.map((count, idx) => {
                     const isValence = idx === shells.length - 1;
                     const isHovered = activeHoverShell === idx;
+                    const shellInfo = SHELL_PALETTE[idx % SHELL_PALETTE.length];
+                    const activeColor = isValence ? "#a855f7" : shellInfo.color;
+
                     return (
                       <button
                         key={idx}
                         onMouseEnter={() => setActiveHoverShell(idx)}
                         onMouseLeave={() => setActiveHoverShell(null)}
-                        className={`px-2 py-0.5 rounded-lg border text-[10px] font-bold transition-all cursor-pointer ${
+                        className={`px-2 py-0.5 rounded-lg border text-[10px] font-bold transition-all cursor-pointer flex items-center gap-1.5 ${
                           isValence
-                            ? "bg-indigo-600/40 border-indigo-400 text-indigo-200 shadow-sm"
+                            ? "bg-purple-600/30 border-purple-400 text-purple-200 shadow-sm"
                             : isHovered
-                              ? "bg-cyan-500/30 border-cyan-400 text-white"
+                              ? "bg-white/20 border-white text-white"
                               : "bg-slate-900 border-white/10 text-slate-300 hover:border-white/30"
                         }`}
                         title={`${SHELL_NAMES[idx]}-оболочка: ${count} электронов`}
                       >
-                        {SHELL_NAMES[idx]}: {count}e⁻
+                        {/* Circular matching indicator dot */}
+                        <span 
+                          className="w-2 h-2 rounded-full shadow-sm shrink-0" 
+                          style={{ backgroundColor: activeColor, boxShadow: `0 0 6px ${activeColor}` }} 
+                        />
+                        <span>{SHELL_NAMES[idx]}: {count}e⁻</span>
+                        {isValence && <span className="text-[8px] text-purple-300 uppercase font-extrabold">(вал)</span>}
                       </button>
                     );
                   })}
@@ -670,7 +728,7 @@ export const ElementModal: React.FC<ElementModalProps> = ({
               </div>
             </div>
 
-            {/* Right Column: High-Tech Subatomic & Physical Cards */}
+            {/* Right Column: High-Tech Subatomic & Physical Cards with Color-Coded Circles! */}
             <div className="lg:col-span-5 space-y-3">
               <div className="text-xs font-mono font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 flex items-center justify-between">
                 <span className="flex items-center gap-1.5">
@@ -682,73 +740,109 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                 </span>
               </div>
 
-              {/* 6 Core Cards Grid */}
+              {/* 6 Core Cards Grid with perfectly matched circular dots! */}
               <div className="grid grid-cols-2 gap-2.5 text-xs font-mono">
                 
-                {/* 1. Protons */}
+                {/* 1. Protons (Red Circle) */}
                 <div className="p-3 rounded-2xl bg-gradient-to-br from-rose-500/10 via-slate-50 dark:via-slate-950/60 to-transparent border border-rose-500/30 dark:border-rose-500/20 flex items-center justify-between shadow-sm">
                   <div>
                     <div className="text-[10px] font-bold text-rose-600 dark:text-rose-400 uppercase">Протоны (p⁺)</div>
                     <div className="text-xl font-black text-slate-900 dark:text-white mt-0.5">{protons}</div>
                     <div className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5">Заряд: +{protons}</div>
                   </div>
-                  <span className="w-4 h-4 rounded-full bg-rose-500 shadow-[0_0_10px_#f43f5e] flex items-center justify-center text-[9px] font-bold text-white">+</span>
+                  <span 
+                    className="w-5 h-5 rounded-full bg-rose-500 shadow-[0_0_12px_#f43f5e] flex items-center justify-center text-[10px] font-bold text-white shrink-0"
+                    title="Протоны заряжены положительно (+1)"
+                  >
+                    +
+                  </span>
                 </div>
 
-                {/* 2. Neutrons */}
+                {/* 2. Neutrons (Emerald/Green Circle) */}
                 <div className="p-3 rounded-2xl bg-gradient-to-br from-emerald-500/10 via-slate-50 dark:via-slate-950/60 to-transparent border border-emerald-500/30 dark:border-emerald-500/20 flex items-center justify-between shadow-sm">
                   <div>
                     <div className="text-[10px] font-bold text-emerald-600 dark:text-emerald-400 uppercase">Нейтроны (n⁰)</div>
                     <div className="text-xl font-black text-slate-900 dark:text-white mt-0.5">{neutrons}</div>
                     <div className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5">A − Z = {neutrons}</div>
                   </div>
-                  <span className="w-4 h-4 rounded-full bg-emerald-500 shadow-[0_0_10px_#10b981] flex items-center justify-center text-[9px] font-bold text-white">0</span>
+                  <span 
+                    className="w-5 h-5 rounded-full bg-emerald-500 shadow-[0_0_12px_#10b981] flex items-center justify-center text-[10px] font-bold text-white shrink-0"
+                    title="Нейтроны нейтральны (0)"
+                  >
+                    0
+                  </span>
                 </div>
 
-                {/* 3. Total Electrons */}
-                <div className="p-3 rounded-2xl bg-gradient-to-br from-cyan-500/10 via-slate-50 dark:via-slate-950/60 to-transparent border border-cyan-500/30 dark:border-cyan-500/20 flex items-center justify-between shadow-sm">
+                {/* 3. Total Electrons (Cyan/Sky Blue Circle) */}
+                <div className="p-3 rounded-2xl bg-gradient-to-br from-sky-500/10 via-slate-50 dark:via-slate-950/60 to-transparent border border-sky-500/30 dark:border-sky-500/20 flex items-center justify-between shadow-sm">
                   <div>
-                    <div className="text-[10px] font-bold text-cyan-600 dark:text-cyan-400 uppercase">Электроны (e⁻)</div>
+                    <div className="text-[10px] font-bold text-sky-600 dark:text-sky-400 uppercase">Электроны (e⁻)</div>
                     <div className="text-xl font-black text-slate-900 dark:text-white mt-0.5">{totalElectrons}</div>
                     <div className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5">Заряд: −{totalElectrons}</div>
                   </div>
-                  <span className="w-4 h-4 rounded-full bg-cyan-500 shadow-[0_0_10px_#06b6d4] flex items-center justify-center text-[9px] font-bold text-white">−</span>
+                  <span 
+                    className="w-5 h-5 rounded-full bg-sky-500 shadow-[0_0_12px_#0ea5e9] flex items-center justify-center text-[10px] font-bold text-white shrink-0"
+                    title="Все электроны атома"
+                  >
+                    −
+                  </span>
                 </div>
 
-                {/* 4. Valence Electrons */}
+                {/* 4. Valence Electrons (Purple Circle matching the outer orbit dots!) */}
                 <div className="p-3 rounded-2xl bg-gradient-to-br from-purple-500/15 via-slate-50 dark:via-slate-950/60 to-transparent border border-purple-500/30 dark:border-purple-500/20 flex items-center justify-between shadow-sm">
                   <div>
                     <div className="text-[10px] font-bold text-purple-600 dark:text-purple-400 uppercase">Валентные (e⁻)</div>
                     <div className="text-xl font-black text-purple-600 dark:text-purple-400 mt-0.5">{valenceElectrons}</div>
-                    <div className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5">Внешний слой</div>
+                    <div className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5">Внешнее кольцо</div>
                   </div>
-                  <span className="w-4 h-4 rounded-full bg-purple-500 shadow-[0_0_10px_#a855f7] flex items-center justify-center text-[9px] font-bold text-white">⚡</span>
+                  <span 
+                    className="w-5 h-5 rounded-full bg-purple-500 shadow-[0_0_12px_#a855f7] flex items-center justify-center text-[10px] font-bold text-white shrink-0"
+                    title="Валентные электроны внешнего уровня (фиолетовые на орбите)"
+                  >
+                    ⚡
+                  </span>
                 </div>
 
-                {/* 5. Period & Group */}
-                <div className="p-3 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-slate-50 dark:via-slate-950/60 to-transparent border border-indigo-500/30 dark:border-indigo-500/20 shadow-sm">
-                  <div className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase">Период / Группа</div>
-                  <div className="text-lg font-black text-slate-900 dark:text-white mt-0.5">
-                    {element.period} / {element.group}
+                {/* 5. Period & Group (Indigo Circle) */}
+                <div className="p-3 rounded-2xl bg-gradient-to-br from-indigo-500/10 via-slate-50 dark:via-slate-950/60 to-transparent border border-indigo-500/30 dark:border-indigo-500/20 flex items-center justify-between shadow-sm">
+                  <div>
+                    <div className="text-[10px] font-bold text-indigo-600 dark:text-indigo-400 uppercase">Период / Группа</div>
+                    <div className="text-lg font-black text-slate-900 dark:text-white mt-0.5">
+                      {element.period} / {element.group}
+                    </div>
+                    <div className="text-[9px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
+                      {groupFamily}
+                    </div>
                   </div>
-                  <div className="text-[9px] text-slate-500 dark:text-slate-400 truncate mt-0.5">
-                    {groupFamily}
-                  </div>
+                  <span 
+                    className="w-5 h-5 rounded-full bg-indigo-500 shadow-[0_0_12px_#6366f1] flex items-center justify-center text-[9px] font-bold text-white shrink-0"
+                    title="Положение в таблице"
+                  >
+                    #
+                  </span>
                 </div>
 
-                {/* 6. Atomic Mass */}
-                <div className="p-3 rounded-2xl bg-gradient-to-br from-amber-500/10 via-slate-50 dark:via-slate-950/60 to-transparent border border-amber-500/30 dark:border-amber-500/20 shadow-sm">
-                  <div className="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase">Атомная масса</div>
-                  <div className="text-lg font-black text-slate-900 dark:text-white mt-0.5">
-                    {element.atomicMass}
+                {/* 6. Atomic Mass (Amber Circle) */}
+                <div className="p-3 rounded-2xl bg-gradient-to-br from-amber-500/10 via-slate-50 dark:via-slate-950/60 to-transparent border border-amber-500/30 dark:border-amber-500/20 flex items-center justify-between shadow-sm">
+                  <div>
+                    <div className="text-[10px] font-bold text-amber-600 dark:text-amber-400 uppercase">Атомная масса</div>
+                    <div className="text-lg font-black text-slate-900 dark:text-white mt-0.5">
+                      {element.atomicMass}
+                    </div>
+                    <div className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5">
+                      г/моль (а.е.м.)
+                    </div>
                   </div>
-                  <div className="text-[9px] text-slate-500 dark:text-slate-400 mt-0.5">
-                    г/моль (а.е.м.)
-                  </div>
+                  <span 
+                    className="w-5 h-5 rounded-full bg-amber-500 shadow-[0_0_12px_#f59e0b] flex items-center justify-center text-[9px] font-bold text-white shrink-0"
+                    title="Масса атома"
+                  >
+                    u
+                  </span>
                 </div>
               </div>
 
-              {/* Oxidation States Strip */}
+              {/* Oxidation States Strip with color-coded pills */}
               <div className="p-3 rounded-2xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200/80 dark:border-white/[0.07] space-y-1.5">
                 <div className="flex items-center justify-between text-[11px] font-mono font-bold text-slate-700 dark:text-slate-300">
                   <span>Степени окисления:</span>
@@ -759,18 +853,25 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                   {oxidationStates.map((ox, idx) => {
                     const isPositive = ox > 0;
                     const isNegative = ox < 0;
-                    const isZero = ox === 0;
 
                     let badgeStyle = "bg-slate-200 dark:bg-white/10 text-slate-700 dark:text-slate-300";
-                    if (isNegative) badgeStyle = "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30";
-                    if (isPositive) badgeStyle = "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30 font-bold";
+                    let dotColor = "#94a3b8";
+                    if (isNegative) {
+                      badgeStyle = "bg-rose-500/15 text-rose-600 dark:text-rose-400 border border-rose-500/30";
+                      dotColor = "#f43f5e";
+                    }
+                    if (isPositive) {
+                      badgeStyle = "bg-indigo-500/15 text-indigo-600 dark:text-indigo-400 border border-indigo-500/30 font-bold";
+                      dotColor = "#6366f1";
+                    }
 
                     return (
                       <span 
                         key={idx}
-                        className={`px-2 py-0.5 rounded-lg text-xs font-mono ${badgeStyle}`}
+                        className={`px-2.5 py-0.5 rounded-lg text-xs font-mono flex items-center gap-1 ${badgeStyle}`}
                       >
-                        {ox > 0 ? `+${ox}` : ox}
+                        <span className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: dotColor }} />
+                        <span>{ox > 0 ? `+${ox}` : ox}</span>
                       </span>
                     );
                   })}
