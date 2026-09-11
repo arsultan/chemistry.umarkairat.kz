@@ -9,13 +9,14 @@ import { QuestsView } from "@/components/Quests/QuestsView";
 import { ClassificationView } from "@/components/Classification/ClassificationView";
 import { SolubilityView } from "@/components/Solubility/SolubilityView";
 import { EducationKzView } from "@/components/Education/EducationKzView";
+import { PHLabView } from "@/components/PHLab/PHLabView";
 import { VideoSplashScreen } from "@/components/Intro/VideoSplashScreen";
 import { WelcomeModal } from "@/components/WelcomeModal";
 import { JuryQRModal } from "@/components/JuryQRModal";
 import { AiAssistantDrawer } from "@/components/AiAssistant/AiAssistantDrawer";
 import { AiTriggerButton } from "@/components/AiAssistant/AiTriggerButton";
 import { AiActionPayload } from "@/data/aiKnowledgeBase";
-import { Language, MoleculeData } from "@/types/chemistry";
+import { Language, MoleculeData, NavigationTab } from "@/types/chemistry";
 import { MOLECULES_DATA } from "@/data/molecules";
 import { QUESTS_DATA } from "@/data/quests";
 import { ACHIEVEMENTS_DATA } from "@/data/achievements";
@@ -45,7 +46,7 @@ import { Sparkles, X } from "lucide-react";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
-  const [currentTab, setCurrentTab] = useState<'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests'>('lab');
+  const [currentTab, setCurrentTab] = useState<NavigationTab>('lab');
   const [language, setLanguageState] = useState<Language>('ru');
   const [soundEnabled, setSoundEnabledState] = useState(true);
   const [theme, setThemeState] = useState<'dark' | 'light'>('dark');
@@ -331,6 +332,12 @@ export default function Home() {
               Periodic Table
             </button>
             <button
+              onClick={() => setCurrentTab('ph')}
+              className={`px-3 py-1 rounded-lg text-xs font-mono font-medium cursor-pointer ${currentTab === 'ph' ? 'bg-indigo-600 text-white' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}
+            >
+              pH Lab
+            </button>
+            <button
               onClick={() => setCurrentTab('solubility')}
               className={`px-3 py-1 rounded-lg text-xs font-mono font-medium cursor-pointer ${currentTab === 'solubility' ? 'bg-indigo-600 text-white' : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}
             >
@@ -423,6 +430,13 @@ export default function Home() {
             onGoToJournal={() => setCurrentTab('journal')}
             onGoToTable={() => setCurrentTab('table')}
             onInspectElement={handleElementInspected}
+          />
+        )}
+
+        {currentTab === 'ph' && (
+          <PHLabView
+            language={language}
+            onGoToLab={() => setCurrentTab('lab')}
           />
         )}
 

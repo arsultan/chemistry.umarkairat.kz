@@ -95,3 +95,5 @@ export interface ReactionResult {
   canBond: boolean;
   bondTypeDescription: LocalizedString;
 }
+
+export type NavigationTab = 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'ph' | 'journal' | 'quests';

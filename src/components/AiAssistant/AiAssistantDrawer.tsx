@@ -16,7 +16,7 @@ import {
   Trash2,
   Atom
 } from "lucide-react";
-import { Language } from "@/types/chemistry";
+import { Language, NavigationTab } from "@/types/chemistry";
 import { AiMessage, AiActionPayload, ChemistryContext } from "@/data/aiKnowledgeBase";
 import { soundEffects } from "@/lib/soundEffects";
 
@@ -24,7 +24,7 @@ interface AiAssistantDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   language: Language;
-  currentTab: "table" | "lab" | "solubility" | "classification" | "education" | "journal" | "quests";
+  currentTab: NavigationTab;
   chamberAtoms: Record<string, number>;
   discoveredCount: number;
   totalMolecules: number;
@@ -281,6 +281,26 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
           "🧪 Acid salts vs normal salts in chemistry"
         ]
       },
+      ph: {
+        ru: [
+          "🧪 Почему лакмус меняет цвет в кислой и щелочной среде?",
+          "💧 Почему у дистиллированной воды pH строго 7.0?",
+          "🍋 Какая кислота дает кислый вкус лимону?",
+          "⚠️ Чем опасен концентрированный раствор NaOH?"
+        ],
+        kk: [
+          "🧪 Лакмус қағазы неліктен қышқылда қызарып, сілтіде көгереді?",
+          "💧 Таза судың pH деңгейі неліктен 7.0 болады?",
+          "🍋 Лимонға қышқыл дәм беретін қандай қышқыл?",
+          "⚠️ Концентрлі NaOH сілтісі неге қауіпті?"
+        ],
+        en: [
+          "🧪 Why does litmus paper change color in acids and bases?",
+          "💧 Why does pure water have a neutral pH of 7.0?",
+          "🍋 Which organic acid gives lemon its sour taste?",
+          "⚠️ Why is concentrated NaOH so hazardous?"
+        ]
+      },
       quests: {
         ru: [
           "🏆 Подскажи стратегию для выполнения квестов",
@@ -388,6 +408,7 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
     solubility: { ru: "Пробирка и Осадки", kk: "Пробирка және Тұнбалар", en: "Solubility Lab" },
     classification: { ru: "Классификация", kk: "Классификация", en: "Classification" },
     education: { ru: "Наука в РК & NGS", kk: "Ғылым РК & NGS", en: "Science in RK & NGS" },
+    ph: { ru: "pH Среда & Лакмус", kk: "pH Орта & Лакмус", en: "pH Lab & Litmus" },
     journal: { ru: "Журнал Открытий", kk: "Ашылулар Журналы", en: "Discovery Journal" },
     quests: { ru: "Научные Квесты", kk: "Ғылыми Квесттер", en: "Quests" }
   };

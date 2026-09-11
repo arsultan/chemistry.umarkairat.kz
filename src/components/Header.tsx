@@ -15,13 +15,15 @@ import {
   Sun,
   Moon,
   Sparkles,
-  GraduationCap
+  GraduationCap,
+  Droplets
 } from "lucide-react";
 import { QuickControlModal } from "./QuickControlModal";
+import { NavigationTab } from "@/types/chemistry";
 
 interface HeaderProps {
-  currentTab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests';
-  setCurrentTab: (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests') => void;
+  currentTab: NavigationTab;
+  setCurrentTab: (tab: NavigationTab) => void;
   language: Language;
   setLanguage: (lang: Language) => void;
   soundEnabled: boolean;
@@ -74,7 +76,7 @@ export const Header: React.FC<HeaderProps> = ({
     setTheme(next);
   };
 
-  const handleTabChange = (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests') => {
+  const handleTabChange = (tab: NavigationTab) => {
     soundEffects.playAtomAdd();
     setCurrentTab(tab);
   };
@@ -93,6 +95,13 @@ export const Header: React.FC<HeaderProps> = ({
       icon: TableProperties,
       color: "text-cyan-500",
       activeBg: "border-cyan-500/30 text-cyan-600 dark:text-cyan-400"
+    },
+    {
+      id: 'ph' as const,
+      label: t("navPH"),
+      icon: Droplets,
+      color: "text-rose-500",
+      activeBg: "border-rose-500/30 text-rose-600 dark:text-rose-400"
     },
     {
       id: 'solubility' as const,

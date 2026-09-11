@@ -11,6 +11,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     navJournal: "Journal",
     navQuests: "Quests",
     navEducation: "Science in RK & NGS",
+    navPH: "pH Lab & Litmus",
     
     // Header & Actions
     searchPlaceholder: "Search by name, symbol, or atomic number...",
@@ -150,6 +151,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     navJournal: "Журнал",
     navQuests: "Квесты",
     navEducation: "Наука в РК & NGS",
+    navPH: "pH Среда & Лакмус",
     
     // Header & Actions
     searchPlaceholder: "Поиск по названию, символу или номеру...",
@@ -289,6 +291,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     navJournal: "Журнал",
     navQuests: "Тапсырмалар",
     navEducation: "Ғылым РК & NGS",
+    navPH: "pH Орта & Лакмус",
     
     // Header & Actions
     searchPlaceholder: "Атауы, белгісі немесе нөмірі бойынша іздеу...",
