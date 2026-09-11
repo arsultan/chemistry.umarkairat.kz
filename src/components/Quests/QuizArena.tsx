@@ -123,8 +123,8 @@ export const QuizArena: React.FC<QuizArenaProps> = ({ language, onEarnXP, onGoTo
     // Shuffle questions
     pool = pool.sort(() => Math.random() - 0.5);
 
-    // Limit count depending on mode
-    const count = mode === 'olympiad' ? 10 : mode === 'blitz' ? 15 : 8;
+    // Limit count depending on mode (from pool of 40 questions per category)
+    const count = mode === 'olympiad' ? 15 : mode === 'blitz' ? 20 : 15;
     const finalQueue = pool.slice(0, count);
 
     setQuestionsQueue(finalQueue);
