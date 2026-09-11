@@ -9,7 +9,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     navLab: "Reaction Lab",
     navClassification: "Classification",
     navJournal: "Journal",
-    navQuests: "Quests",
+    navQuests: "Quiz & Quests",
     navEducation: "Science in RK & NGS",
     navPH: "pH Lab & Litmus",
     
@@ -149,7 +149,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     navLab: "Лаборатория",
     navClassification: "Классификация",
     navJournal: "Журнал",
-    navQuests: "Квесты",
+    navQuests: "Квиз & Квесты",
     navEducation: "Наука в РК & NGS",
     navPH: "pH Среда & Лакмус",
     
@@ -289,7 +289,7 @@ export const TRANSLATIONS: Record<Language, Record<string, string>> = {
     navLab: "Зертхана",
     navClassification: "Жіктелуі",
     navJournal: "Журнал",
-    navQuests: "Тапсырмалар",
+    navQuests: "Квиз & Квесттер",
     navEducation: "Ғылым РК & NGS",
     navPH: "pH Орта & Лакмус",
     
