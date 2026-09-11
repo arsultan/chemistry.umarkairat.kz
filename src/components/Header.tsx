@@ -14,13 +14,14 @@ import {
   SlidersHorizontal,
   Sun,
   Moon,
-  Sparkles
+  Sparkles,
+  GraduationCap
 } from "lucide-react";
 import { QuickControlModal } from "./QuickControlModal";
 
 interface HeaderProps {
-  currentTab: 'table' | 'lab' | 'solubility' | 'classification' | 'journal' | 'quests';
-  setCurrentTab: (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'journal' | 'quests') => void;
+  currentTab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests';
+  setCurrentTab: (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests') => void;
   language: Language;
   setLanguage: (lang: Language) => void;
   soundEnabled: boolean;
@@ -73,7 +74,7 @@ export const Header: React.FC<HeaderProps> = ({
     setTheme(next);
   };
 
-  const handleTabChange = (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'journal' | 'quests') => {
+  const handleTabChange = (tab: 'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests') => {
     soundEffects.playAtomAdd();
     setCurrentTab(tab);
   };
@@ -106,6 +107,13 @@ export const Header: React.FC<HeaderProps> = ({
       icon: Layers,
       color: "text-purple-500",
       activeBg: "border-purple-500/30 text-purple-600 dark:text-purple-400"
+    },
+    {
+      id: 'education' as const,
+      label: t("navEducation"),
+      icon: GraduationCap,
+      color: "text-indigo-500",
+      activeBg: "border-indigo-500/30 text-indigo-600 dark:text-indigo-400"
     },
     {
       id: 'journal' as const,

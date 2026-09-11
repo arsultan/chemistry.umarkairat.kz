@@ -8,6 +8,7 @@ import { DiscoveryJournal } from "@/components/Journal/DiscoveryJournal";
 import { QuestsView } from "@/components/Quests/QuestsView";
 import { ClassificationView } from "@/components/Classification/ClassificationView";
 import { SolubilityView } from "@/components/Solubility/SolubilityView";
+import { EducationKzView } from "@/components/Education/EducationKzView";
 import { VideoSplashScreen } from "@/components/Intro/VideoSplashScreen";
 import { WelcomeModal } from "@/components/WelcomeModal";
 import { JuryQRModal } from "@/components/JuryQRModal";
@@ -44,7 +45,7 @@ import { Sparkles, X } from "lucide-react";
 
 export default function Home() {
   const [isClient, setIsClient] = useState(false);
-  const [currentTab, setCurrentTab] = useState<'table' | 'lab' | 'solubility' | 'classification' | 'journal' | 'quests'>('lab');
+  const [currentTab, setCurrentTab] = useState<'table' | 'lab' | 'solubility' | 'classification' | 'education' | 'journal' | 'quests'>('lab');
   const [language, setLanguageState] = useState<Language>('ru');
   const [soundEnabled, setSoundEnabledState] = useState(true);
   const [theme, setThemeState] = useState<'dark' | 'light'>('dark');
@@ -437,6 +438,13 @@ export default function Home() {
           <ClassificationView
             language={language}
             onLoadToLab={(atoms) => setChamberAtoms(atoms)}
+            onGoToLab={() => setCurrentTab('lab')}
+          />
+        )}
+
+        {currentTab === 'education' && (
+          <EducationKzView
+            language={language}
             onGoToLab={() => setCurrentTab('lab')}
           />
         )}

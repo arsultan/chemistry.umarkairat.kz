@@ -24,7 +24,7 @@ interface AiAssistantDrawerProps {
   isOpen: boolean;
   onClose: () => void;
   language: Language;
-  currentTab: "table" | "lab" | "solubility" | "classification" | "journal" | "quests";
+  currentTab: "table" | "lab" | "solubility" | "classification" | "education" | "journal" | "quests";
   chamberAtoms: Record<string, number>;
   discoveredCount: number;
   totalMolecules: number;
@@ -383,6 +383,7 @@ export const AiAssistantDrawer: React.FC<AiAssistantDrawerProps> = ({
     table: { ru: "Таблица Менделеева", kk: "Менделеев Кестесі", en: "Periodic Table" },
     solubility: { ru: "Пробирка и Осадки", kk: "Пробирка және Тұнбалар", en: "Solubility Lab" },
     classification: { ru: "Классификация", kk: "Классификация", en: "Classification" },
+    education: { ru: "Наука в РК & NGS", kk: "Ғылым РК & NGS", en: "Science in RK & NGS" },
     journal: { ru: "Журнал Открытий", kk: "Ашылулар Журналы", en: "Discovery Journal" },
     quests: { ru: "Научные Квесты", kk: "Ғылыми Квесттер", en: "Quests" }
   };
