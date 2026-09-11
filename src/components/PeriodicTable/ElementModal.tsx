@@ -145,6 +145,16 @@ export const ElementModal: React.FC<ElementModalProps> = ({
                 >
                   {t(element.category)}
                 </span>
+                {element.isFutureElement && (
+                  <span className="text-[10px] px-2.5 py-0.5 rounded-full font-bold bg-purple-500/15 text-purple-600 dark:text-purple-300 border border-purple-500/30 flex items-center gap-1 font-mono">
+                    🔮 {element.number === 126 ? t("islandBadge") : t("futureBadge")}
+                  </span>
+                )}
+                {element.number >= 113 && element.number <= 118 && (
+                  <span className="text-[10px] px-2.5 py-0.5 rounded-full font-bold bg-cyan-500/15 text-cyan-600 dark:text-cyan-300 border border-cyan-500/30 flex items-center gap-1 font-mono">
+                    ✨ {t("centuryBadge")}
+                  </span>
+                )}
               </div>
               <p className="text-xs text-slate-500 dark:text-slate-400 font-mono mt-0.5 flex items-center gap-2 flex-wrap">
                 <span>{element.electronConfig}</span>
@@ -325,6 +335,52 @@ export const ElementModal: React.FC<ElementModalProps> = ({
               </div>
             </div>
           </div>
+
+          {/* Nuclear Synthesis & Superheavy Properties Card (if available) */}
+          {(element.nuclearReaction || element.discoveryLab || element.halfLife) && (
+            <div className="p-4 rounded-2xl bg-gradient-to-br from-slate-900 to-indigo-950 text-white border border-indigo-500/30 space-y-3 shadow-md">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-indigo-400 font-mono text-xs font-bold uppercase tracking-wider">
+                  <Atom className="w-4 h-4 text-cyan-400 animate-spin" style={{ animationDuration: '8s' }} />
+                  <span>{t("nuclearReaction")} & Ядерные свойства</span>
+                </div>
+                {element.discoveryYear && (
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-slate-300">
+                    {element.discoveryYear}
+                  </span>
+                )}
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                {element.nuclearReaction && (
+                  <div className="p-2.5 rounded-xl bg-white/[0.05] border border-white/10">
+                    <span className="text-[10px] text-slate-400 block font-mono">Ядерная реакция синтеза:</span>
+                    <span className="font-mono font-bold text-cyan-300 text-xs sm:text-sm mt-0.5 block">
+                      {element.nuclearReaction}
+                    </span>
+                  </div>
+                )}
+
+                {element.halfLife && (
+                  <div className="p-2.5 rounded-xl bg-white/[0.05] border border-white/10">
+                    <span className="text-[10px] text-slate-400 block font-mono">{t("halfLife")}:</span>
+                    <span className="font-mono font-bold text-emerald-300 text-xs sm:text-sm mt-0.5 block">
+                      {element.halfLife}
+                    </span>
+                  </div>
+                )}
+
+                {element.discoveryLab && (
+                  <div className="sm:col-span-2 p-2.5 rounded-xl bg-white/[0.05] border border-white/10">
+                    <span className="text-[10px] text-slate-400 block font-mono">{t("discoveryLab")}:</span>
+                    <span className="font-medium text-slate-200 text-xs mt-0.5 block">
+                      {element.discoveryLab[language] || element.discoveryLab.ru}
+                    </span>
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           {/* Everyday & Real-world Uses */}
           <div className="p-4 rounded-2xl bg-slate-50 dark:bg-slate-950/50 border border-slate-200/80 dark:border-white/[0.07] space-y-1">

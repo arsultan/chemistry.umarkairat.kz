@@ -41,13 +41,15 @@ export const ElementTile: React.FC<ElementTileProps> = ({
       className={`relative group cursor-pointer select-none rounded-xl p-1 sm:p-1.5 transition-all duration-200 flex flex-col justify-between aspect-square border shadow-sm dark:shadow-none ${
         isDimmed 
           ? "opacity-20 grayscale hover:opacity-100 hover:grayscale-0 bg-slate-100/50 dark:bg-slate-950/40 border-slate-200 dark:border-white/[0.04]" 
-          : "opacity-100 bg-white hover:bg-slate-50 dark:bg-slate-900/90 dark:hover:bg-slate-800/90 border-slate-200/90 dark:border-white/[0.07] hover:border-slate-400 dark:hover:border-white/[0.2]"
+          : element.isFutureElement
+            ? "opacity-100 bg-gradient-to-b from-purple-50/50 to-white dark:from-purple-950/30 dark:to-slate-900 border-purple-400/40 dark:border-purple-500/40 shadow-sm shadow-purple-500/10 hover:border-purple-500 hover:shadow-purple-500/25"
+            : "opacity-100 bg-white hover:bg-slate-50 dark:bg-slate-900/90 dark:hover:bg-slate-800/90 border-slate-200/90 dark:border-white/[0.07] hover:border-slate-400 dark:hover:border-white/[0.2]"
       } ${
         isSelected
           ? "ring-1.5 ring-indigo-500 bg-indigo-50 dark:bg-slate-800 scale-105 z-20 shadow-md border-indigo-500/50"
           : "hover:scale-105 hover:z-20 hover:shadow-md"
       }`}
-      title={`${element.number}. ${element.name[language]} (${element.symbol}) - ${element.atomicMass}`}
+      title={`${element.number}. ${element.name[language]} (${element.symbol}) - ${element.atomicMass} ${element.isFutureElement ? '[8th Period / Synthesis]' : ''}`}
     >
       {/* Top category color bar */}
       <span 
@@ -55,10 +57,13 @@ export const ElementTile: React.FC<ElementTileProps> = ({
         style={{ backgroundColor: element.color }}
       />
 
-      {/* Top row: Number and Lab Badge */}
+      {/* Top row: Number and Lab/Future Badge */}
       <div className="flex items-center justify-between w-full leading-none mt-0.5">
-        <span className="text-[9px] font-mono text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-400 font-medium">
+        <span className="text-[9px] font-mono text-slate-400 group-hover:text-slate-600 dark:text-slate-500 dark:group-hover:text-slate-400 font-medium flex items-center gap-0.5">
           {element.number}
+          {element.isFutureElement && (
+            <span className="text-[8px] text-purple-600 dark:text-purple-400 font-bold" title="Period 8 / Island of Stability">✦</span>
+          )}
         </span>
         {labCount > 0 && (
           <span 

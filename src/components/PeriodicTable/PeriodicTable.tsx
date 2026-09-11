@@ -5,8 +5,21 @@ import { ElementData, ElementCategory, StateOfMatter, Language } from "@/types/c
 import { ELEMENTS_DATA, ELEMENTS_BY_NUMBER } from "@/data/elements";
 import { ElementTile } from "./ElementTile";
 import { ElementModal } from "./ElementModal";
+import { IslandOfStabilityModal } from "./IslandOfStabilityModal";
 import { getTranslation } from "@/data/i18n";
-import { Search, X, Sparkles } from "lucide-react";
+import { 
+  Search, 
+  X, 
+  Sparkles, 
+  Rocket, 
+  Compass, 
+  Layers, 
+  Atom, 
+  Flame, 
+  Zap, 
+  Check 
+} from "lucide-react";
+import { soundEffects } from "@/lib/soundEffects";
 
 interface PeriodicTableProps {
   language: Language;
@@ -40,6 +53,11 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
   const [activeCategory, setActiveCategory] = useState<ElementCategory | "all">("all");
   const [activePhase, setActivePhase] = useState<StateOfMatter | "all">("all");
   const [selectedElement, setSelectedElement] = useState<ElementData | null>(null);
+  
+  // New: 8th Period and Island of Stability state
+  const [showPeriod8, setShowPeriod8] = useState(true);
+  const [centuryFilter, setCenturyFilter] = useState(false);
+  const [showIslandModal, setShowIslandModal] = useState(false);
 
   const handleSelectElement = (el: ElementData) => {
     setSelectedElement(el);
@@ -48,6 +66,7 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
 
   // Filter logic
   const isMatch = (el: ElementData): boolean => {
+    if (centuryFilter && el.number < 113) return false;
     if (activeCategory !== "all" && el.category !== activeCategory) return false;
     if (activePhase !== "all" && el.phase !== activePhase) return false;
     if (searchQuery.trim() !== "") {
@@ -101,11 +120,20 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
       if (group >= 4 && group <= 18) return ELEMENTS_BY_NUMBER.get(104 + (group - 4));
       return null;
     }
+    if (period === 8 && showPeriod8) {
+      if (group === 1) return ELEMENTS_BY_NUMBER.get(119);
+      if (group === 2) return ELEMENTS_BY_NUMBER.get(120);
+      if (group === 3) return "superactinide-placeholder";
+      return null;
+    }
     return null;
   };
 
   const lanthanides = ELEMENTS_DATA.filter(e => e.number >= 57 && e.number <= 71);
   const actinides = ELEMENTS_DATA.filter(e => e.number >= 89 && e.number <= 103);
+  const superactinides = ELEMENTS_DATA.filter(e => e.number >= 121 && e.number <= 126);
+
+  const periodsToRender = showPeriod8 ? [1, 2, 3, 4, 5, 6, 7, 8] : [1, 2, 3, 4, 5, 6, 7];
 
   return (
     <div className="space-y-5 max-w-7xl mx-auto px-2 sm:px-4 py-3">
@@ -132,29 +160,78 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
             )}
           </div>
 
-          {/* Quick Stats Banner */}
-          <div className="flex items-center gap-3 text-xs font-mono text-slate-600 dark:text-slate-400">
-            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-white/[0.06]">
+          {/* Mode Switcher & Nuclear Buttons */}
+          <div className="flex items-center gap-2 flex-wrap w-full md:w-auto justify-end">
+            {/* Period 8 Toggle */}
+            <button
+              onClick={() => {
+                soundEffects.playAtomAdd();
+                setShowPeriod8(!showPeriod8);
+              }}
+              className={`px-3 py-1.5 rounded-xl font-medium text-xs transition-all flex items-center gap-1.5 cursor-pointer border shadow-sm ${
+                showPeriod8 
+                  ? "bg-purple-600 text-white border-purple-500" 
+                  : "bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border-slate-300 dark:border-white/10 hover:border-purple-400"
+              }`}
+              title="Переключить между классической таблицей Менделеева (1-118) и расширенной (8-й период: 119-126)"
+            >
+              <Rocket className="w-3.5 h-3.5 text-purple-300" />
+              <span>{showPeriod8 ? t("extendedSeaborg") : t("standardIupac")}</span>
+            </button>
+
+            {/* Island of Stability Map Button */}
+            <button
+              onClick={() => {
+                soundEffects.playAtomAdd();
+                setShowIslandModal(true);
+              }}
+              className="px-3 py-1.5 rounded-xl font-medium text-xs transition-all flex items-center gap-1.5 cursor-pointer bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 hover:from-indigo-500/20 hover:to-pink-500/20 text-indigo-700 dark:text-indigo-300 border border-indigo-500/30 shadow-sm"
+              title="Интерактивная карта нуклидов и Остров стабильности Сиборга-Оганесяна"
+            >
+              <Compass className="w-3.5 h-3.5 text-indigo-500" />
+              <span className="hidden sm:inline">{t("islandOfStability")}</span>
+              <span className="sm:hidden">Остров Z=126</span>
+            </button>
+
+            {/* Total Elements Count Banner */}
+            <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-950/60 border border-slate-200 dark:border-white/[0.06] text-xs font-mono text-slate-600 dark:text-slate-400">
               <Sparkles className="w-3.5 h-3.5 text-indigo-600 dark:text-indigo-400" />
-              <strong className="text-slate-900 dark:text-white">118</strong> {t("elementsCount")}
+              <strong className="text-slate-900 dark:text-white">
+                {showPeriod8 ? 126 : 118}
+              </strong>{" "}
+              {t("elementsCount")}
             </span>
-            {activeCategory !== "all" && (
-              <button
-                onClick={() => setActiveCategory("all")}
-                className="text-xs text-indigo-600 dark:text-indigo-400 hover:underline flex items-center gap-1 cursor-pointer font-medium"
-              >
-                Reset filter <X className="w-3 h-3" />
-              </button>
-            )}
           </div>
         </div>
 
-        {/* Categories Chips */}
+        {/* Categories Chips & XXI Century Filter */}
         <div className="flex items-center gap-1.5 overflow-x-auto pb-1 text-xs">
+          {/* Quick Highlight: 21st Century & Future */}
           <button
-            onClick={() => setActiveCategory("all")}
+            onClick={() => {
+              soundEffects.playAtomAdd();
+              setCenturyFilter(!centuryFilter);
+              if (!centuryFilter) setShowPeriod8(true);
+            }}
+            className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all flex items-center gap-1.5 border cursor-pointer ${
+              centuryFilter
+                ? "bg-gradient-to-r from-purple-600 to-indigo-600 text-white border-purple-500 shadow-sm font-semibold"
+                : "bg-purple-50 dark:bg-purple-950/40 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-500/20 hover:bg-purple-100"
+            }`}
+          >
+            <Sparkles className="w-3 h-3 text-purple-400" />
+            <span>{t("latestElements")}</span>
+          </button>
+
+          <div className="w-px h-5 bg-slate-300 dark:bg-white/10 mx-1 shrink-0" />
+
+          <button
+            onClick={() => {
+              setActiveCategory("all");
+              setCenturyFilter(false);
+            }}
             className={`px-3 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all cursor-pointer ${
-              activeCategory === "all"
+              activeCategory === "all" && !centuryFilter
                 ? "bg-slate-900 dark:bg-slate-800 text-white font-semibold shadow-sm border border-slate-900 dark:border-white/[0.12]"
                 : "bg-slate-100 dark:bg-slate-950/40 text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200 border border-slate-200/80 dark:border-white/[0.06]"
             }`}
@@ -162,11 +239,14 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
             {t("filterCategory")}
           </button>
           {CATEGORIES.map(cat => {
-            const isSelected = activeCategory === cat;
+            const isSelected = activeCategory === cat && !centuryFilter;
             return (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(isSelected ? "all" : cat)}
+                onClick={() => {
+                  setCenturyFilter(false);
+                  setActiveCategory(isSelected ? "all" : cat);
+                }}
                 className={`px-2.5 py-1.5 rounded-lg font-medium whitespace-nowrap transition-all flex items-center gap-1.5 border cursor-pointer ${
                   isSelected
                     ? "bg-slate-900 dark:bg-slate-800 text-white border-slate-900 dark:border-white/[0.15] shadow-sm"
@@ -205,8 +285,8 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
       {/* 18-Column Periodic Table Grid */}
       <div className="overflow-x-auto pb-4">
         <div className="min-w-[960px] space-y-1">
-          {/* Main 7 Periods */}
-          {[1, 2, 3, 4, 5, 6, 7].map(period => (
+          {/* Main Periods (1-7 or 1-8) */}
+          {periodsToRender.map(period => (
             <div key={period} className="grid grid-cols-18 gap-1">
               {Array.from({ length: 18 }).map((_, colIdx) => {
                 const group = colIdx + 1;
@@ -236,6 +316,20 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
                     >
                       <span className="text-[9px] font-mono text-rose-600 dark:text-rose-400 font-semibold">89-103</span>
                       <span className="text-[8px] text-slate-500 truncate leading-tight">Ac-Lr</span>
+                    </div>
+                  );
+                }
+
+                if (cell === "superactinide-placeholder") {
+                  return (
+                    <div
+                      key={`ph-superactinide-${period}-${colIdx}`}
+                      onClick={() => setShowIslandModal(true)}
+                      className="aspect-square rounded-xl border border-dashed border-purple-500/50 bg-purple-500/[0.08] hover:bg-purple-500/[0.15] flex flex-col items-center justify-center p-1 text-center select-none cursor-pointer transition-colors shadow-sm"
+                      title="Суперактиноиды 121-157 (g-блок). Нажмите, чтобы открыть карту Острова Стабильности"
+                    >
+                      <span className="text-[9px] font-mono text-purple-600 dark:text-purple-400 font-bold">121-157</span>
+                      <span className="text-[8px] text-purple-500 truncate leading-tight">Ubu-... (5g)</span>
                     </div>
                   );
                 }
@@ -304,6 +398,43 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
               ))}
             </div>
           </div>
+
+          {/* Period 8 Superactinides & Island of Stability Row (121-126) */}
+          {showPeriod8 && (
+            <div className="flex items-center gap-2 pt-1">
+              <div className="w-24 text-right text-[10px] font-mono text-purple-600 dark:text-purple-400 font-bold uppercase shrink-0">
+                8-й ПЕРИОД / 5g
+              </div>
+              <div className="grid grid-cols-15 gap-1 flex-1">
+                {superactinides.map(el => (
+                  <ElementTile
+                    key={`superactinide-${el.number}`}
+                    element={el}
+                    language={language}
+                    onSelect={handleSelectElement}
+                    onQuickAdd={onAddToLab}
+                    isDimmed={!isMatch(el)}
+                    isSelected={selectedElement?.number === el.number}
+                    labCount={chamberAtoms[el.symbol] || 0}
+                  />
+                ))}
+
+                {/* Placeholders for 123-125, 127-135 */}
+                <div 
+                  onClick={() => setShowIslandModal(true)}
+                  className="col-span-11 p-2 rounded-xl border border-dashed border-purple-500/30 bg-purple-500/[0.03] hover:bg-purple-500/[0.08] flex items-center justify-between px-4 text-xs font-mono text-purple-600 dark:text-purple-400 cursor-pointer transition-colors"
+                >
+                  <span className="flex items-center gap-2">
+                    <Compass className="w-3.5 h-3.5" />
+                    <strong>123–157: Зона гипотетических суперактиноидов (g-блок)</strong>
+                  </span>
+                  <span className="text-[11px] text-slate-500 dark:text-slate-400">
+                    Открыть карту Острова Стабильности →
+                  </span>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </div>
 
@@ -317,6 +448,13 @@ export const PeriodicTable: React.FC<PeriodicTableProps> = ({
           inLabCount={chamberAtoms[selectedElement.symbol] || 0}
         />
       )}
+
+      {/* Island of Stability & Nuclear Map Modal */}
+      <IslandOfStabilityModal
+        isOpen={showIslandModal}
+        onClose={() => setShowIslandModal(false)}
+        language={language}
+      />
     </div>
   );
 };

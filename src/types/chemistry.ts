@@ -35,6 +35,11 @@ export interface ElementData {
   funFact: LocalizedString;
   everydayUse: LocalizedString;
   color: string;
+  isFutureElement?: boolean;
+  nuclearReaction?: string;
+  halfLife?: string;
+  discoveryLab?: LocalizedString;
+  discoveryYear?: string | number;
 }
 
 export type MoleculeCategory =

@@ -3526,16 +3526,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Резерфордий (Rf) — №104 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Rutherfordium is a chemical element with symbol Rf and atomic number 104, named in honor of physicist Ernest Rutherford. It is a synthetic element (an element t...",
-      "ru": "Элемент с атомным номером 104. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 104 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Ernest Rutherford, father of nuclear physics. First transactinide element synthesized in labs.",
+      "ru": "Назван в честь Эрнеста Резерфорда, создателя планетарной модели атома. Первый трансактиноидный элемент, положивший начало эпохе искусственных сверхтяжелых элементов.",
+      "kk": "Атомның планетарлық моделін жасаған Эрнест Резерфордтың құрметіне аталған. Тұңғыш трансактиноидты элемент."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Rutherfordium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Rutherfordium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Rutherfordium)"
+      "en": "Fundamental nuclear physics research, probing the limits of atomic stability.",
+      "ru": "Фундаментальные исследования в ядерной физике, изучение границы устойчивости атомных ядер.",
+      "kk": "Ядролық физикадағы іргелі зерттеулер, атом ядроларының тұрақтылық шегін зерттеу."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2074\u00b2Pu + \u00b2\u00b2Ne \u2192 \u00b2\u2076\u2070Rf + 4n",
+    "halfLife": "~1.3 \u0447\u0430\u0441\u0430 (\u00b2\u2076\u2077Rf)",
+    "discoveryLab": {"ru": "ОИЯИ (Дубна) и LBNL (Беркли, США)", "en": "JINR (Dubna) & LBNL (Berkeley, USA)", "kk": "ОИЯИ (Дубна) және LBNL (Беркли, АҚШ)"},
+    "discoveryYear": 1969
   },
   {
     "number": 105,
@@ -3560,16 +3565,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Дубний (Db) — №105 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Dubnium is a chemical element with symbol Db and atomic number 105. It is named after the town of Dubna in Russia (north of Moscow), where it was first produced...",
-      "ru": "Элемент с атомным номером 105. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 105 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Dubna, Russia, home to the Flerov Laboratory of Nuclear Reactions where superheavy elements are forged.",
+      "ru": "Назван в честь наукограда Дубна (Московская область), где в Лаборатории ядерных реакций ОИЯИ им. Флёрова были впервые синтезированы многие сверхтяжелые элементы.",
+      "kk": "Флеров атындағы зертханада көптеген аса ауыр элементтер синтезделген Ресейдегі Дубна ғылым қаласының құрметіне аталған."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Dubnium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Dubnium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Dubnium)"
+      "en": "Exploring chemical properties of group 5 superheavy metals and relativistic orbital shifts.",
+      "ru": "Изучение химических свойств сверхтяжелых элементов 5-й группы и релятивистского эффекта.",
+      "kk": "5-топтағы аса ауыр металдардың химиялық қасиеттерін зерттеу."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2074\u00b3Am + \u00b2\u00b2Ne \u2192 \u00b2\u2076\u00b9Db + 4n",
+    "halfLife": "~28 \u0447\u0430\u0441\u043e\u0432 (\u00b2\u2076\u2078Db)",
+    "discoveryLab": {"ru": "ОИЯИ (Дубна, Россия)", "en": "JINR (Dubna, Russia)", "kk": "ОИЯИ (Дубна, Ресей)"},
+    "discoveryYear": 1970
   },
   {
     "number": 106,
@@ -3594,16 +3604,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Сиборгий (Sg) — №106 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Seaborgium is a synthetic element with symbol Sg and atomic number 106. Its most stable isotope 271Sg has a half-life of 1.9 minutes. A more recently discovered...",
-      "ru": "Элемент с атомным номером 106. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 106 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Glenn T. Seaborg, Nobel laureate who proposed the actinide concept and the Island of Stability.",
+      "ru": "Назван в честь нобелевского лауреата Гленна Сиборга — первооткрывателя ряда актиноидов и автора концепции «Острова стабильности».",
+      "kk": "Актиноидтар тұжырымдамасын және Тұрақтылық аралы гипотезасын ұсынған Нобель сыйлығының лауреаты Гленн Сиборгтың құрметіне аталған."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Seaborgium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Seaborgium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Seaborgium)"
+      "en": "Synthesis of volatile oxo-compounds SgO₂Cl₂ to test the periodic law at high Z.",
+      "ru": "Синтез комплексных оксо-соединений SgO₂Cl₂ и проверка периодического закона Менделеева.",
+      "kk": "Аса ауыр элементтердің периодтық заңына сәйкестігін тексеру."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2074\u2079Cf + \u00b9\u2078O \u2192 \u00b2\u2076\u00b3Sg + 4n",
+    "halfLife": "~2.4 \u043c\u0438\u043d\u0443\u0442\u044b (\u00b2\u2076\u2079Sg)",
+    "discoveryLab": {"ru": "LBNL (Беркли, США) и ОИЯИ (Дубна)", "en": "LBNL (Berkeley) & JINR (Dubna)", "kk": "LBNL (Беркли) және ОИЯИ (Дубна)"},
+    "discoveryYear": 1974
   },
   {
     "number": 107,
@@ -3628,16 +3643,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Борий (Bh) — №107 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Bohrium is a chemical element with symbol Bh and atomic number 107. It is named after Danish physicist Niels Bohr. It is a synthetic element (an element that ca...",
-      "ru": "Элемент с атомным номером 107. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 107 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Danish physicist Niels Bohr, pioneer of quantum theory and atomic orbital structure.",
+      "ru": "Назван в честь Нильса Бора, датского физика-теоретика, заложившего основы квантовой механики и строения электронных оболочек атома.",
+      "kk": "Кванттық теория мен атом құрылысының негізін қалаған даниялық физик Нильс Бордың құрметіне аталған."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Bohrium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Bohrium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Bohrium)"
+      "en": "Gas-phase thermochromatography of volatile oxychlorides BhO₃Cl.",
+      "ru": "Изучение газофазной химии летучих хлоридов бория BhO₃Cl.",
+      "kk": "Борий хлоридтерінің газдық термохроматографиясын зерттеу."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2070\u2079Bi + \u2075\u2074Cr \u2192 \u00b2\u2076\u00b2Bh + 1n",
+    "halfLife": "~61 \u0441\u0435\u043a\u0443\u043d\u0434\u0430 (\u00b2\u2077\u2074Bh)",
+    "discoveryLab": {"ru": "GSI (Дармштадт, Германия) и ОИЯИ (Дубна)", "en": "GSI Helmholtz Centre (Germany) & JINR", "kk": "GSI орталығы (Германия) және ОИЯИ"},
+    "discoveryYear": 1981
   },
   {
     "number": 108,
@@ -3662,16 +3682,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Хассий (Hs) — №108 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Hassium is a chemical element with symbol Hs and atomic number 108, named after the German state of Hesse. It is a synthetic element (an element that can be cre...",
-      "ru": "Элемент с атомным номером 108. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 108 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after the German state of Hesse (Latin: Hassia). Hassium tetroxide HsO₄ is volatile just like OsO₄!",
+      "ru": "Назван в честь немецкой федеральной земли Гессен (лат. Hassia), где находится Центр имени Гельмгольца (GSI). Тетроксид хассия HsO₄ летуч, как и OsO₄!",
+      "kk": "Германияның Гессен жерінің (лат. Hassia) құрметіне аталған. Хассий тетроксиді HsO₄ осмий сияқты ұшқыш!"
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Hassium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Hassium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Hassium)"
+      "en": "Gas-phase chemistry of tetroxides confirming Group 8 periodic behavior.",
+      "ru": "Исследование химии тетроксидов и подтверждение положения элемента в 8 группе.",
+      "kk": "Тетроксидтер химиясын зерттеу және 8-топтағы орнын нақтылау."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2070\u2078Pb + \u2075\u2078Fe \u2192 \u00b2\u2076\u2075Hs + 1n",
+    "halfLife": "~16 \u0441\u0435\u043a\u0443\u043d\u0434 (\u00b2\u2077\u00b9Hs)",
+    "discoveryLab": {"ru": "GSI (Дармштадт, Германия)", "en": "GSI Darmstadt (Germany)", "kk": "GSI Дармштадт (Германия)"},
+    "discoveryYear": 1984
   },
   {
     "number": 109,
@@ -3696,16 +3721,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Мейтнерий (Mt) — №109 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Meitnerium is a chemical element with symbol Mt and atomic number 109. It is an extremely radioactive synthetic element (an element not found in nature that can...",
-      "ru": "Элемент с атомным номером 109. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 109 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after physicist Lise Meitner, discoverer of nuclear fission mechanism alongside Otto Hahn.",
+      "ru": "Назван в честь Лизы Мейтнер, австрийско-шведского физика, впервые теоретически рассчитавшей колоссальную энергию деления атомного ядра урана.",
+      "kk": "Уран ядросының бөлінуін алғаш теориялық тұрғыдан түсіндірген көрнекті физик Лиза Мейтнердің құрметіне аталған."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Meitnerium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Meitnerium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Meitnerium)"
+      "en": "Investigating relativistic stabilization of d-electron orbitals.",
+      "ru": "Изучение тонких релятивистских эффектов в d-оболочках сверхтяжелых элементов.",
+      "kk": "Аса ауыр элементтердің d-орбитальдарындағы релятивистік құбылыстарды зерттеу."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2070\u2079Bi + \u2075\u2078Fe \u2192 \u00b2\u2076\u2076Mt + 1n",
+    "halfLife": "~8 \u0441\u0435\u043a\u0443\u043d\u0434 (\u00b2\u2077\u2078Mt)",
+    "discoveryLab": {"ru": "GSI (Дармштадт, Германия)", "en": "GSI Darmstadt (Germany)", "kk": "GSI Дармштадт (Германия)"},
+    "discoveryYear": 1982
   },
   {
     "number": 110,
@@ -3730,16 +3760,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Дармштадтий (Ds) — №110 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Darmstadtium is a chemical element with symbol Ds and atomic number 110. It is an extremely radioactive synthetic element. The most stable known isotope, darmst...",
-      "ru": "Элемент с атомным номером 110. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 110 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Darmstadt, Germany, the scientific capital of heavy ion physics research.",
+      "ru": "Назван в честь города Дармштадт, где расположен европейский ускорительный центр GSI.",
+      "kk": "Ауыр иондарды зерттейтін жетекші орталық орналасқан Дармштадт қаласының құрметіне аталған."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Darmstadtium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Darmstadtium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Darmstadtium)"
+      "en": "Alpha-decay spectroscopy of superheavy atomic nuclei.",
+      "ru": "Ядерная спектроскопия альфа-распада сверхтяжелых ядер.",
+      "kk": "Аса ауыр ядролардың альфа-ыдырау спектроскопиясы."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2070\u2078Pb + \u2076\u00b2Ni \u2192 \u00b2\u2076\u2079Ds + 1n",
+    "halfLife": "~10 \u0441\u0435\u043a\u0443\u043d\u0434 (\u00b2\u2078\u00b9Ds)",
+    "discoveryLab": {"ru": "GSI (Дармштадт, Германия)", "en": "GSI (Darmstadt, Germany)", "kk": "GSI (Дармштадт, Германия)"},
+    "discoveryYear": 1994
   },
   {
     "number": 111,
@@ -3764,16 +3799,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Рентгений (Rg) — №111 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Roentgenium is a chemical element with symbol Rg and atomic number 111. It is an extremely radioactive synthetic element (an element that can be created in a la...",
-      "ru": "Элемент с атомным номером 111. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 111 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named in honor of Wilhelm Conrad Röntgen, discoverer of X-rays and recipient of the first Nobel Prize in Physics.",
+      "ru": "Назван в честь Вильгельма Конрада Рентгена, открывшего X-лучи и удостоенного первой в истории Нобелевской премии по физике (1901).",
+      "kk": "Рентген сәулелерін ашқан және физика бойынша тұңғыш Нобель сыйлығының иегері Вильгельм Рентгеннің құрметіне аталған."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Roentgenium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Roentgenium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Roentgenium)"
+      "en": "Quantum chemical modeling of gold homologs in Group 11.",
+      "ru": "Изучение квантово-химических свойств аналогов золота в 11 группе.",
+      "kk": "11-топтағы алтын аналогтарының кванттық-химиялық қасиеттерін моделдеу."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2070\u2079Bi + \u2076\u2074Ni \u2192 \u00b2\u2077\u00b2Rg + 1n",
+    "halfLife": "~3.8 \u043c\u0438\u043d\u0443\u0442\u044b (\u00b2\u2078\u00b2Rg)",
+    "discoveryLab": {"ru": "GSI (Дармштадт, Германия)", "en": "GSI (Darmstadt, Germany)", "kk": "GSI (Дармштадт, Германия)"},
+    "discoveryYear": 1994
   },
   {
     "number": 112,
@@ -3798,16 +3838,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Коперниций (Cn) — №112 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Copernicium is a chemical element with symbol Cn and atomic number 112. It is an extremely radioactive synthetic element that can only be created in a laborator...",
-      "ru": "Элемент с атомным номером 112. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 112 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Nicolaus Copernicus. Due to extreme relativistic effects, it behaves almost like a volatile noble-metal liquid gas!",
+      "ru": "Назван в честь великого астронома Николая Коперника, доказавшего гелиоцентрическую систему мира. Обладает аномальной летучестью из-за релятивистского эффекта инертной электронной пары!",
+      "kk": "Гелиоцентрлік жүйені ашқан Николай Коперниктің құрметіне аталған. Релятивистік әсерлерге байланысты сынап сияқты жоғары ұшқыштыққа ие!"
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Copernicium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Copernicium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Copernicium)"
+      "en": "Gold surface thermochromatography proving relativistic inert-pair stabilization.",
+      "ru": "Адсорбционная термохроматография на золотой подложке, изучение связи химии и релятивизма.",
+      "kk": "Алтын төсеніштегі термохроматография және релятивистік химияны зерттеу."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2070\u2078Pb + \u2077\u2070Zn \u2192 \u00b2\u2077\u2077Cn + 1n",
+    "halfLife": "~30 \u0441\u0435\u043a\u0443\u043d\u0434 (\u00b2\u2078\u2075Cn)",
+    "discoveryLab": {"ru": "GSI (Германия) и ОИЯИ (Дубна)", "en": "GSI (Germany) & JINR (Dubna)", "kk": "GSI (Германия) және ОИЯИ (Дубна)"},
+    "discoveryYear": 1996
   },
   {
     "number": 113,
@@ -3832,16 +3877,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Нихоний (Nh) — №113 элемент, санаты: transition-metal."
     },
     "funFact": {
-      "en": "Nihonium is a chemical element with atomic number 113. It has a symbol Nh. It is a synthetic element (an element that can be created in a laboratory but is not ...",
-      "ru": "Элемент с атомным номером 113. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 113 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "First chemical element discovered in Asia! Synthesized at RIKEN (Japan) by Prof. Kosuke Morita's team using bismuth-zinc fusion after 9 years of searches.",
+      "ru": "Первый химический элемент, открытый учеными в Азии! Синтезирован в институте RIKEN (Япония) группой профессора Косукэ Мориты при бомбардировке висмута цинком после 9 лет непрерывных экспериментов.",
+      "kk": "Азияда ғалымдар ашқан алғашқы химиялық элемент! RIKEN институтында (Жапония) профессор Косукэ Морита тобы 9 жыл бойы жүргізген тәжірибеден кейін висмутты мырышпен соққылау арқылы алды."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Nihonium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Nihonium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Nihonium)"
+      "en": "Probing superheavy Group 13 chemistry and relativistic p-orbital expansion.",
+      "ru": "Исследование сверхтяжелых элементов подгруппы бора и подтверждение первой азиатской заявки IUPAC.",
+      "kk": "Бор тобындағы аса ауыр элементтерді зерттеу және релятивистік әсерлерді бақылау."
     },
     "color": "#eab308"
+  ,
+    "nuclearReaction": "\u00b2\u2070\u2079Bi + \u2077\u2070Zn \u2192 \u00b2\u2077\u2078Nh + 1n",
+    "halfLife": "~8 \u0441\u0435\u043a\u0443\u043d\u0434 (\u00b2\u2078\u2076Nh)",
+    "discoveryLab": {"ru": "RIKEN (Вако, Япония)", "en": "RIKEN Nishina Center (Wako, Japan)", "kk": "RIKEN орталығы (Вако, Жапония)"},
+    "discoveryYear": 2004
   },
   {
     "number": 114,
@@ -3866,16 +3916,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Флеровий (Fl) — №114 элемент, санаты: post-transition."
     },
     "funFact": {
-      "en": "Flerovium is a superheavy artificial chemical element with symbol Fl and atomic number 114. It is an extremely radioactive synthetic element. The element is nam...",
-      "ru": "Элемент с атомным номером 114. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 114 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Flerov Laboratory of Nuclear Reactions (JINR). Due to strong relativistic 7p orbital stabilization, Flerovium behaves almost like an inert noble liquid!",
+      "ru": "Назван в честь Лаборатории ядерных реакций им. Г.Н. Флёрова (ОИЯИ Дубна). Релятивистское сжатие 7s и 7p₁/₂ орбиталей делает Флеровий химически инертным, похожим на благородный газ!",
+      "kk": "Г.Н. Флеров атындағы Ядролық реакциялар зертханасының (ОИЯИ Дубна) құрметіне аталған. Релятивистік әсерлердің арқасында ол инертті газ сияқты химиялық бейтарап!"
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Flerovium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Flerovium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Flerovium)"
+      "en": "Key marker of the Island of Stability, testing the Z=114 proton shell closure.",
+      "ru": "Ключевой элемент границы Острова стабильности, проверка закрытия протонной подоболочки Z=114.",
+      "kk": "Тұрақтылық аралының шекарасындағы басты элемент, Z=114 протондық қабықшасын тексеру."
     },
     "color": "#818cf8"
+  ,
+    "nuclearReaction": "\u00b2\u2074\u2074Pu + \u2074\u2078Ca \u2192 \u00b2\u2078\u2079Fl + 3n",
+    "halfLife": "~2 \u0441\u0435\u043a\u0443\u043d\u0434\u044b (\u00b2\u2078\u2079Fl)",
+    "discoveryLab": {"ru": "ОИЯИ (Дубна) + LLNL (Ливермор, США)", "en": "JINR (Dubna, Russia) & LLNL (USA)", "kk": "ОИЯИ (Дубна, Ресей) және LLNL (АҚШ)"},
+    "discoveryYear": 1998
   },
   {
     "number": 115,
@@ -3900,16 +3955,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Московий (Mc) — №115 элемент, санаты: post-transition."
     },
     "funFact": {
-      "en": "Moscovium is the name of a synthetic superheavy element in the periodic table that has the symbol Mc and has the atomic number 115. It is an extremely radioacti...",
-      "ru": "Элемент с атомным номером 115. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 115 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Moscow Oblast, honoring the Dubna scientific region where superheavy elements are forged.",
+      "ru": "Назван в честь Московской области в знак признания научных достижений Лаборатории ядерных реакций в Дубне. Синтезирован бомбардировкой америция-243 кальцием-48.",
+      "kk": "Дубна ядролық физика орталығының ғылыми жеңістерін құрметтеу мақсатында Мәскеу облысының құрметіне аталған."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Moscovium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Moscovium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Moscovium)"
+      "en": "Decay chain spectroscopy producing Nihonium-284 and testing spin-orbit coupling.",
+      "ru": "Изучение цепочек распада до Нихония, исследование релятивистского спин-орбитального расщепления.",
+      "kk": "Нихонийге дейінгі ыдырау тізбектерін және спин-орбиталық байланыстарды зерттеу."
     },
     "color": "#818cf8"
+  ,
+    "nuclearReaction": "\u00b2\u2074\u00b3Am + \u2074\u2078Ca \u2192 \u00b2\u2078\u2078Mc + 3n",
+    "halfLife": "~220 \u043c\u0438\u043b\u043b\u0438\u0441\u0435\u043a\u0443\u043d\u0434 (\u00b2\u2078\u2079Mc)",
+    "discoveryLab": {"ru": "ОИЯИ (Дубна, Россия)", "en": "JINR (Dubna, Russia)", "kk": "ОИЯИ (Дубна, Ресей)"},
+    "discoveryYear": 2003
   },
   {
     "number": 116,
@@ -3934,16 +3994,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Ливерморий (Lv) — №116 элемент, санаты: post-transition."
     },
     "funFact": {
-      "en": "Livermorium is a synthetic superheavy element with symbol Lv and atomic number 116. It is an extremely radioactive element that has only been created in the lab...",
-      "ru": "Элемент с атомным номером 116. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 116 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Named after Lawrence Livermore National Laboratory (California), Dubna's long-standing research partner.",
+      "ru": "Назван в честь Ливерморской национальной лаборатории им. Э. Лоуренса (Калифорния, США), давнего научного партнера ОИЯИ в открытии трансактиноидов.",
+      "kk": "ОИЯИ-мен бірлесіп көп жыл зерттеу жүргізген Лоуренс атындағы Ливермор ұлттық зертханасының (Калифорния, АҚШ) құрметіне аталған."
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Livermorium)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Livermorium)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Livermorium)"
+      "en": "Exploring calcium-48 heavy-ion fusion reactions at the U-400 cyclotron.",
+      "ru": "Исследование ядерных столкновений с тяжелыми ионами кальция-48 на циклотроне У-400.",
+      "kk": "У-400 циклотронында кальций-48 ауыр иондарының ядролық соқтығысуын зерттеу."
     },
     "color": "#818cf8"
+  ,
+    "nuclearReaction": "\u00b2\u2074\u2078Cm + \u2074\u2078Ca \u2192 \u00b2\u2079\u00b3Lv + 3n",
+    "halfLife": "~60 \u043c\u0438\u043b\u043b\u0438\u0441\u0435\u043a\u0443\u043d\u0434 (\u00b2\u2079\u00b3Lv)",
+    "discoveryLab": {"ru": "ОИЯИ (Дубна) + LLNL (США)", "en": "JINR (Dubna) & LLNL (Livermore, USA)", "kk": "ОИЯИ (Дубна) және LLNL (АҚШ)"},
+    "discoveryYear": 2000
   },
   {
     "number": 117,
@@ -3968,16 +4033,21 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Теннессин (Ts) — №117 элемент, санаты: halogen."
     },
     "funFact": {
-      "en": "Tennessine is a superheavy artificial chemical element with an atomic number of 117 and a symbol of Ts. Also known as eka-astatine or element 117, it is the sec...",
-      "ru": "Элемент с атомным номером 117. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 117 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Second-heaviest known halogen. Required 250 days of nuclear irradiation at Oak Ridge National Lab (Tennessee) to produce the Berkelium-249 target.",
+      "ru": "Второй самый тяжелый известный галоген. Для его синтеза уникальная мишень из Берклия-249 выращивалась 250 дней на ядерном реакторе HFIR в Ок-Ридже (штат Теннесси, США).",
+      "kk": "Ғаламдағы екінші ең ауыр галоген. Оны синтездеу үшін Теннессидегі HFIR ядролық реакторында Берклий-249 нысанасы 250 күн бойы дайындалған!"
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Tennessine)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Tennessine)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Tennessine)"
+      "en": "Probing whether Tennessine forms halides or behaves as a semi-metal due to spin-orbit splitting.",
+      "ru": "Изучение химии галогенов в сверхтяжелой области, где релятивизм подавляет типичную галогенную реакционную способность.",
+      "kk": "Аса ауыр аймақтағы галогендердің химиясын және жартылай металдық қасиеттерін зерттеу."
     },
     "color": "#14b8a6"
+  ,
+    "nuclearReaction": "\u00b2\u2074\u2079Bk + \u2074\u2078Ca \u2192 \u00b2\u2079\u2074Ts + 3n",
+    "halfLife": "~51 \u043c\u0438\u043b\u043b\u0438\u0441\u0435\u043a\u0443\u043d\u0434\u0430 (\u00b2\u2079\u2074Ts)",
+    "discoveryLab": {"ru": "ОИЯИ (Дубна) + Ок-Ридж + Вандербильт (США)", "en": "JINR (Dubna) + ORNL + Vanderbilt Univ (USA)", "kk": "ОИЯИ (Дубна) + Ок-Ридж + Вандербильт (АҚШ)"},
+    "discoveryYear": 2010
   },
   {
     "number": 118,
@@ -4002,16 +4072,226 @@ export const ELEMENTS_DATA: ElementData[] = [
       "kk": "Оганесон (Og) — №118 элемент, санаты: noble-gas."
     },
     "funFact": {
-      "en": "Oganesson is IUPAC's name for the transactinide element with the atomic number 118 and element symbol Og. It is also known as eka-radon or element 118, and on t...",
-      "ru": "Элемент с атомным номером 118. Применяется в современных технологиях и науке.",
-      "kk": "Атомдық нөмірі 118 болатын химиялық элемент. Заманауи ғылым мен техникада қолданылады."
+      "en": "Heaviest confirmed element in the Periodic Table! Named after Academician Yuri Oganessian — the only living scientist with an element named after him. Relativistic effects make it a solid semiconductor at room temperature!",
+      "ru": "Самый тяжелый элемент периодической таблицы Менделеева! Единственный элемент, названный при жизни в честь ныне живущего ученого — академика РАН Юрия Цолаковича Оганесяна. Из-за релятивистского размытия подоболочек Томаса-Ферми это не газ, а твердое вещество!",
+      "kk": "Менделеевтің периодтық кестесіндегі ең ауыр элемент! Қазіргі таңда тірі ғалымның құрметіне аталған жалғыз элемент — академик Юрий Цолакович Оганесян. Релятивистік әсерлерден ол газ емес, бөлме температурасында қатты зат!"
     },
     "everydayUse": {
-      "en": "Scientific research, high-tech industrial alloys and advanced materials (Oganesson)",
-      "ru": "Научные исследования, высокотехнологичные сплавы и материалы (Oganesson)",
-      "kk": "Ғылыми зерттеулер, жоғары технологиялық қорытпалар мен материалдар (Oganesson)"
+      "en": "Completing Period 7 of the Periodic Table; probing the limits of atomic electron shell cohesion.",
+      "ru": "Завершение 7-го периода таблицы Менделеева, изучение предела квантовой стабильности электронной оболочки.",
+      "kk": "Периодтық кестенің 7-периодын аяқтау; атомның электрондық қабықшаларының шегін зерттеу."
     },
     "color": "#a855f7"
+  ,
+    "nuclearReaction": "\u00b2\u2074\u2079Cf + \u2074\u2078Ca \u2192 \u00b2\u2079\u2074Og + 3n",
+    "halfLife": "~0.7 \u043c\u0438\u043b\u043b\u0438\u0441\u0435\u043a\u0443\u043d\u0434\u044b (\u00b2\u2079\u2074Og)",
+    "discoveryLab": {"ru": "ОИЯИ (Дубна, Россия)", "en": "JINR (Dubna, Russia)", "kk": "ОИЯИ (Дубна, Ресей)"},
+    "discoveryYear": 2002
+  },
+  {
+    "number": 119,
+    "symbol": "Uue",
+    "name": {
+      "en": "Ununennium",
+      "ru": "Унунэнний",
+      "kk": "Унунэнний"
+    },
+    "atomicMass": "[315]",
+    "category": "alkali-metal",
+    "period": 8,
+    "group": 1,
+    "phase": "synthetic",
+    "valency": [1],
+    "electronConfig": "[Og] 8s1",
+    "summary": {
+      "en": "Ununennium (Uue) is element #119, opening Period 8 of the Periodic Table as a superheavy alkali metal.",
+      "ru": "Унунэнний (Uue) — гипотетический элемент №119, открывающий 8-й период таблицы Менделеева как сверхтяжелый щелочной металл.",
+      "kk": "Унунэнний (Uue) — №119 элемент, Менделеев кестесінің 8-ші периодын ашатын аса ауыр сілтілік металл."
+    },
+    "funFact": {
+      "en": "Element 119 will be the first element in Period 8! Due to relativistic contraction, its outer 8s electron moves at ~85% of light speed, making it chemically less reactive than cesium or francium.",
+      "ru": "Элемент 119 откроет 8-й период! Из-за релятивистского сжатия внешний 8s-электрон движется со скоростью ~85% скорости света, делая его химически менее реакционноспособным, чем франций.",
+      "kk": "119-элемент 8-периодты ашады! Релятивистік сығылу нәтижесінде сыртқы 8s-электроны жарық жылдамдығының 85%-на дейін жетеді."
+    },
+    "everydayUse": {
+      "en": "Frontier of nuclear physics at JINR (Dubna) and RIKEN; testing quantum electrodynamics and Feynman's atomic limit.",
+      "ru": "Передовой край ядерной физики в Дубне и RIKEN; тестирование квантовой электродинамики и предела Фейнмана.",
+      "kk": "Дубна мен RIKEN-дегі озық ядролық зерттеулер; кванттық электродинамика мен Фейнман шегін сынау."
+    },
+    "color": "#06b6d4",
+    "isFutureElement": true,
+    "nuclearReaction": "²⁴⁹Bk + ⁵⁰Ti → ³¹⁵Uue + xn  /  ²⁴⁸Cm + ⁵¹V → ³¹⁵Uue + xn",
+    "halfLife": "~10-100 мкс (теоретический расчет)",
+    "discoveryLab": {
+      "ru": "ОИЯИ (Дубна) и RIKEN (Япония) [В процессе синтеза]",
+      "en": "JINR (Dubna) & RIKEN (Japan) [Under Synthesis]",
+      "kk": "ОИЯИ (Дубна) және RIKEN (Жапония) [Синтезделуде]"
+    },
+    "discoveryYear": "В процессе синтеза"
+  },
+  {
+    "number": 120,
+    "symbol": "Ubn",
+    "name": {
+      "en": "Unbinilium",
+      "ru": "Унбинилий",
+      "kk": "Унбинилий"
+    },
+    "atomicMass": "[320]",
+    "category": "alkaline-earth",
+    "period": 8,
+    "group": 2,
+    "phase": "synthetic",
+    "valency": [2],
+    "electronConfig": "[Og] 8s2",
+    "summary": {
+      "en": "Unbinilium (Ubn) is element #120, a Period 8 alkaline earth metal situated right at the threshold of the Island of Stability.",
+      "ru": "Унбинилий (Ubn) — элемент №120, щелочноземельный металл 8-го периода, находящийся у самого порога Острова стабильности.",
+      "kk": "Унбинилий (Ubn) — №120 элемент, Тұрақтылық аралының табалдырығында орналасқан 8-периодтың сілтілі-жер металы."
+    },
+    "funFact": {
+      "en": "Element 120 isotope with 184 neutrons (N=184) is predicted to be a spherical magic nucleus, potentially granting it exceptional stability compared to neighboring elements.",
+      "ru": "Изотоп элемента 120 со 184 нейтронами сформирует замкнутую сферическую оболочку ядра («магическое ядро»), что может резко увеличить время его жизни!",
+      "kk": "184 нейтроны бар 120-элементтің изотопы сиқырлы ядро түзеді, бұл оның өмір сүру уақытын күрт арттыруы мүмкін!"
+    },
+    "everydayUse": {
+      "en": "Probing nuclear shell theory and entering the magic neutron realm N=184.",
+      "ru": "Проверка оболочечной модели ядра и проникновение в область магического числа нейтронов N=184.",
+      "kk": "Ядроның қабықшалық моделін тексеру және N=184 сиқырлы санына жету."
+    },
+    "color": "#10b981",
+    "isFutureElement": true,
+    "nuclearReaction": "²⁴⁹Cf + ⁵⁴Cr → ³⁰²Ubn + 1n  /  ²⁴⁴Pu + ⁵⁸Fe → ³⁰²Ubn",
+    "halfLife": "~1-20 мкс (теоретический расчет)",
+    "discoveryLab": {
+      "ru": "GSI (Германия), ОИЯИ (Дубна), RIKEN (Япония)",
+      "en": "GSI (Germany), JINR (Dubna), RIKEN (Japan)",
+      "kk": "GSI (Германия), ОИЯИ (Дубна), RIKEN (Жапония)"
+    },
+    "discoveryYear": "В процессе синтеза"
+  },
+  {
+    "number": 121,
+    "symbol": "Ubu",
+    "name": {
+      "en": "Unbiunium",
+      "ru": "Унбиуний",
+      "kk": "Унбиуний"
+    },
+    "atomicMass": "[322]",
+    "category": "transition-metal",
+    "period": 8,
+    "group": 3,
+    "phase": "synthetic",
+    "valency": [3],
+    "electronConfig": "[Og] 8s2 8p1/2 1 (или 5g1)",
+    "summary": {
+      "en": "Unbiunium (Ubu) is element #121, the historical gateway to the Superactinide series and the first element to begin populating the 5g orbital.",
+      "ru": "Унбиуний (Ubu) — элемент №121, открывающий семейство суперактиноидов и впервые начинающий заполнение 5g-подоболочки!",
+      "kk": "Унбиуний (Ubu) — №121 элемент, суперактиноидтар қатарын ашатын және алғаш рет 5g орбитальды толтыратын элемент!"
+    },
+    "funFact": {
+      "en": "With element 121, chemistry enters the g-block! In quantum mechanics, g-orbitals have azimuthal quantum number l=4 and can accommodate up to 18 electrons.",
+      "ru": "С элемента 121 начинается квантовый g-блок таблицы Менделеева! Подоболочка 5g способна вместить до 18 электронов с экзотическими формами электронных облаков.",
+      "kk": "121 элементтен бастап Менделеев кестесінің кванттық g-блогы ашылады! 5g қабықшасы 18 электронға дейін сиғыза алады."
+    },
+    "everydayUse": {
+      "en": "Relativistic quantum mechanics and exploration of g-orbital chemical hybridization.",
+      "ru": "Релятивистская квантовая химия и изучение гибридизации экзотических g-орбиталей.",
+      "kk": "Релятивистік кванттық химия және экзотикалық g-орбитальдар гибридизациясы."
+    },
+    "color": "#eab308",
+    "isFutureElement": true,
+    "nuclearReaction": "²⁴⁹Cf + ⁵⁵Mn → ³²²Ubu + 2n",
+    "halfLife": "Теоретически предсказанный",
+    "discoveryLab": {
+      "ru": "Фабрика сверхтяжелых элементов D-FLNR (Дубна)",
+      "en": "Dubna Superheavy Element Factory (D-FLNR)",
+      "kk": "ОИЯИ аса ауыр элементтер фабрикасы (Дубна)"
+    },
+    "discoveryYear": "Будущий синтез"
+  },
+  {
+    "number": 122,
+    "symbol": "Ubb",
+    "name": {
+      "en": "Unbibium",
+      "ru": "Унбибий",
+      "kk": "Унбибий"
+    },
+    "atomicMass": "[325]",
+    "category": "transition-metal",
+    "period": 8,
+    "group": 4,
+    "phase": "synthetic",
+    "valency": [4],
+    "electronConfig": "[Og] 8s2 7d1 5g1",
+    "summary": {
+      "en": "Unbibium (Ubb) is element #122, a superheavy element in Period 8 featuring overlapping electron subshells.",
+      "ru": "Унбибий (Ubb) — элемент №122, сверхтяжелый суперактиноид 8-го периода со сложным квантовым перекрытием оболочек.",
+      "kk": "Унбибий (Ubb) — №122 элемент, қабықшаларының күрделі кванттық қабаттасуы бар 8-периодтың аса ауыр суперактиноиды."
+    },
+    "funFact": {
+      "en": "Quantum chemistry calculations show that in element 122, the 8p, 7d, 6f, and 5g subshells have nearly identical energy levels, creating an unprecedented continuum of oxidation states.",
+      "ru": "Квантово-химические расчеты показывают, что у 122 элемента энергии 8p, 7d, 6f и 5g подоболочек практически совпадают, создавая невероятное многообразие степеней окисления.",
+      "kk": "Кванттық есептеулер 122 элементте 8p, 7d, 6f және 5g деңгейлерінің энергиялары теңесіп, тотығу дәрежелерінің ерекше әртүрлілігін тудыратынын көрсетеді."
+    },
+    "everydayUse": {
+      "en": "Modeling relativistic Dirac-Fock multi-configuration atomic states.",
+      "ru": "Моделирование многоконфигурационных релятивистских состояний Дирака-Фока.",
+      "kk": "Дирак-Фоктың көпконфигурациялы релятивистік күйлерін моделдеу."
+    },
+    "color": "#818cf8",
+    "isFutureElement": true,
+    "nuclearReaction": "²⁴⁹Cf + ⁵⁸Fe → ³²⁵Ubb + 2n",
+    "halfLife": "Теоретически предсказанный",
+    "discoveryLab": {
+      "ru": "Теоретические расчеты (ОИЯИ, Беркли, Дармштадт)",
+      "en": "Theoretical nuclear physics models (JINR, Berkeley, GSI)",
+      "kk": "Теориялық есептеулер (ОИЯИ, Беркли, Дармштадт)"
+    },
+    "discoveryYear": "Будущий синтез"
+  },
+  {
+    "number": 126,
+    "symbol": "Ubh",
+    "name": {
+      "en": "Unbihexium",
+      "ru": "Унбигексий",
+      "kk": "Унбигексий"
+    },
+    "atomicMass": "[330]",
+    "category": "post-transition",
+    "period": 8,
+    "group": 8,
+    "phase": "synthetic",
+    "valency": [4, 6],
+    "electronConfig": "[Og] 8s2 5g4 6f2",
+    "summary": {
+      "en": "Unbihexium (Ubh) is element #126, the theoretical crown of nuclear physics — the doubly magic center of the Island of Stability (Z=126, N=184).",
+      "ru": "Унбигексий (Ubh) — элемент №126, вершина ядерной физики: дважды магический центр «Острова Стабильности» (126 протонов, 184 нейтрона).",
+      "kk": "Унбигексий (Ubh) — №126 элемент, ядролық физиканың шыңы: Тұрақтылық аралының екі есе сиқырлы орталығы (126 протон, 184 нейтрон)."
+    },
+    "funFact": {
+      "en": "Predicted by Glenn Seaborg, element 126 possesses closed spherical proton (Z=126) and neutron (N=184) shells! Nuclei may withstand spontaneous fission for years or even geological epochs.",
+      "ru": "Предсказанный Гленном Сиборгом, элемент 126 обладает замкнутыми сферическими оболочками протонов (Z=126) и нейтронов (N=184). Время жизни ядер может достигать от сотен лет до миллионов лет!",
+      "kk": "Гленн Сиборг болжағандай, 126 элементтің протондық (Z=126) және нейтрондық (N=184) қабықшалары толық тұйықталған. Өмір сүру уақыты жүздеген немесе миллиондаған жылдарға жетуі мүмкін!"
+    },
+    "everydayUse": {
+      "en": "Holy grail of superheavy elements; potential macroscopic stable superdense materials in the universe.",
+      "ru": "Священный Грааль физики сверхтяжелых ядер; гипотетические стабильные сверхплотные материалы во Вселенной.",
+      "kk": "Аса ауыр ядролар физикасының шыңы; ғаламдағы гипотетикалық тұрақты аса тығыз материалдар."
+    },
+    "color": "#a855f7",
+    "isFutureElement": true,
+    "nuclearReaction": "²⁴⁴Pu + ⁶⁴Ni → ³³⁰Ubh + xn (Гипотетический синтез)",
+    "halfLife": "Предсказано: от дней до миллионов лет (Центр Острова Стабильности)",
+    "discoveryLab": {
+      "ru": "Центр Острова Стабильности (Концепция Сиборга-Оганесяна)",
+      "en": "Center of Island of Stability (Seaborg-Oganessian Model)",
+      "kk": "Тұрақтылық аралының орталығы (Сиборг-Оганесян моделі)"
+    },
+    "discoveryYear": "Остров стабильности"
   }
 ];
 
