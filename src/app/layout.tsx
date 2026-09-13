@@ -1,12 +1,28 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  subsets: ["latin", "cyrillic", "cyrillic-ext"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
+const montserrat = localFont({
+  src: [
+    {
+      path: "../../public/fonts/montserrat/montserrat-cyrillic.woff2",
+      weight: "300 900",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/montserrat/montserrat-cyrillic-ext.woff2",
+      weight: "300 900",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/montserrat/montserrat-latin.woff2",
+      weight: "300 900",
+      style: "normal",
+    },
+  ],
   variable: "--font-montserrat",
   display: "swap",
+  fallback: ["Montserrat", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "sans-serif"],
 });
 
 export const viewport: Viewport = {
@@ -40,6 +56,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ru" className={`dark h-full ${montserrat.variable}`} suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className={`${montserrat.className} font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-500/25 selection:text-white transition-colors duration-200`}>
         {children}
       </body>
