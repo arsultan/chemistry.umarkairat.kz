@@ -5,17 +5,27 @@ import "./globals.css";
 const montserrat = localFont({
   src: [
     {
-      path: "../../public/fonts/montserrat/montserrat-cyrillic.woff2",
+      path: "../../public/fonts/host-montserrat/8298327da6d5bcce-s.p.3q4n78m6muld7.woff2",
       weight: "300 900",
       style: "normal",
     },
     {
-      path: "../../public/fonts/montserrat/montserrat-cyrillic-ext.woff2",
+      path: "../../public/fonts/host-montserrat/44fac91e6f2d2b1b-s.p.1d_6dtvtn9g3_.woff2",
       weight: "300 900",
       style: "normal",
     },
     {
-      path: "../../public/fonts/montserrat/montserrat-latin.woff2",
+      path: "../../public/fonts/host-montserrat/e8f2fbee2754df70-s.p.1dqa_6e_ad4sj.woff2",
+      weight: "300 900",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/host-montserrat/a88409fdd7dc121c-s.1mvr14jy3vxq7.woff2",
+      weight: "300 900",
+      style: "normal",
+    },
+    {
+      path: "../../public/fonts/host-montserrat/2b402d8aebffd579-s.16nfeub7ja6ze.woff2",
       weight: "300 900",
       style: "normal",
     },
