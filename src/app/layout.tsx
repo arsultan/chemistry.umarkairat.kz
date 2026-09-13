@@ -1,11 +1,10 @@
 import type { Metadata, Viewport } from "next";
-import { Montserrat } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 
-const montserrat = Montserrat({
-  subsets: ["latin", "cyrillic", "cyrillic-ext"],
-  weight: ["300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat",
+const inter = Inter({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -39,8 +38,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`dark h-full ${montserrat.variable}`} suppressHydrationWarning>
-      <body className={`${montserrat.className} font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-500/25 selection:text-white transition-colors duration-200`}>
+    <html lang="ru" className={`dark h-full ${inter.variable}`} suppressHydrationWarning>
+      <body className={`${inter.className} font-sans min-h-screen flex flex-col antialiased selection:bg-indigo-500/25 selection:text-white transition-colors duration-200`}>
         {children}
       </body>
     </html>
