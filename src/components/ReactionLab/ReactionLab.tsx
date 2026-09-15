@@ -30,7 +30,8 @@ import {
   Thermometer,
   Activity,
   Dna,
-  Shuffle
+  Shuffle,
+  Search
 } from "lucide-react";
 
 interface ReactionLabProps {
@@ -45,7 +46,10 @@ interface ReactionLabProps {
 }
 
 const POPULAR_ELEMENTS = [
-  "H", "C", "N", "O", "Na", "Cl", "Fe", "Ca", "Cu", "Au", "Ag", "S", "P", "Al", "Si", "K", "Mg", "F", "Br", "I", "Zn", "Ba"
+  "H", "He", "Li", "Be", "B", "C", "N", "O", "F", "Ne", 
+  "Na", "Mg", "Al", "Si", "P", "S", "Cl", "K", "Ca", "Ti", 
+  "Cr", "Mn", "Fe", "Co", "Ni", "Cu", "Zn", "Br", "Ag", "Sn", 
+  "I", "Ba", "W", "Pt", "Au", "Hg", "Pb", "Bi", "U"
 ];
 
 export const ReactionLab: React.FC<ReactionLabProps> = ({
@@ -67,7 +71,10 @@ export const ReactionLab: React.FC<ReactionLabProps> = ({
   const [reactionStage, setReactionStage] = useState<'idle' | 'accelerating' | 'fusing' | 'done'>('idle');
   const [isThermalHeating, setIsThermalHeating] = useState(false);
   const [recipeCategory, setRecipeCategory] = useState<string>('all');
+  const [recipeSearchQuery, setRecipeSearchQuery] = useState<string>('');
+  const [showAllRecipes, setShowAllRecipes] = useState<boolean>(false);
   const [elementCategoryFilter, setElementCategoryFilter] = useState<string>('all');
+  const [elementSearchQuery, setElementSearchQuery] = useState<string>('');
 
   // Active symbols and counts
   const activeSymbols = Object.keys(chamberAtoms).filter(s => (chamberAtoms[s] || 0) > 0);
@@ -180,27 +187,53 @@ export const ReactionLab: React.FC<ReactionLabProps> = ({
     }, 600);
   };
 
-  // Filtered recipes
+  // Filtered recipes with instant search and expansion
   const filteredRecipes = useMemo(() => {
-    if (recipeCategory === 'all') return MOLECULES_DATA.slice(0, 16);
-    return MOLECULES_DATA.filter(m => m.category === recipeCategory);
-  }, [recipeCategory]);
+    let list = MOLECULES_DATA;
+    if (recipeCategory !== 'all') {
+      list = list.filter(m => m.category === recipeCategory);
+    }
+    if (recipeSearchQuery.trim()) {
+      const q = recipeSearchQuery.toLowerCase().trim();
+      list = list.filter(m => 
+        m.formula.toLowerCase().includes(q) ||
+        m.formulaAscii.toLowerCase().includes(q) ||
+        m.name.ru.toLowerCase().includes(q) ||
+        m.name.kk.toLowerCase().includes(q) ||
+        m.name.en.toLowerCase().includes(q)
+      );
+    }
+    if (!showAllRecipes && !recipeSearchQuery.trim()) {
+      return list.slice(0, 36);
+    }
+    return list;
+  }, [recipeCategory, recipeSearchQuery, showAllRecipes]);
 
-  // Filtered elements for dock
+  // Filtered elements for dock with instant search
   const filteredElements = useMemo(() => {
+    if (elementSearchQuery.trim()) {
+      const q = elementSearchQuery.toLowerCase().trim();
+      return Array.from(ELEMENTS_BY_SYMBOL.values()).filter(e => 
+        e.symbol.toLowerCase().includes(q) ||
+        e.name.ru.toLowerCase().includes(q) ||
+        e.name.kk.toLowerCase().includes(q) ||
+        e.name.en.toLowerCase().includes(q) ||
+        String(e.number) === q
+      );
+    }
     const baseList = POPULAR_ELEMENTS.map(s => ELEMENTS_BY_SYMBOL.get(s)).filter(Boolean) as ElementData[];
     if (elementCategoryFilter === 'all') return baseList;
     if (elementCategoryFilter === 'nonmetal') {
       return baseList.filter(e => ['nonmetal', 'noble-gas'].includes(e.category));
     }
     if (elementCategoryFilter === 'metal') {
-      return baseList.filter(e => ['alkali-metal', 'alkaline-earth', 'transition-metal', 'post-transition'].includes(e.category));
+      return baseList.filter(e => ['alkali-metal', 'alkaline-earth', 'transition-metal', 'post-transition', 'lanthanide', 'actinide'].includes(e.category));
     }
     if (elementCategoryFilter === 'halogen') {
       return baseList.filter(e => e.category === 'halogen');
     }
     return baseList;
-  }, [elementCategoryFilter]);
+  }, [elementCategoryFilter, elementSearchQuery]);
 
   return (
     <div className="space-y-6 max-w-7xl mx-auto px-4 py-3 animate-fadeIn font-sans">
@@ -479,36 +512,55 @@ export const ReactionLab: React.FC<ReactionLabProps> = ({
 
       {/* CATEGORIZED 1-CLICK RECIPE BOOK DOCK */}
       <div className="p-5 rounded-3xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/[0.08] space-y-4 shadow-sm">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <Sparkles className="w-4 h-4 text-amber-500" />
             <h3 className="text-sm font-bold font-mono text-slate-900 dark:text-white uppercase tracking-wider">
-              Книга химических формул и рецептов (51 вещество)
+              {language === 'ru' 
+                ? `Книга химических формул и рецептов (${MOLECULES_DATA.length} веществ)`
+                : language === 'kk'
+                ? `Химиялық формулалар мен рецепттер кітабы (${MOLECULES_DATA.length} зат)`
+                : `Chemical Formula & Recipe Book (${MOLECULES_DATA.length} compounds)`
+              }
             </h3>
           </div>
 
-          {/* Recipe Category Filter Buttons */}
-          <div className="flex items-center gap-1 flex-wrap font-mono text-xs">
-            {[
-              { id: 'all', label: 'Все' },
-              { id: 'essential', label: '💧 Жизненные' },
-              { id: 'acid-base', label: '🧪 Кислоты/Щелочи' },
-              { id: 'fuel', label: '⛽ Органика' },
-              { id: 'mineral', label: '⛏️ Минералы' },
-              { id: 'gas', label: '💨 Газы' }
-            ].map(cat => (
-              <button
-                key={cat.id}
-                onClick={() => setRecipeCategory(cat.id)}
-                className={`px-2.5 py-1 rounded-xl text-[11px] transition-all cursor-pointer border ${
-                  recipeCategory === cat.id
-                    ? 'bg-indigo-600 text-white font-bold border-indigo-600 shadow-xs'
-                    : 'bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/80 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200/70 dark:border-white/[0.06]'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+          <div className="flex flex-wrap items-center gap-2 w-full lg:w-auto">
+            {/* Instant Recipe Search */}
+            <div className="relative flex-1 sm:flex-none sm:w-56">
+              <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+              <input
+                type="text"
+                value={recipeSearchQuery}
+                onChange={(e) => setRecipeSearchQuery(e.target.value)}
+                placeholder={language === 'ru' ? "Поиск (KMnO₄, BaSO₄...)" : language === 'kk' ? "Іздеу..." : "Search..."}
+                className="w-full pl-8 pr-2.5 py-1 text-xs bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-white/[0.08] rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-mono"
+              />
+            </div>
+
+            {/* Recipe Category Filter Buttons */}
+            <div className="flex items-center gap-1 flex-wrap font-mono text-xs">
+              {[
+                { id: 'all', label: 'Все' },
+                { id: 'essential', label: '💧 Жизненные' },
+                { id: 'acid-base', label: '🧪 Кислоты/Щелочи' },
+                { id: 'fuel', label: '⛽ Органика' },
+                { id: 'mineral', label: '⛏️ Минералы/Соли' },
+                { id: 'gas', label: '💨 Газы' }
+              ].map(cat => (
+                <button
+                  key={cat.id}
+                  onClick={() => setRecipeCategory(cat.id)}
+                  className={`px-2.5 py-1 rounded-xl text-[11px] transition-all cursor-pointer border ${
+                    recipeCategory === cat.id
+                      ? 'bg-indigo-600 text-white font-bold border-indigo-600 shadow-xs'
+                      : 'bg-slate-50 hover:bg-slate-100 dark:bg-slate-800/80 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 border-slate-200/70 dark:border-white/[0.06]'
+                  }`}
+                >
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -542,19 +594,43 @@ export const ReactionLab: React.FC<ReactionLabProps> = ({
             );
           })}
         </div>
+
+        {/* Expand / Collapse button */}
+        {!recipeSearchQuery.trim() && (
+          <div className="text-center pt-1">
+            <button
+              onClick={() => setShowAllRecipes(!showAllRecipes)}
+              className="px-4 py-1.5 rounded-xl text-xs font-mono font-medium text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-500/20 transition-all cursor-pointer"
+            >
+              {showAllRecipes ? "▲ Свернуть список рецептов" : `▼ Показать все ${MOLECULES_DATA.length} формул`}
+            </button>
+          </div>
+        )}
       </div>
 
       {/* ELEMENT PICKER DOCK WITH CATEGORIES */}
       <div className="p-5 rounded-3xl bg-white dark:bg-slate-900/80 border border-slate-200/80 dark:border-white/[0.08] space-y-4 shadow-sm">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-3">
           <div className="flex items-center gap-2">
             <Layers className="w-4 h-4 text-indigo-500" />
             <h3 className="text-sm font-bold font-mono text-slate-900 dark:text-white uppercase tracking-wider">
-              Быстрый выбор химических элементов
+              {language === 'ru' ? "Быстрый выбор химических элементов" : language === 'kk' ? "Химиялық элементтерді жылдам таңдау" : "Quick Chemical Elements Dock"}
             </h3>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex flex-wrap items-center gap-3 w-full lg:w-auto">
+            {/* Search Elements 1-118 */}
+            <div className="relative flex-1 sm:flex-none sm:w-56">
+              <Search className="w-3.5 h-3.5 absolute left-2.5 top-1/2 -translate-y-1/2 text-slate-400 pointer-events-none" />
+              <input
+                type="text"
+                value={elementSearchQuery}
+                onChange={(e) => setElementSearchQuery(e.target.value)}
+                placeholder={language === 'ru' ? "Поиск элемента (1-118, Fe, Au...)" : language === 'kk' ? "Элементті іздеу..." : "Search element..."}
+                className="w-full pl-8 pr-2.5 py-1 text-xs bg-slate-50 dark:bg-slate-800/80 border border-slate-200 dark:border-white/[0.08] rounded-xl text-slate-800 dark:text-slate-200 focus:outline-none focus:ring-1 focus:ring-indigo-500 font-mono"
+              />
+            </div>
+
             {/* Category Filter */}
             <div className="flex items-center gap-1 font-mono text-xs">
               {[
