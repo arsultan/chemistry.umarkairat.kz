@@ -78,16 +78,33 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
       kk: "Ғылыми жобалардың олимпиадалық деңгейі",
       en: "Research Olympiad Standard"
     },
-    draftNoticeTitle: {
-      ru: "📝 Черновик описания (Готов к вашей корректировке)",
-      kk: "📝 Сипаттама жобасы (Өңдеуге дайын)",
-      en: "📝 Draft Outline (Ready for your customized edits)"
+    missionTitle: {
+      ru: "Миссия NGS • Наука без границ",
+      kk: "NGS миссиясы • Шексіз ғылым",
+      en: "NGS Mission • Science Without Limits"
     },
-    draftNoticeText: {
-      ru: "Каждый раздел ниже подробно описывает реальные процессы лаборатории NGS. Вы можете скорректировать любые формулировки, добавить имена учителей, темы конкретных дипломов или достижения учеников вашей школы!",
-      kk: "Төмендегі әрбір бөлім NGS зертханасының нақты үдерістерін сипаттайды. Кез келген сөйлемді өзгертуге, мұғалімдердің есімдерін немесе нақты дипломдар мен жетістіктерді қосуға болады!",
-      en: "Each chapter below details real NGS laboratory practices. You can request any text modification, add names of teachers, or feature specific competition trophies!"
-    },
+    missionItems: [
+      {
+        ru: "118 интерактивных элементов с моделью Бора",
+        kk: "Бор моделі бар 118 интерактивті элемент",
+        en: "118 interactive elements with Bohr model"
+      },
+      {
+        ru: "151+ соединений в базе химического движка",
+        kk: "Химиялық қозғалтқыш базасында 151+ қосылыс",
+        en: "151+ compounds in chemistry engine database"
+      },
+      {
+        ru: "Трилингвальный интерфейс: қазақша, русский, English",
+        kk: "Үш тілді интерфейс: қазақша, русский, English",
+        en: "Trilingual interface: Kazakh, Russian, English"
+      },
+      {
+        ru: "Виртуальная лаборатория синтеза в реальном времени",
+        kk: "Нақты уақыттағы виртуалды синтез зертханасы",
+        en: "Real-time virtual synthesis laboratory"
+      }
+    ],
     ctaLabBtn: {
       ru: "Запустить Реактор Синтеза 🧪",
       kk: "Синтез Реакторын іске қосу 🧪",
@@ -465,16 +482,22 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
         </div>
       </section>
 
-      {/* 2. Draft Notice Callout */}
-      <div className="p-5 rounded-2xl bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/30 text-amber-900 dark:text-amber-200 flex items-start gap-3.5 text-xs sm:text-sm">
-        <Edit3 className="w-5 h-5 text-amber-500 shrink-0 mt-0.5" />
-        <div className="space-y-1">
-          <h4 className="font-bold text-amber-800 dark:text-amber-300 font-mono text-xs uppercase tracking-wider">
-            {t.draftNoticeTitle[language]}
-          </h4>
-          <p className="leading-relaxed opacity-95">
-            {t.draftNoticeText[language]}
-          </p>
+      {/* 2. Mission & Highlights Showcase */}
+      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-900/40 via-purple-900/30 to-slate-900/50 backdrop-blur-xl border border-indigo-500/20 text-white shadow-xl relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="relative z-10 space-y-4">
+          <div className="flex items-center gap-2.5 text-indigo-300 font-mono text-xs font-bold uppercase tracking-wider">
+            <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+            <span>{t.missionTitle[language]}</span>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+            {t.missionItems.map((item, i) => (
+              <div key={i} className="flex items-center gap-3 p-3 rounded-2xl bg-white/[0.04] border border-white/10 text-xs sm:text-sm text-slate-200">
+                <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
+                <span>{item[language]}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
 
