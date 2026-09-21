@@ -483,23 +483,23 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
       </section>
 
       {/* 2. Mission & Highlights Showcase */}
-      <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-indigo-900/40 via-purple-900/30 to-slate-900/50 backdrop-blur-xl border border-indigo-500/20 text-white shadow-xl relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+      <section className="relative rounded-3xl overflow-hidden bg-gradient-to-br from-slate-900 via-[#141630] to-[#090b16] border border-slate-200/20 dark:border-white/[0.12] p-6 sm:p-8 text-white shadow-2xl">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-[#7c6ff6]/15 rounded-full blur-[100px] pointer-events-none" />
         <div className="relative z-10 space-y-4">
-          <div className="flex items-center gap-2.5 text-indigo-300 font-mono text-xs font-bold uppercase tracking-wider">
-            <Sparkles className="w-4 h-4 text-amber-400 animate-pulse" />
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-mono font-semibold text-[#c4b5fd]">
+            <Sparkles className="w-4 h-4 text-[#7c6ff6]" />
             <span>{t.missionTitle[language]}</span>
           </div>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
             {t.missionItems.map((item, i) => (
-              <div key={i} className="flex items-center gap-3 p-3 rounded-2xl bg-white/[0.04] border border-white/10 text-xs sm:text-sm text-slate-200">
+              <div key={i} className="flex items-center gap-3 p-3.5 rounded-2xl bg-white/[0.06] backdrop-blur-md border border-white/10 text-xs sm:text-sm text-slate-200">
                 <CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>{item[language]}</span>
+                <span className="font-sans font-medium">{item[language]}</span>
               </div>
             ))}
           </div>
         </div>
-      </div>
+      </section>
 
       {/* 3. The Visual Narrative Timeline (8 Alternating High-Impact Chapters) */}
       <div className="space-y-24 relative">
