@@ -39,9 +39,9 @@ export const JuryQRModal: React.FC<JuryQRModalProps> = ({
       en: "All features unlocked: 118 elements, 51 molecule syntheses, solubility chart, and quests"
     },
     author: {
-      ru: "Автор: Кайрат Умар • NGS School (Алматы)",
-      kk: "Авторы: Қайрат Омар • NGS School (Алматы)",
-      en: "Author: Kairat Umar • NGS School (Almaty)"
+      ru: "Автор: Кайрат Умар • NGS School (Астана)",
+      kk: "Авторы: Қайрат Омар • NGS School (Астана)",
+      en: "Author: Kairat Umar • NGS School (Astana)"
     },
     close: {
       ru: "Закрыть",

@@ -41,9 +41,9 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
 
   const t = {
     badge: {
-      ru: "🇰🇿 Образование & Наука • NGS (Алматы)",
-      kk: "🇰🇿 Білім & Ғылым • NGS (Алматы)",
-      en: "🇰🇿 Education & Science • NGS (Almaty)"
+      ru: "🇰🇿 Образование & Наука • NGS (Астана)",
+      kk: "🇰🇿 Білім & Ғылым • NGS (Астана)",
+      en: "🇰🇿 Education & Science • NGS (Astana)"
     },
     title: {
       ru: "Химическая Наука и Исследования в Казахстане и New Generation School",
@@ -111,9 +111,9 @@ export const EducationKzView: React.FC<EducationKzViewProps> = ({
         en: "Chemistry & Biology Department and State-of-the-Art NGS Lab Suite"
       },
       lead: {
-        ru: "Школа New Generation School (г. Алматы) создала одну из лучших научно-образовательных платформ для углубленного изучения естественных наук в Казахстане.",
-        kk: "Алматыдағы New Generation School мектебі Қазақстандағы жаратылыстану ғылымдарын тереңдетіп оқытуға арналған озық ғылыми-білім беру кеңістігін қалыптастырды.",
-        en: "New Generation School in Almaty has established one of the premier academic hubs for deep natural science exploration in Kazakhstan."
+        ru: "Школа New Generation School (г. Астана) создала одну из лучших научно-образовательных платформ для углубленного изучения естественных наук в Казахстане.",
+        kk: "Астанадағы New Generation School мектебі Қазақстандағы жаратылыстану ғылымдарын тереңдетіп оқытуға арналған озық ғылыми-білім беру кеңістігін қалыптастырды.",
+        en: "New Generation School in Astana has established one of the premier academic hubs for deep natural science exploration in Kazakhstan."
       },
       desc: {
         ru: "На фотографии — старшеклассники и преподавательский состав химико-биологического направления в специализированной аудитории. Кабинет оборудован мобильными рабочими станциями, центральным демонстрационным столом, настенными широкоформатными таблицами Менделеева и растворимости солей, а также персональными наборами химической посуды и реактивов.",

@@ -63,7 +63,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
     
     // Passport Fields
     schoolLabel: { ru: "Школа:", kk: "Мектеп:", en: "School:" },
-    schoolValue: { ru: "New Generation School (NGS), г. Алматы", kk: "New Generation School (NGS), Алматы қ.", en: "New Generation School (NGS), Almaty" },
+    schoolValue: { ru: "New Generation School (NGS), г. Астана", kk: "New Generation School (NGS), Астана қ.", en: "New Generation School (NGS), Astana" },
     authorLabel: { ru: "Автор проекта:", kk: "Жоба авторы:", en: "Project Author:" },
     authorValue: { ru: "Кайрат Умар (ученик NGS)", kk: "Қайрат Омар (NGS оқушысы)", en: "Kairat Umar (NGS student)" },
     sectionLabel: { ru: "Секция:", kk: "Бағыты:", en: "Section:" },
@@ -142,7 +142,7 @@ export const WelcomeModal: React.FC<WelcomeModalProps> = ({
             </h2>
 
             <p className="text-xs text-slate-500 dark:text-slate-400 font-mono">
-              Автор: <strong className="text-slate-900 dark:text-white">Кайрат Умар</strong> • New Generation School (NGS), г. Алматы
+              Автор: <strong className="text-slate-900 dark:text-white">Кайрат Умар</strong> • New Generation School (NGS), г. Астана
             </p>
           </div>
         </div>
