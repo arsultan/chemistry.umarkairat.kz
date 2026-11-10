@@ -7,7 +7,7 @@ import {
   Table2, Droplets, Rocket, StickyNote, Layers, BookOpen, TestTube2,
   Network, Gamepad2, Award, Flag, Thermometer, Mountain,
 } from "lucide-react";
-import { Molecule3DCanvas, BohrAtom3D, MOLECULES, ATOMS } from "./Molecule3DCanvas";
+import { Molecule3DCanvas, MOLECULES } from "./Molecule3DCanvas";
 
 const SITE = "https://chemistry.umarkairat.kz";
 const QR = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(SITE)}&bgcolor=ffffff&color=0f172a&margin=10`;
@@ -91,7 +91,6 @@ const MolViewer = ({ start = 0 }: { start?: number }) => {
         <div className="absolute top-4 left-5">
           <div className="text-2xl font-bold text-white">{m.formula}</div>
           <div className="text-sm text-zinc-300">{m.name}</div>
-          <div className="text-xs text-zinc-500 mt-0.5">{m.geometry}</div>
         </div>
         <div className="absolute bottom-3 right-4 text-[11px] font-mono text-zinc-500">тяни, чтобы вращать</div>
       </div>
@@ -107,31 +106,14 @@ const MolViewer = ({ start = 0 }: { start?: number }) => {
   );
 };
 
-const AtomViewer = () => {
-  const [k, setK] = useState(3);
-  const a = ATOMS[k];
-  return (
-    <div className="rounded-3xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/15 overflow-hidden">
-      <div className="relative h-[290px] sm:h-[350px]">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(165,180,252,0.22),transparent_65%)]" />
-        <BohrAtom3D atom={a} className="absolute inset-0 w-full h-full" />
-        <div className="absolute top-4 left-5">
-          <div className="text-2xl font-bold text-white">{a.symbol} <span className="text-base font-medium text-zinc-300">{a.name}</span></div>
-          <div className="text-xs text-zinc-400 mt-0.5 font-mono">электроны по уровням: {a.shells.join(" · ")}</div>
-        </div>
-        <div className="absolute bottom-3 right-4 text-[11px] font-mono text-zinc-500">модель Бора, тяни, чтобы вращать</div>
-      </div>
-      <div className="flex flex-wrap gap-2 p-3 border-t border-white/10">
-        {ATOMS.map((x, idx) => (
-          <button key={x.symbol} id={`atom-${idx}`} onClick={() => setK(idx)}
-            className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition ${idx === k ? "bg-white text-zinc-900" : "bg-white/[0.07] text-zinc-200 hover:bg-white/15"}`}>
-            {x.symbol}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-};
+const ElementFacts = () => (
+  <div className="grid grid-cols-2 gap-4">
+    <Stat value="118" label="элементов IUPAC" />
+    <Stat value="10" label="категорий веществ" />
+    <Stat value="4" label="блока: s, p, d, f" />
+    <Stat value="6000 К" label="предел термометра" />
+  </div>
+);
 
 /* ---------- slides (all facts taken from the site's source code) ---------- */
 
@@ -153,7 +135,7 @@ const slides: Slide[] = [
           </div>
         </div>
         <Stage h="h-[320px] sm:h-[420px]">
-          <Molecule3DCanvas molecule={MOLECULES[6]} className="absolute inset-0 w-full h-full" />
+          <Molecule3DCanvas molecule={MOLECULES[4]} className="absolute inset-0 w-full h-full" />
         </Stage>
       </div>
     ),
@@ -228,10 +210,10 @@ const slides: Slide[] = [
           ]} />
           <LiveBtn label="Открыть таблицу" />
         </div>
-        <AtomViewer />
+        <ElementFacts />
       </div>
     ),
-    notes: "Первый раздел — таблица Менделеева. Все 118 элементов, а ещё восьмой период с гипотетическими элементами. У каждого элемента карточка с анимированной моделью Бора, электронной конфигурацией, спектром и историей открытия. Справа — 3D-версия модели Бора: электроны летают по орбитам, её можно вращать. Выбирайте натрий или хлор, и видно, как электроны распределены по уровням. Отдельная фишка — термометр от нуля до шести тысяч кельвинов: двигаешь ползунок, и у всех элементов сразу меняется агрегатное состояние. [Открыть сайт и показать термометр]",
+    notes: "Первый раздел — таблица Менделеева. Все 118 элементов, а ещё восьмой период с гипотетическими элементами. У каждого элемента карточка с анимированной моделью Бора, электронной конфигурацией, спектром и историей открытия. Можно фильтровать элементы по десяти категориям и по блокам s, p, d, f. Отдельная фишка — термометр от нуля до шести тысяч кельвинов: двигаешь ползунок, и у всех элементов сразу меняется агрегатное состояние. [Открыть сайт и показать термометр]",
   },
   {
     tag: "Раздел 1", title: "Остров стабильности", icon: Mountain,
@@ -261,7 +243,7 @@ const slides: Slide[] = [
         <MolViewer />
       </div>
     ),
-    notes: "Второй раздел — лаборатория синтеза. Выбираешь атомы, кладёшь в камеру, и система сама считает формулу и молярную массу. Можно нагреть реакцию до тысячи двухсот кельвинов или добавить катализатор. Если получилось настоящее вещество, открывается окно открытия: формула, класс опасности, применение и научный факт. В базе 151 вещество. Справа — 3D-галерея: вода, углекислый газ, метан, аммиак, ацетилен, этанол, бензол, кофеин и кристаллическая решётка поваренной соли. Все эти вещества есть на сайте. Можно вращать мышкой.",
+    notes: "Второй раздел — лаборатория синтеза. Выбираешь атомы, кладёшь в камеру, и система сама считает формулу и молярную массу. Можно нагреть реакцию до тысячи двухсот кельвинов или добавить катализатор. Если получилось настоящее вещество, открывается окно открытия: формула, класс опасности, применение и научный факт. В базе 151 вещество. Справа — 3D-галерея: вода, метан, аммиак, углекислый газ, бензол и этанол. Можно вращать мышкой.",
   },
   {
     tag: "Раздел 3", title: "pH-лаборатория", icon: Beaker,
