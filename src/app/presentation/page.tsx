@@ -19,10 +19,10 @@ type Slide = {
   notes: string;
 };
 
-const Card = ({ icon: Icon, title, text, color }: { icon: React.ElementType; title: string; text: string; color: string }) => (
-  <div className="group p-5 rounded-2xl bg-white/[0.04] border border-white/10 backdrop-blur-xl hover:bg-white/[0.08] hover:-translate-y-1 transition-all duration-300">
-    <div className={`w-11 h-11 rounded-xl flex items-center justify-center mb-3 ${color}`}>
-      <Icon className="w-5 h-5 text-white" />
+const Card = ({ icon: Icon, title, text }: { icon: React.ElementType; title: string; text: string; color?: string }) => (
+  <div className="group p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-white/20 transition-colors duration-300">
+    <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4 border border-white/10 text-[#a5b4fc]">
+      <Icon className="w-5 h-5" />
     </div>
     <h3 className="font-bold text-white text-lg mb-1">{title}</h3>
     <p className="text-slate-300 text-sm leading-relaxed">{text}</p>
@@ -30,15 +30,15 @@ const Card = ({ icon: Icon, title, text, color }: { icon: React.ElementType; tit
 );
 
 const Stat = ({ value, label }: { value: string; label: string }) => (
-  <div className="text-center p-5 rounded-2xl bg-white/[0.04] border border-white/10">
-    <div className="text-4xl sm:text-5xl font-black bg-gradient-to-r from-indigo-300 to-fuchsia-300 bg-clip-text text-transparent">{value}</div>
-    <div className="text-slate-400 text-sm mt-1">{label}</div>
+  <div className="text-center p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08]">
+    <div className="text-4xl sm:text-5xl font-semibold text-white tracking-tight">{value}</div>
+    <div className="text-zinc-500 text-sm mt-2">{label}</div>
   </div>
 );
 
 const LiveBtn = ({ label = "Показать вживую" }: { label?: string }) => (
   <a href="/" target="_blank" rel="noopener noreferrer"
-    className="inline-flex items-center gap-2 mt-6 px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-lg shadow-indigo-600/30 transition active:scale-95">
+    className="inline-flex items-center gap-2 mt-8 px-5 py-2.5 rounded-full bg-white text-zinc-900 hover:bg-zinc-200 text-sm font-medium transition active:scale-95">
     {label} <ExternalLink className="w-4 h-4" />
   </a>
 );
@@ -46,8 +46,8 @@ const LiveBtn = ({ label = "Показать вживую" }: { label?: string }
 const Bullets = ({ items }: { items: string[] }) => (
   <ul className="space-y-3">
     {items.map((i) => (
-      <li key={i} className="flex gap-3 text-slate-200 text-lg">
-        <Sparkles className="w-5 h-5 text-fuchsia-300 shrink-0 mt-1" />
+      <li key={i} className="flex gap-4 text-zinc-300 text-lg">
+        <span className="w-1.5 h-1.5 rounded-full bg-[#a5b4fc] shrink-0 mt-3" />
         <span>{i}</span>
       </li>
     ))}
@@ -66,7 +66,7 @@ const slides: Slide[] = [
           <span className="text-white text-lg font-bold">Автор: Кайрат Умар</span>
           <span className="text-slate-400">New Generation School (NGS), г. Астана</span>
         </div>
-        <div className="flex items-center justify-center gap-2 text-indigo-300 font-mono">
+        <div className="flex items-center justify-center gap-2 text-zinc-400 font-mono">
           <Globe className="w-4 h-4" /> chemistry.umarkairat.kz
         </div>
       </div>
@@ -88,8 +88,8 @@ const slides: Slide[] = [
     tag: "Цель и задачи", title: "Что я хотел сделать", icon: Target, accent: "from-emerald-500 to-teal-500",
     body: (
       <div className="grid sm:grid-cols-2 gap-8 items-start">
-        <div className="p-6 rounded-2xl bg-emerald-500/10 border border-emerald-400/20">
-          <div className="text-emerald-300 font-mono text-sm mb-2">ЦЕЛЬ</div>
+        <div className="p-6 rounded-2xl bg-white/[0.03] border-l-2 border-[#a5b4fc]">
+          <div className="text-zinc-500 font-mono text-xs tracking-widest mb-3">ЦЕЛЬ</div>
           <p className="text-white text-xl leading-relaxed">Создать бесплатную онлайн-платформу, которая делает химию наглядной, интерактивной и интересной.</p>
         </div>
         <Bullets items={[
@@ -173,9 +173,9 @@ const slides: Slide[] = [
           "Если основная модель недоступна, сам переключается на резервную",
         ]} />
         <div className="p-5 rounded-2xl bg-white/[0.04] border border-white/10 space-y-3 text-sm">
-          <div className="ml-auto w-fit max-w-[85%] px-4 py-2 rounded-2xl rounded-br-sm bg-indigo-600 text-white">Что такое серная кислота?</div>
-          <div className="w-fit max-w-[90%] px-4 py-2 rounded-2xl rounded-bl-sm bg-white/10 text-slate-200">H₂SO₄ — одна из важнейших кислот в химии, её называют «хлебом промышленности»...</div>
-          <div className="w-fit px-3 py-1.5 rounded-lg bg-fuchsia-500/20 border border-fuchsia-400/30 text-fuchsia-200 text-xs">⚡ Открыть Серу (S) в Таблице</div>
+          <div className="ml-auto w-fit max-w-[85%] px-4 py-2 rounded-2xl rounded-br-sm bg-white text-zinc-900">Что такое серная кислота?</div>
+          <div className="w-fit max-w-[90%] px-4 py-2 rounded-2xl rounded-bl-sm bg-white/[0.06] text-zinc-300">H₂SO₄ — одна из важнейших кислот в химии, её называют «хлебом промышленности»...</div>
+          <div className="w-fit px-3 py-1.5 rounded-lg border border-[#a5b4fc]/40 text-[#a5b4fc] text-xs">→ Открыть Серу (S) в Таблице</div>
         </div>
       </div>
     ),
@@ -218,7 +218,7 @@ const slides: Slide[] = [
     body: (
       <div className="grid sm:grid-cols-2 gap-8">
         <div>
-          <div className="text-emerald-300 font-mono text-sm mb-3">ДОСТИГНУТО</div>
+          <div className="text-zinc-500 font-mono text-xs tracking-widest mb-4">ДОСТИГНУТО</div>
           <Bullets items={[
             "Рабочая платформа в открытом доступе",
             "Все поставленные задачи выполнены",
@@ -226,7 +226,7 @@ const slides: Slide[] = [
           ]} />
         </div>
         <div>
-          <div className="text-indigo-300 font-mono text-sm mb-3">ПЛАНЫ</div>
+          <div className="text-zinc-500 font-mono text-xs tracking-widest mb-4">ПЛАНЫ</div>
           <Bullets items={[
             "Кабинет учителя и статистика класса",
             "Мобильное приложение",
@@ -241,13 +241,13 @@ const slides: Slide[] = [
     tag: "Спасибо за внимание", title: "Попробуйте сами!", icon: Sparkles, accent: "from-indigo-500 to-fuchsia-500",
     body: (
       <div className="flex flex-col sm:flex-row items-center justify-center gap-10">
-        <div className="p-4 bg-white rounded-3xl shadow-2xl shadow-indigo-500/30">
+        <div className="p-4 bg-white rounded-3xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src={QR} alt="QR-код сайта" className="w-56 h-56 sm:w-64 sm:h-64" />
         </div>
         <div className="space-y-4 text-center sm:text-left">
           <p className="text-2xl text-white font-bold">Отсканируйте камерой телефона</p>
-          <div className="flex items-center gap-2 text-indigo-300 font-mono text-lg justify-center sm:justify-start">
+          <div className="flex items-center gap-2 text-zinc-300 font-mono text-lg justify-center sm:justify-start">
             <Globe className="w-5 h-5" /> chemistry.umarkairat.kz
           </div>
           <p className="text-slate-400">Кайрат Умар • NGS, г. Астана</p>
@@ -287,46 +287,56 @@ export default function PresentationPage() {
   const Icon = s.icon;
 
   return (
-    <main className="fixed inset-0 overflow-hidden bg-[#070816] text-white select-none" style={{ fontFamily: "var(--font-montserrat), Montserrat, sans-serif" }}>
-      {/* Ambient background */}
+    <main className="fixed inset-0 overflow-hidden bg-[#0a0a0b] text-zinc-100 select-none" style={{ fontFamily: "var(--font-montserrat), Montserrat, sans-serif" }}>
+      {/* Subtle background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className={`absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full blur-[120px] opacity-30 bg-gradient-to-br ${s.accent} transition-all duration-1000`} />
-        <div className="absolute -bottom-40 -right-40 w-[600px] h-[600px] rounded-full blur-[120px] opacity-20 bg-gradient-to-br from-indigo-600 to-purple-700 animate-pulse" />
-        <div className="absolute inset-0 opacity-[0.04]" style={{ backgroundImage: "radial-gradient(circle at 1px 1px, white 1px, transparent 0)", backgroundSize: "32px 32px" }} />
+        <div className="absolute -top-60 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[140px] opacity-[0.07] bg-[#a5b4fc]" />
+        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
       </div>
 
       {/* Slide */}
-      <section key={i} className="relative z-10 h-full flex flex-col justify-center px-6 sm:px-16 lg:px-28 py-20 animate-[slideIn_0.6s_ease-out]">
-        <div className={`flex items-center gap-3 mb-4 ${i === 0 || i === total - 1 ? "justify-center" : ""}`}>
-          <div className={`w-10 h-10 rounded-xl bg-gradient-to-br ${s.accent} flex items-center justify-center shadow-lg`}>
-            <Icon className="w-5 h-5" />
-          </div>
-          <span className="font-mono text-xs uppercase tracking-[0.2em] text-slate-400">{s.tag}</span>
+      <section key={i} className="relative z-10 h-full flex flex-col justify-center px-20 sm:px-28 lg:px-36 py-24 animate-[slideIn_0.5s_ease-out]">
+        <div className={`flex items-center gap-3 mb-5 ${i === 0 || i === total - 1 ? "justify-center" : ""}`}>
+          <Icon className="w-4 h-4 text-[#a5b4fc]" />
+          <span className="font-mono text-xs uppercase tracking-[0.25em] text-zinc-500">{String(i + 1).padStart(2, "0")} — {s.tag}</span>
         </div>
-        <h1 className={`text-4xl sm:text-6xl font-black tracking-tight mb-10 bg-gradient-to-r from-white via-indigo-100 to-fuchsia-200 bg-clip-text text-transparent ${i === 0 || i === total - 1 ? "text-center sm:text-7xl" : ""}`}>
+        <h1 className={`text-4xl sm:text-6xl font-bold tracking-tight mb-12 text-white ${i === 0 || i === total - 1 ? "text-center sm:text-7xl" : ""}`}>
           {s.title}
         </h1>
         <div className="max-w-6xl w-full mx-auto">{s.body}</div>
       </section>
 
+      {/* Big side arrows */}
+      <button id="prev-slide" onClick={() => go(-1)} disabled={i === 0} aria-label="Назад"
+        className="absolute z-20 left-4 sm:left-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center border border-white/10 bg-white/[0.03] text-zinc-300 hover:bg-white hover:text-zinc-900 hover:scale-105 disabled:opacity-0 disabled:pointer-events-none transition-all duration-200">
+        <ChevronLeft className="w-6 h-6" />
+      </button>
+      <button id="next-slide" onClick={() => go(1)} disabled={i === total - 1} aria-label="Вперёд"
+        className="absolute z-20 right-4 sm:right-6 top-1/2 -translate-y-1/2 w-14 h-14 rounded-full flex items-center justify-center border border-white/10 bg-white/[0.03] text-zinc-300 hover:bg-white hover:text-zinc-900 hover:scale-105 disabled:opacity-0 disabled:pointer-events-none transition-all duration-200">
+        <ChevronRight className="w-6 h-6" />
+      </button>
+
       {/* Speaker notes */}
       {notes && (
-        <div className="absolute z-20 left-4 right-4 bottom-20 sm:left-auto sm:w-[460px] p-5 rounded-2xl bg-slate-900/95 border border-amber-400/30 backdrop-blur-xl text-sm text-amber-50 leading-relaxed shadow-2xl">
-          <div className="text-amber-300 font-mono text-xs mb-2">ЧТО ГОВОРИТЬ (клавиша N)</div>
+        <div className="absolute z-30 left-4 right-4 bottom-20 sm:left-auto sm:right-6 sm:w-[460px] p-5 rounded-2xl bg-zinc-900/95 border border-white/10 backdrop-blur-xl text-sm text-zinc-200 leading-relaxed shadow-2xl">
+          <div className="text-zinc-500 font-mono text-xs mb-2 tracking-widest">ЧТО ГОВОРИТЬ · N</div>
           {s.notes}
         </div>
       )}
 
-      {/* Controls */}
-      <div className="absolute z-20 bottom-0 inset-x-0 p-4 flex items-center gap-3">
-        <button id="prev-slide" onClick={() => go(-1)} disabled={i === 0} className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 disabled:opacity-30 transition"><ChevronLeft className="w-5 h-5" /></button>
-        <div className="flex-1 h-1.5 rounded-full bg-white/10 overflow-hidden">
-          <div className={`h-full bg-gradient-to-r ${s.accent} transition-all duration-500`} style={{ width: `${((i + 1) / total) * 100}%` }} />
+      {/* Bottom bar: dots + tools */}
+      <div className="absolute z-20 bottom-0 inset-x-0 px-6 py-5 flex items-center justify-between">
+        <span className="font-mono text-xs text-zinc-500 w-24">{String(i + 1).padStart(2, "0")} / {total}</span>
+        <div className="flex items-center gap-2">
+          {slides.map((_, k) => (
+            <button key={k} id={`dot-${k + 1}`} onClick={() => setI(k)} aria-label={`Слайд ${k + 1}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${k === i ? "w-8 bg-white" : "w-1.5 bg-white/20 hover:bg-white/50"}`} />
+          ))}
         </div>
-        <span className="font-mono text-xs text-slate-400 w-14 text-center">{i + 1} / {total}</span>
-        <button id="next-slide" onClick={() => go(1)} disabled={i === total - 1} className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 disabled:opacity-30 transition"><ChevronRight className="w-5 h-5" /></button>
-        <button id="toggle-notes" onClick={() => setNotes((n) => !n)} title="Подсказки (N)" className={`p-2.5 rounded-xl border transition ${notes ? "bg-amber-500/20 border-amber-400/40" : "bg-white/5 border-white/10 hover:bg-white/10"}`}><StickyNote className="w-5 h-5" /></button>
-        <button id="toggle-fullscreen" onClick={fullscreen} title="Полный экран (F)" className="p-2.5 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 transition"><Maximize className="w-5 h-5" /></button>
+        <div className="flex items-center gap-2 w-24 justify-end">
+          <button id="toggle-notes" onClick={() => setNotes((n) => !n)} title="Подсказки (N)" className={`p-2 rounded-lg transition ${notes ? "bg-white text-zinc-900" : "text-zinc-500 hover:text-white"}`}><StickyNote className="w-4 h-4" /></button>
+          <button id="toggle-fullscreen" onClick={fullscreen} title="Полный экран (F)" className="p-2 rounded-lg text-zinc-500 hover:text-white transition"><Maximize className="w-4 h-4" /></button>
+        </div>
       </div>
 
       <style>{`@keyframes slideIn{from{opacity:0;transform:translateY(24px) scale(.98)}to{opacity:1;transform:none}}`}</style>
