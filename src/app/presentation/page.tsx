@@ -6,6 +6,7 @@ import {
   Sparkles, ChevronLeft, ChevronRight, Maximize, ExternalLink, Globe,
   Table2, Droplets, Rocket, StickyNote, Layers, BookOpen,
 } from "lucide-react";
+import { Molecule3DCanvas, MOLECULES } from "./Molecule3DCanvas";
 
 const SITE = "https://chemistry.umarkairat.kz";
 const QR = `https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(SITE)}&bgcolor=ffffff&color=0f172a&margin=10`;
@@ -20,19 +21,19 @@ type Slide = {
 };
 
 const Card = ({ icon: Icon, title, text }: { icon: React.ElementType; title: string; text: string; color?: string }) => (
-  <div className="group p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08] hover:border-white/20 transition-colors duration-300">
-    <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-4 border border-white/10 text-[#a5b4fc]">
+  <div className="group p-6 rounded-2xl bg-gradient-to-b from-white/[0.08] to-white/[0.03] border border-white/15 hover:border-[#a5b4fc]/60 hover:-translate-y-0.5 transition-all duration-300">
+    <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4 bg-[#a5b4fc]/15 border border-[#a5b4fc]/30 text-[#c7d2fe]">
       <Icon className="w-5 h-5" />
     </div>
     <h3 className="font-bold text-white text-lg mb-1">{title}</h3>
-    <p className="text-slate-300 text-sm leading-relaxed">{text}</p>
+    <p className="text-zinc-300 text-sm leading-relaxed">{text}</p>
   </div>
 );
 
 const Stat = ({ value, label }: { value: string; label: string }) => (
-  <div className="text-center p-6 rounded-2xl bg-white/[0.03] border border-white/[0.08]">
-    <div className="text-4xl sm:text-5xl font-semibold text-white tracking-tight">{value}</div>
-    <div className="text-zinc-500 text-sm mt-2">{label}</div>
+  <div className="text-center p-6 rounded-2xl bg-gradient-to-b from-[#a5b4fc]/15 to-white/[0.03] border border-[#a5b4fc]/25">
+    <div className="text-4xl sm:text-5xl font-bold text-white tracking-tight">{value}</div>
+    <div className="text-zinc-300 text-sm mt-2">{label}</div>
   </div>
 );
 
@@ -46,7 +47,7 @@ const LiveBtn = ({ label = "Показать вживую" }: { label?: string }
 const Bullets = ({ items }: { items: string[] }) => (
   <ul className="space-y-3">
     {items.map((i) => (
-      <li key={i} className="flex gap-4 text-zinc-300 text-lg">
+      <li key={i} className="flex gap-4 text-zinc-100 text-lg">
         <span className="w-1.5 h-1.5 rounded-full bg-[#a5b4fc] shrink-0 mt-3" />
         <span>{i}</span>
       </li>
@@ -54,20 +55,53 @@ const Bullets = ({ items }: { items: string[] }) => (
   </ul>
 );
 
+const MolViewer = () => {
+  const [k, setK] = useState(0);
+  const m = MOLECULES[k];
+  return (
+    <div className="rounded-3xl bg-gradient-to-b from-white/[0.07] to-white/[0.02] border border-white/15 overflow-hidden">
+      <div className="relative h-[300px] sm:h-[360px]">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_45%,rgba(165,180,252,0.22),transparent_65%)]" />
+        <Molecule3DCanvas molecule={m} className="absolute inset-0 w-full h-full" />
+        <div className="absolute top-4 left-5">
+          <div className="text-2xl font-bold text-white">{m.formula}</div>
+          <div className="text-sm text-zinc-400">{m.name}</div>
+        </div>
+        <div className="absolute bottom-3 right-4 text-[11px] font-mono text-zinc-500">тяни, чтобы вращать</div>
+      </div>
+      <div className="flex flex-wrap gap-2 p-3 border-t border-white/10">
+        {MOLECULES.map((x, idx) => (
+          <button key={x.formula} id={`mol-${idx}`} onClick={() => setK(idx)}
+            className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition ${idx === k ? "bg-white text-zinc-900" : "bg-white/[0.06] text-zinc-300 hover:bg-white/15"}`}>
+            {x.formula}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+};
+
+
 const slides: Slide[] = [
   {
     tag: "Научный проект", title: "Chemistry Explorer", icon: Atom, accent: "from-indigo-500 to-fuchsia-500",
     body: (
-      <div className="text-center space-y-6">
-        <p className="text-xl sm:text-2xl text-slate-300 max-w-3xl mx-auto">
-          Интерактивная цифровая лаборатория для изучения химии с ИИ-ассистентом
-        </p>
-        <div className="inline-flex flex-col gap-1 px-6 py-4 rounded-2xl bg-white/[0.04] border border-white/10">
-          <span className="text-white text-lg font-bold">Автор: Кайрат Умар</span>
-          <span className="text-slate-400">New Generation School (NGS), г. Астана</span>
+      <div className="grid lg:grid-cols-2 gap-6 items-center">
+        <div className="space-y-6 text-center lg:text-left">
+          <p className="text-xl sm:text-2xl text-zinc-200 leading-snug">
+            Интерактивная цифровая лаборатория для изучения химии с ИИ-ассистентом
+          </p>
+          <div className="inline-flex flex-col gap-1 px-6 py-4 rounded-2xl bg-white/[0.07] border border-white/15">
+            <span className="text-white text-lg font-bold">Автор: Кайрат Умар</span>
+            <span className="text-zinc-300">New Generation School (NGS), г. Астана</span>
+          </div>
+          <div className="flex items-center justify-center lg:justify-start gap-2 text-[#a5b4fc] font-mono">
+            <Globe className="w-4 h-4" /> chemistry.umarkairat.kz
+          </div>
         </div>
-        <div className="flex items-center justify-center gap-2 text-zinc-400 font-mono">
-          <Globe className="w-4 h-4" /> chemistry.umarkairat.kz
+        <div className="relative h-[320px] sm:h-[420px]">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(165,180,252,0.28),transparent_65%)]" />
+          <Molecule3DCanvas molecule={MOLECULES[4]} className="absolute inset-0 w-full h-full" />
         </div>
       </div>
     ),
@@ -76,10 +110,15 @@ const slides: Slide[] = [
   {
     tag: "Актуальность", title: "Проблема", icon: AlertTriangle, accent: "from-rose-500 to-orange-500",
     body: (
-      <div className="grid sm:grid-cols-3 gap-4">
-        <Card icon={BookOpen} color="bg-rose-500/80" title="Абстрактность" text="Атомы, связи и реакции нельзя увидеть — ученики просто заучивают формулы." />
-        <Card icon={FlaskConical} color="bg-orange-500/80" title="Нет лабораторий" text="Многим школам не хватает реактивов и оборудования, а часть опытов просто опасна." />
-        <Card icon={Target} color="bg-amber-500/80" title="Низкая мотивация" text="Учебник со статичными таблицами проигрывает телефону и играм." />
+      <div className="space-y-6">
+        <div className="grid sm:grid-cols-3 gap-4">
+          <Card icon={BookOpen} title="Абстрактность" text="Атомы, связи и реакции нельзя увидеть — ученики просто заучивают формулы, не понимая, как устроено вещество." />
+          <Card icon={FlaskConical} title="Нет лабораторий" text="Многим школам не хватает реактивов и оборудования, а часть опытов опасна: кислоты, щёлочи, токсичные газы." />
+          <Card icon={Target} title="Низкая мотивация" text="Учебник со статичными таблицами проигрывает телефону и играм, внимание уходит." />
+        </div>
+        <div className="p-5 rounded-2xl bg-white/[0.06] border border-white/15 text-zinc-200 text-lg">
+          <span className="text-[#a5b4fc] font-semibold">Вывод:</span> нужен инструмент, который показывает химию, а не рассказывает о ней, работает на любом телефоне и не требует оборудования.
+        </div>
       </div>
     ),
     notes: "Почему это важно? Химия — один из самых сложных школьных предметов, потому что её нельзя увидеть. Атомы и реакции остаются абстракцией. Во многих школах нет хорошей лаборатории, а некоторые опыты опасны. И ученикам просто скучно учиться по статичным таблицам.",
@@ -125,14 +164,22 @@ const slides: Slide[] = [
   {
     tag: "Модуль 1", title: "Периодическая таблица", icon: Table2, accent: "from-sky-500 to-indigo-500",
     body: (
-      <div>
-        <Bullets items={[
-          "Все 118 элементов, у каждого есть карточка: масса, электроотрицательность, конфигурация",
-          "Цветовая классификация: металлы, неметаллы, благородные газы и т.д.",
-          "Отдельный модуль классификации веществ: оксиды, кислоты, основания, соли",
-          "Звуковые эффекты и анимации при работе",
-        ]} />
-        <LiveBtn label="Открыть таблицу" />
+      <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <Bullets items={[
+            "Все 118 элементов, у каждого есть карточка: масса, электроотрицательность, конфигурация",
+            "Цветовая классификация: металлы, неметаллы, благородные газы и т.д.",
+            "Отдельный модуль классификации веществ: оксиды, кислоты, основания, соли",
+            "Звуковые эффекты и анимации при работе",
+          ]} />
+          <LiveBtn label="Открыть таблицу" />
+        </div>
+        <div className="grid grid-cols-2 gap-4">
+          <Stat value="118" label="элементов" />
+          <Stat value="18" label="групп" />
+          <Stat value="7" label="периодов" />
+          <Stat value="4" label="типа веществ" />
+        </div>
       </div>
     ),
     notes: "Первый модуль — интерактивная таблица Менделеева. Нажимаешь на любой элемент и видишь все его свойства. Цвета помогают понять группы. Отдельно есть модуль классификации веществ. Сейчас покажу вживую. [Открыть сайт и кликнуть на элемент, например, Натрий]",
@@ -140,14 +187,17 @@ const slides: Slide[] = [
   {
     tag: "Модуль 2", title: "Лаборатория реакций и 3D", icon: FlaskConical, accent: "from-fuchsia-500 to-pink-500",
     body: (
-      <div>
-        <Bullets items={[
-          "Собираешь молекулу из атомов, и система проверяет, правильно ли",
-          "51 молекула: от воды H₂O до сложных органических соединений",
-          "3D-студия: молекулу можно вращать и рассматривать со всех сторон",
-          "Опасные реакции без риска для здоровья",
-        ]} />
-        <LiveBtn label="Синтезировать H₂O" />
+      <div className="grid lg:grid-cols-2 gap-8 items-center">
+        <div>
+          <Bullets items={[
+            "Собираешь молекулу из атомов, и система проверяет, правильно ли",
+            "51 молекула: от воды H₂O до сложных органических соединений",
+            "3D-студия: молекулу можно вращать и рассматривать со всех сторон",
+            "Опасные реакции без риска для здоровья",
+          ]} />
+          <LiveBtn label="Синтезировать H₂O" />
+        </div>
+        <MolViewer />
       </div>
     ),
     notes: "Второй модуль — лаборатория. Здесь можно собрать молекулу из атомов, например два водорода и кислород дают воду. В 3D-студии молекулу можно повернуть и рассмотреть. Главное — даже опасные реакции здесь абсолютно безопасны.",
@@ -290,8 +340,9 @@ export default function PresentationPage() {
     <main className="fixed inset-0 overflow-hidden bg-[#0a0a0b] text-zinc-100 select-none" style={{ fontFamily: "var(--font-montserrat), Montserrat, sans-serif" }}>
       {/* Subtle background */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute -top-60 left-1/2 -translate-x-1/2 w-[900px] h-[500px] rounded-full blur-[140px] opacity-[0.07] bg-[#a5b4fc]" />
-        <div className="absolute inset-0 opacity-[0.025]" style={{ backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
+        <div className="absolute -top-60 left-1/2 -translate-x-1/2 w-[1000px] h-[560px] rounded-full blur-[140px] opacity-[0.2] bg-[#a5b4fc]" />
+        <div className="absolute -bottom-72 -right-40 w-[700px] h-[500px] rounded-full blur-[150px] opacity-[0.12] bg-[#5eead4]" />
+        <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: "linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)", backgroundSize: "64px 64px" }} />
       </div>
 
       {/* Slide */}
