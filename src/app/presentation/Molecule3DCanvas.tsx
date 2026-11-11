@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import React, { useEffect, useRef } from "react";
 
@@ -6,10 +6,10 @@ export type MolAtom = { el: "H" | "C" | "O" | "N"; x: number; y: number; z: numb
 export type Molecule = { name: string; formula: string; atoms: MolAtom[]; bonds: [number, number][] };
 
 const STYLE: Record<string, { color: string; r: number }> = {
-  H: { color: "#f4f4f5", r: 0.55 },
-  C: { color: "#71717a", r: 0.8 },
-  O: { color: "#fb7185", r: 0.78 },
-  N: { color: "#818cf8", r: 0.78 },
+  H: { color: "#f5f5f4", r: 0.55 },
+  C: { color: "#57534e", r: 0.8 },
+  O: { color: "#e0533d", r: 0.78 },
+  N: { color: "#3b6fd4", r: 0.78 },
 };
 
 const benzene = (): Molecule => {
@@ -115,8 +115,8 @@ export const Molecule3DCanvas: React.FC<{ molecule: Molecule; className?: string
           z: (A.z + B.z) / 2 - 0.01,
           draw: () => {
             const g = ctx.createLinearGradient(A.sx, A.sy, B.sx, B.sy);
-            g.addColorStop(0, "rgba(228,228,231,0.85)");
-            g.addColorStop(1, "rgba(161,161,170,0.85)");
+            g.addColorStop(0, "rgba(168,162,158,0.95)");
+            g.addColorStop(1, "rgba(120,113,108,0.95)");
             ctx.strokeStyle = g;
             ctx.lineWidth = unit * 0.2 * ((A.p + B.p) / 2);
             ctx.lineCap = "round";
